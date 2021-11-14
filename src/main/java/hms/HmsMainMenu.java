@@ -17,6 +17,7 @@ public class HmsMainMenu {
     public static void main(String[] args) {
         // TODO code application logic here
         //이거 브랜치로 제대로 올라가는지 확인만 하고 작업 시작합니다.
+        new Login().setVisible(true);
     }
     
 }
