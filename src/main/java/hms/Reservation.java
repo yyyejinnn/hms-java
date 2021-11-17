@@ -43,6 +43,7 @@ public class Reservation extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        Butt_change = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +187,13 @@ public class Reservation extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
+        Butt_change.setText("예약 변경");
+        Butt_change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Butt_changeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,10 +225,13 @@ public class Reservation extends javax.swing.JFrame {
                                     .addComponent(text_name, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(text_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(22, 22, 22)
                         .addComponent(Butt_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Butt_reservedelete, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Butt_reservedelete, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(Butt_change, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -251,10 +262,12 @@ public class Reservation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(text_count, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(53, 53, 53)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Butt_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Butt_reservedelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Butt_reservedelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Butt_change, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -289,6 +302,23 @@ public class Reservation extends javax.swing.JFrame {
         }
         else {}
     }                                                  
+
+    private void Butt_changeActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null, "정말 예약을 변경하시겠습니까?","Change?", JOptionPane.YES_NO_OPTION);
+        if(a == JOptionPane.CLOSED_OPTION){}
+        else if(a == JOptionPane.YES_OPTION){
+            //쇼업메시지 찾아서 만들어놓자
+            //여기서 부터 예약 정보가 실제로 변경되는 코드 필요, 데이터의 상태를 빈칸으로로 만들고 null로 만들면 될 것으로 보임
+            String input = JOptionPane.showInputDialog("예약을 변경하시기 전의 식별 번호를 입력해주세요");
+            if(input == "?"){
+                //여기서 "?"에 해당하는 것을 식별 번호를 모아두는 데이터베이스에 연동해서 찾아낼 것, 없으면 else에다가
+            JOptionPane.showMessageDialog(null, "예약이 변경되었습니다");
+            }
+            else {JOptionPane.showMessageDialog(null, "식별 번호가 맞지 않습니다. 다시 시도해 주세요");}
+        }
+        else {}
+    }                                           
 
     /**
      * @param args the command line arguments
@@ -327,6 +357,7 @@ public class Reservation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton Butt_back;
+    private javax.swing.JButton Butt_change;
     private javax.swing.JButton Butt_reservation;
     private javax.swing.JButton Butt_reservedelete;
     private javax.swing.JLabel jLabel1;
