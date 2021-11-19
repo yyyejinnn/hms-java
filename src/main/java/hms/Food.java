@@ -192,17 +192,32 @@ public class Food extends javax.swing.JFrame {
                     int restcheck = JOptionPane.showOptionDialog(null, "레스토렁의 어느 것을 주문하시겠습니까?", null,
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, rest, rest[2]);
                     if(restcheck == 0){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                    else{
                         // 요금 변수 만들어서 추가시키고
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴1 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (restcheck == 1){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                     else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴2 결제가 완료되어 예약되었습니다.");
+                     }
                     }
                     else if (restcheck == 2){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                     if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                     else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴3 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                 }
                 else if (Butt_roomservice.isSelected()) {
@@ -211,19 +226,33 @@ public class Food extends javax.swing.JFrame {
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, roomserv, roomserv[2]);
                     if(roomservecheck == 0){
                         // 요금 변수 만들어서 추가시키기 실제 결제가 카드 번호 입력 받고 결제 완료
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                         int count = Integer.parseInt(input);
+                         if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                   else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴4 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (roomservecheck == 1){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                        int count = Integer.parseInt(input);
+                        if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                         else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴5 결제가 완료되어 예약되었습니다.");
+                     }
                     }
                     else if (roomservecheck == 2){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                        int count = Integer.parseInt(input);
+                         if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                     else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴6 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                 }
-               
             }
             else if(num == JOptionPane.NO_OPTION){
                 //카드로 후불, 즉 체크아웃 할 때 결제 금액에다가 추가 시키기
@@ -237,18 +266,33 @@ public class Food extends javax.swing.JFrame {
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, rest, rest[2]);
                     if(restcheck == 0){
                         // // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                    else{
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴1 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (restcheck == 1){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                    else{
                         // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴2 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (restcheck == 2){
-                        // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
+                    String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                    else{                        
+                    // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴3 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                 }
                 else if (Butt_roomservice.isSelected()) {
@@ -256,22 +300,36 @@ public class Food extends javax.swing.JFrame {
                     int roomservecheck = JOptionPane.showOptionDialog(null, "룸서비스의 어느 것을 주문하시겠습니까?", null,
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, roomserv, roomserv[2]);
                     if(roomservecheck == 0){
+                    String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                    int count = Integer.parseInt(input);
+                    if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                    else{                        
                         // 요금 변수 만들어서 추가시키기 실제 결제가 카드 번호 입력 받고 결제 완료
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴4 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (roomservecheck == 1){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                        int count = Integer.parseInt(input);
+                        if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                        else{
                         // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴5 결제가 완료되어 예약되었습니다.");
+                        }
                     }
                     else if (roomservecheck == 2){
+                        String input = JOptionPane.showInputDialog("몇 개를 구매하시겠습니까?");
+                        int count = Integer.parseInt(input);
+                        if (input == ""){JOptionPane.showMessageDialog(null, "구매 내역이 없습니다..");}
+                        else{
                         // 요금 변수 만들어서 추가시키고 결제 금액에다가 추가시킬것
                         String ans_str = (String) JOptionPane.showInputDialog(this, "카드 번호를 입력해주세요", "Input Dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
                         JOptionPane.showMessageDialog(null, "메뉴6 결제가 완료되어 예약되었습니다.");
                     }
+                    }
                 }
-                
             }
             else {}
         }
