@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hms;
 
 import javax.swing.JOptionPane;
@@ -29,37 +24,49 @@ public class Reservation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        Butt_back = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        Butt_reservation = new javax.swing.JButton();
-        Butt_reservedelete = new javax.swing.JButton();
-        text_name = new javax.swing.JTextField();
         text_phonenumber = new javax.swing.JTextField();
         text_roomnumber = new javax.swing.JTextField();
         text_count = new javax.swing.JTextField();
+        combo_date = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Butt_reservation = new javax.swing.JButton();
+        Butt_back = new javax.swing.JButton();
+        Butt_reservedelete = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        Butt_change = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        text_name = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        Butt_change = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Butt_back.setText("뒤로가기");
-        Butt_back.addActionListener(new java.awt.event.ActionListener() {
+        combo_date.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Today", "1일 뒤", "2일 뒤", "3일 뒤" }));
+        combo_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Butt_backActionPerformed(evt);
+                combo_dateActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("예약 진행");
+        jLabel2.setText("이름 :");
+
+        jLabel3.setText("전화번호 :");
+
+        jLabel4.setText("방 번호 :");
 
         Butt_reservation.setText("예약 진행");
         Butt_reservation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Butt_reservationActionPerformed(evt);
+            }
+        });
+
+        Butt_back.setText("뒤로가기");
+        Butt_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Butt_backActionPerformed(evt);
             }
         });
 
@@ -70,13 +77,16 @@ public class Reservation extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("이름 :");
-
-        jLabel3.setText("전화번호 :");
-
-        jLabel4.setText("방 번호 :");
-
         jLabel5.setText("인원 :");
+
+        Butt_change.setText("예약 변경");
+        Butt_change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Butt_changeActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("예약 진행");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,13 +197,6 @@ public class Reservation extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        Butt_change.setText("예약 변경");
-        Butt_change.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Butt_changeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,7 +205,7 @@ public class Reservation extends javax.swing.JFrame {
                 .addComponent(Butt_back, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(269, 269, 269)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 328, Short.MAX_VALUE))
+                .addGap(0, 358, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -232,8 +235,12 @@ public class Reservation extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(Butt_change, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(combo_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,10 +250,11 @@ public class Reservation extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(combo_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(text_roomnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
@@ -267,17 +275,15 @@ public class Reservation extends javax.swing.JFrame {
                             .addComponent(Butt_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Butt_reservedelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Butt_change, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(Butt_change, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>                        
-
-    private void Butt_backActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-        dispose();
-    }                                         
 
     private void Butt_reservationActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
@@ -285,11 +291,16 @@ public class Reservation extends javax.swing.JFrame {
         if(a == JOptionPane.CLOSED_OPTION){}
         else if(a == JOptionPane.YES_OPTION){
             //여기서 부터 예약이 실제로 이뤄지는 코드 필요 + 식별 번호가 랜덤으로 발생하게 할 것 + 80줄부터 있는 것들을 타 클래스에서 연동 시켜서 보낼것(내 화면에서는 고정되서 수정 못하게 막아놔서 다른 분들이 하셔야 될듯...)
-            
+
             JOptionPane.showMessageDialog(null, "예약이 완료되었습니다");
         }
         else {}
     }                                                
+
+    private void Butt_backActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        dispose();
+    }                                         
 
     private void Butt_reservedeleteActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         // TODO add your handling code here:
@@ -297,8 +308,12 @@ public class Reservation extends javax.swing.JFrame {
         if(a == JOptionPane.CLOSED_OPTION){}
         else if(a == JOptionPane.YES_OPTION){
             //여기서 부터 예약 정보가 실제로 삭제되는 코드 필요, 데이터의 상태를 빈칸으로로 만들거나 null로 만들면 될 것으로 보임
-            
-            JOptionPane.showMessageDialog(null, "예약이 취소되었습니다");
+            String input = JOptionPane.showInputDialog("예약을 취소하시기 전의 식별 번호를 입력해주세요");
+            if(input == "?"){
+                //여기서 "?"에 해당하는 것을 식별 번호를 모아두는 데이터베이스에 연동해서 찾아낼 것, 없으면 else에다가
+                JOptionPane.showMessageDialog(null, "예약이 취소되었습니다");
+            }
+            else {JOptionPane.showMessageDialog(null, "식별 번호가 맞지 않습니다. 다시 시도해 주세요");}
         }
         else {}
     }                                                  
@@ -313,12 +328,17 @@ public class Reservation extends javax.swing.JFrame {
             String input = JOptionPane.showInputDialog("예약을 변경하시기 전의 식별 번호를 입력해주세요");
             if(input == "?"){
                 //여기서 "?"에 해당하는 것을 식별 번호를 모아두는 데이터베이스에 연동해서 찾아낼 것, 없으면 else에다가
-            JOptionPane.showMessageDialog(null, "예약이 변경되었습니다");
+                JOptionPane.showMessageDialog(null, "예약이 변경되었습니다");
             }
             else {JOptionPane.showMessageDialog(null, "식별 번호가 맞지 않습니다. 다시 시도해 주세요");}
         }
         else {}
     }                                           
+
+    private void combo_dateActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        //여기다가 날짜(오늘, 1일뒤... 에 맞게 변경되는 함수
+    }                                          
 
     /**
      * @param args the command line arguments
@@ -360,6 +380,7 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JButton Butt_change;
     private javax.swing.JButton Butt_reservation;
     private javax.swing.JButton Butt_reservedelete;
+    private javax.swing.JComboBox<String> combo_date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
