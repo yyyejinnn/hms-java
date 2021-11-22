@@ -20,6 +20,7 @@ public class MainTestDrive{
         System.out.println("============================================================");
         System.out.print("체크인 할 객실 번호를 입력해주세요: ");
         
+        //사용자 입력
         BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
         String inputLine = is.readLine();
              

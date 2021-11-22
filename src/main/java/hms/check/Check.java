@@ -14,7 +14,7 @@ public class Check {
         ArrayList<Reserve> reserveList = CheckTextFiles.getReserveListTxt();
         ArrayList<Reserve> checkInList = new ArrayList<>();
         
-        //2. 검색
+        //2. 검색 후 출력
         for(Reserve r : reserveList){
             if(r.getReserveIdx() == Integer.parseInt(str)  || r.getName().matches(str)){
                 System.out.println("방번호        예약자      인원수      금액");
@@ -32,7 +32,8 @@ public class Check {
         
         if(inputLine.matches("y")){
             CheckTextFiles.setCheckinListTxt(checkInList);  //체크인 txt에 추가
-            // 예약목록 txt에서 삭제
+            CheckTextFiles.deleteReserveListTxt(checkInList);// 예약목록 txt에서 삭제
+            // 결제
         } else{
             System.out.print("error");
         }
