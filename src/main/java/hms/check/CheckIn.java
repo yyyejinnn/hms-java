@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author LYJ
+ */
 public class CheckIn extends Check{
     public void checkIn(ArrayList<Reserve> checkInList) throws IOException {  //체크인
         System.out.println();
@@ -24,7 +28,7 @@ public class CheckIn extends Check{
             CheckTextFiles.updateRoomClean(checkInList.get(0).getReserveIdx());//점유상태 변경
             this.pay(checkInList.get(0).getCharge()); // 결제
         } else{
-            System.out.print("error");
+             System.out.print("error"); //메인 화면으로 돌아가기로 수정필요
         }
     }
 }

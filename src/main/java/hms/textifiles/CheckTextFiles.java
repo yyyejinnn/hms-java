@@ -20,7 +20,8 @@ public class CheckTextFiles {
     private static final String CHECK_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
     
-    public static ArrayList getReserveListTxt() { //예약자 txt 불러옴
+    //예약된 고객 txt 불러옴
+    public static ArrayList getReserveListTxt() {
         
         ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
         String[] splitedStr = null;
@@ -42,7 +43,8 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-    public static void deleteReserveListTxt(ArrayList<Reserve> r){  //예약 txt에서 삭제
+    //체크인 한 고객 예약 txt에서 삭제
+    public static void deleteReserveListTxt(ArrayList<Reserve> r){
         int reserveIdx = r.get(0).getReserveIdx();
         String reserveIdxStr = Integer.toString(reserveIdx);
         
@@ -77,7 +79,8 @@ public class CheckTextFiles {
         }
     }
     
-    public static void setCheckinListTxt(ArrayList<Reserve> r){  //체크인 txt에 저장         
+    //체크인 한 고객 체크인 txt에 저장       
+    public static void setCheckinListTxt(ArrayList<Reserve> r){  
         int reserveIdx = r.get(0).getReserveIdx();
         int reservePeopleNum = r.get(0).getReservePeopleNum();
         int charge = r.get(0).getCharge();
@@ -113,7 +116,8 @@ public class CheckTextFiles {
         }
     }
     
-    public static ArrayList getCheckListTxt(){  //체크인 txt 목록 불러옴
+    //체크인 목록 txt 불러옴
+    public static ArrayList getCheckListTxt(){
         ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
         String[] splitedStr = null;
         
@@ -134,7 +138,8 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-    public static void deleteCheckInListTxt(ArrayList<Reserve> r){  //체크인 txt에서 삭제
+    //체크인 목록 txt에서 삭제
+    public static void deleteCheckInListTxt(ArrayList<Reserve> r){
         int checkInIdx = r.get(0).getReserveIdx();
         String checkInIdxStr = Integer.toString(checkInIdx);
         
@@ -169,7 +174,8 @@ public class CheckTextFiles {
         }
     }
     
-    public static void updateRoomClean(int roomIdx){  //room txt 점유상태 변경
+    //roomList.txt 점유상태 변경   //t:사용중, f:비어있음
+    public static void updateRoomClean(int roomIdx){
         String roomInxStr = Integer.toString(roomIdx)+"/";
         
         try{
@@ -184,9 +190,7 @@ public class CheckTextFiles {
             while((dummy = is.readLine()) != null){
                 if(!(dummy.contains(roomInxStr))) {
                     str += dummy + "\n";
-                }else if(dummy.contains(roomInxStr)) {  //해당 객실
-                    System.out.println(dummy);
-                    
+                }else if(dummy.contains(roomInxStr)) {  //해당 객실                    
                     //해당 객실이 사용 중이면 비어있는 상태로 변경
                     if(dummy.contains("t")){
                         str += dummy.replace("t", "f") + "\n";

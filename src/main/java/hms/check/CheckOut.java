@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
+/**
+ *
+ * @author LYJ
+ */
 public class CheckOut extends Check{
     public void checkOut(ArrayList<Reserve> checkOutList) throws IOException{  //체크아웃
         System.out.println();
@@ -26,7 +29,7 @@ public class CheckOut extends Check{
             CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
             System.out.println("\n 체크아웃 되었습니다.");
         } else{
-            System.out.print("error");
+            //메인 화면으로 돌아가기
         }
     }   
     
