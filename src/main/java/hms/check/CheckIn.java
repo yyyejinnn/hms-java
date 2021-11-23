@@ -6,9 +6,10 @@ import hms.textifiles.CheckTextFiles;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class CheckIn extends Check{
-    public void checkIn(Reserve[] checkInList) throws IOException {  //체크인
+    public void checkIn(ArrayList<Reserve> checkInList) throws IOException {  //체크인
         System.out.println();
         System.out.print(">>체크인 하시겠습니까?(y/n): ");
         
@@ -20,7 +21,7 @@ public class CheckIn extends Check{
         if(inputLine.matches("y")){
             CheckTextFiles.setCheckinListTxt(checkInList);  //체크인 txt에 추가
             CheckTextFiles.deleteReserveListTxt(checkInList); // 예약목록 txt에서 삭제
-            pay(checkInList[0].getCharge()); // 결제
+            pay(checkInList.get(0).getCharge()); // 결제
         } else{
             System.out.print("error");
         }

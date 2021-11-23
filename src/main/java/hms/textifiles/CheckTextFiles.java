@@ -41,8 +41,8 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-    public static void deleteReserveListTxt(Reserve[] r){  //예약 txt에서 삭제
-        int reserveIdx = r[0].getReserveIdx();
+    public static void deleteReserveListTxt(ArrayList<Reserve> r){  //예약 txt에서 삭제
+        int reserveIdx = r.get(0).getReserveIdx();
         String reserveIdxStr = Integer.toString(reserveIdx);
         
         try{
@@ -76,15 +76,15 @@ public class CheckTextFiles {
         }
     }
     
-    public static void setCheckinListTxt(Reserve[] r){  //체크인 txt에 저장
+    public static void setCheckinListTxt(ArrayList<Reserve> r){  //체크인 txt에 저장
                
-        int reserveIdx = r[0].getReserveIdx();
-        int reservePeopleNum = r[0].getReservePeopleNum();
-        int charge = r[0].getCharge();
+        int reserveIdx = r.get(0).getReserveIdx();
+        int reservePeopleNum = r.get(0).getReservePeopleNum();
+        int charge = r.get(0).getCharge();
         
         //int > String 형변환
         String reserveIdxStr = Integer.toString(reserveIdx);
-        String reserveName = r[0].getName();
+        String reserveName = r.get(0).getName();
         String reservePeopleNumStr = Integer.toString(reservePeopleNum);
         String chargeStr = Integer.toString(charge);
         
@@ -134,8 +134,8 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-        public static void deleteCheckInListTxt(Reserve[] r){  //체크인 txt에서 삭제
-        int checkInIdx = r[0].getReserveIdx();
+        public static void deleteCheckInListTxt(ArrayList<Reserve> r){  //체크인 txt에서 삭제
+        int checkInIdx = r.get(0).getReserveIdx();
         String checkInIdxStr = Integer.toString(checkInIdx);
         
         try{

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hms.check;
 
 import hms.room.Reserve;
@@ -14,9 +10,9 @@ import java.util.ArrayList;
 
 
 public class CheckOut extends Check{
-    public void checkOut(Reserve[] checkOutList) throws IOException{  //체크아웃
+    public void checkOut(ArrayList<Reserve> checkOutList) throws IOException{  //체크아웃
         System.out.println();
-        System.out.print(">>체크아웃 하시겠습니까?(y/n): ");
+        System.out.print(">> 체크아웃 하시겠습니까?(y/n): ");
         
         //사용자 입력
         BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
@@ -25,9 +21,9 @@ public class CheckOut extends Check{
         //체크아웃 진행
         if(inputLine.matches("y")){
             CheckTextFiles.deleteCheckInListTxt(checkOutList);// 체크인 목록 txt에서 삭제
-            pay(checkOutList[0].getCharge());// 결제
-            
-            //String feedback = is.readLine();    
+            pay(checkOutList.get(0).getCharge());// 결제
+            //String feedback = is.readLine();
+            System.out.println("\n 체크아웃 되었습니다.");
         } else{
             System.out.print("error");
         }
