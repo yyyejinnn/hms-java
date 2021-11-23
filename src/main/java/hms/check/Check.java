@@ -32,7 +32,7 @@ public class Check {
         return checkList;
     }
     
-    public static void pay(int charge)throws IOException{  //결제
+    public void pay(int charge)throws IOException{  //결제
         while(true){
             System.out.println("============================================================");
             System.out.println("                                       [결제]");

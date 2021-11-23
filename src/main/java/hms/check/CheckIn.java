@@ -21,7 +21,8 @@ public class CheckIn extends Check{
         if(inputLine.matches("y")){
             CheckTextFiles.setCheckinListTxt(checkInList);  //체크인 txt에 추가
             CheckTextFiles.deleteReserveListTxt(checkInList); // 예약목록 txt에서 삭제
-            pay(checkInList.get(0).getCharge()); // 결제
+            CheckTextFiles.updateRoomClean(checkInList.get(0).getReserveIdx());//점유상태 변경
+            this.pay(checkInList.get(0).getCharge()); // 결제
         } else{
             System.out.print("error");
         }
