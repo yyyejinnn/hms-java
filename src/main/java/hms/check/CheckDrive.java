@@ -1,13 +1,13 @@
 
 package hms.check;
 
+import hms.room.Reserve;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CheckDrive{    
     public void checkInDrive() throws IOException {
-        
         System.out.println("============================================================");
         System.out.println("                                          [체크인]");
         System.out.println("============================================================");
@@ -16,10 +16,11 @@ public class CheckDrive{
         //사용자 입력
         BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
         String inputLine = is.readLine();
-             
-        Check checkIn = new Check();
-        checkIn.check(inputLine.trim());
-
+         
+        //체크인 실행
+        CheckIn checkIn = new CheckIn();
+        checkIn.checkIn(checkIn.check(inputLine.trim(), 1)); //1: 체크인 2: 체크아웃
+        
         }
     
     public void checkOutDrive() throws IOException {
@@ -31,8 +32,9 @@ public class CheckDrive{
         //사용자 입력
         BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
         String inputLine = is.readLine();
-             
-        Check checkOut = new Check();
-        checkOut.checkOut(inputLine.trim());
+        
+        //체크아웃 실행
+        CheckOut checkOut = new CheckOut();
+        checkOut.checkOut(checkOut.check(inputLine.trim(), 2)); //1: 체크인 2: 체크아웃
         }
     }
