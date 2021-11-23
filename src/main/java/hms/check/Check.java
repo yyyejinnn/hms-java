@@ -8,8 +8,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author LYJ
+ */
 public class Check {
-    public ArrayList check(String str, int checkType) throws IOException {  //검색
+    //검색 메소드
+    public ArrayList check(String str, int checkType) throws IOException {
         //1. 예약 목록에서 불러옴 > 객체 배열로
         ArrayList<Reserve> reserveList = new ArrayList<>();
         ArrayList<Reserve> checkList = new ArrayList<>();  //체크인 목록 저장할 배열 생성
@@ -32,7 +37,8 @@ public class Check {
         return checkList;
     }
     
-    public static void pay(int charge)throws IOException{  //결제
+    //결제 메소드
+    public void pay(int charge)throws IOException{
         while(true){
             System.out.println("============================================================");
             System.out.println("                                       [결제]");

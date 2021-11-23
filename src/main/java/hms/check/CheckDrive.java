@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author LYJ
+ */
 public class CheckDrive{    
     private ArrayList<Reserve> checkArrayList = new ArrayList<>();
     
