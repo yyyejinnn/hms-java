@@ -41,6 +41,41 @@ public class CheckTextFiles {
         return reserveList;
     }
     
+    public static void deleteReserveListTxt(ArrayList<Reserve> r){  //예약 txt에서 삭제
+        int reserveIdx = r.get(0).getReserveIdx();
+        String reserveIdxStr = Integer.toString(reserveIdx);
+        
+        try{
+            //1. 파일 생성
+            File file = new File(RESERVE_TXT_NAME);
+            String dummy = "";
+            
+            //2. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //체크인된 행 제외
+            while((dummy = is.readLine()) != null){
+                if(dummy.indexOf(reserveIdxStr) < 0) {
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(RESERVE_TXT_NAME);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+            
+        } catch(IOException e){
+             System.out.println(e);
+        }
+    }
+    
     public static void setCheckinListTxt(ArrayList<Reserve> r){  //체크인 txt에 저장
                
         int reserveIdx = r.get(0).getReserveIdx();
@@ -78,13 +113,34 @@ public class CheckTextFiles {
         }
     }
     
-    public static void deleteReserveListTxt(ArrayList<Reserve> r){  //예약 txt에서 삭제
-        int reserveIdx = r.get(0).getReserveIdx();
-        String reserveIdxStr = Integer.toString(reserveIdx);
+    public static ArrayList getCheckListTxt(){
+        ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
+        String[] splitedStr = null;
+        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(CHECK_TXT_NAME));
+            String line = null;
+            
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+               splitedStr = line.split("/");
+               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3]));  //ArrayList에 저장
+            }
+            in.close();
+            
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+        return reserveList;
+    }
+    
+        public static void deleteCheckInListTxt(ArrayList<Reserve> r){  //체크인 txt에서 삭제
+        int checkInIdx = r.get(0).getReserveIdx();
+        String checkInIdxStr = Integer.toString(checkInIdx);
         
         try{
             //1. 파일 생성
-            File file = new File(RESERVE_TXT_NAME);
+            File file = new File(CHECK_TXT_NAME);
             String dummy = "";
             
             //2. 파일 읽기
@@ -93,13 +149,13 @@ public class CheckTextFiles {
             
             //체크인된 행 제외
             while((dummy = is.readLine()) != null){
-                if(dummy.indexOf(reserveIdxStr) < 0) {
+                if(dummy.indexOf(checkInIdxStr) < 0) {
                     str += dummy + "\n";
                 }
             }
             
             //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(RESERVE_TXT_NAME);
+            FileOutputStream fos = new FileOutputStream(CHECK_TXT_NAME);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             byte[] content = str.getBytes();
@@ -111,6 +167,6 @@ public class CheckTextFiles {
         } catch(IOException e){
              System.out.println(e);
         }
-        
     }
 }
+
