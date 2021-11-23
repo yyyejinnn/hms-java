@@ -54,6 +54,20 @@ public class HmsMainMenu {
         }
         }
         public void LogOut(){
-        
+             System.out.println("정말로 로그아웃하시겠습니까?   (1.네 / 2.아니오)");
+             Scanner input3 = new Scanner(System.in);
+             String exitnum = input3.next();
+             boolean exitcheck = true;
+             while(exitcheck){
+             if(exitnum.equals("1")){
+             System.out.println("로그아웃되었습니다.");
+             Login();
+             } else if (exitnum.equals("2")){
+                System.out.println("이전 화면으로 돌아갑니다.");
+                 exitcheck = false;
+                 return;
+             } else 
+                 System.out.println("다시 입력해주세요");
+            }
         }
     }
