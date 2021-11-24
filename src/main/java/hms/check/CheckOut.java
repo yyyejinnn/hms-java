@@ -25,7 +25,7 @@ public class CheckOut extends Check{
         if(inputLine.matches("y")){
             CheckTextFiles.deleteCheckInListTxt(checkOutList); //체크인 목록 txt에서 삭제
             this.pay(checkOutList.get(0).getCharge()); //결제
-            //String feedback = is.readLine();
+            this.feedBack();
             CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
             System.out.println("\n 체크아웃 되었습니다.");
         } else{
@@ -84,5 +84,9 @@ public class CheckOut extends Check{
             }
             break;
         }//end of while
+    }
+    
+    public void feedBack(){
+        
     }
 }
