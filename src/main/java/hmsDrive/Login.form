@@ -88,12 +88,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc544;&#xc774;&#xb514;&#xb97c; &#xc785;&#xb825;&#xd574;&#xc8fc;&#xc138;&#xc694;"/>
+        <Property name="toolTipText" type="java.lang.String" value="&#xc544;&#xc774;&#xb514;&#xb97c; &#xc785;&#xb825;&#xd574;&#xc8fc;&#xc138;&#xc694;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xd328;&#xc2a4;&#xc6cc;&#xb4dc;&#xb97c; &#xc785;&#xb825;&#xd574;&#xc8fc;&#xc138;&#xc694;"/>
+        <Property name="toolTipText" type="java.lang.String" value="&#xd328;&#xc2a4;&#xc6cc;&#xb4dc;&#xb97c; &#xc785;&#xb825;&#xd574;&#xc8fc;&#xc138;&#xc694;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

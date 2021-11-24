@@ -39,9 +39,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("로그인");
 
-        jTextField1.setText("아이디를 입력해주세요");
+        jTextField1.setToolTipText("아이디를 입력해주세요");
 
-        jTextField2.setText("패스워드를 입력해주세요");
+        jTextField2.setToolTipText("패스워드를 입력해주세요");
 
         jButton1.setText("확인");
 
