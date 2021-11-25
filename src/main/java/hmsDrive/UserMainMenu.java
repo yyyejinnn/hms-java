@@ -15,6 +15,7 @@ public class UserMainMenu extends javax.swing.JFrame {
      * Creates new form UserMainMenu
      */
     public UserMainMenu() {
+        super("직원 메인 메뉴");
         initComponents();
     }
 
@@ -44,6 +45,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         jLabel1.setText("직원용 호텔 관리 시스템");
 
         jButton1.setText("객실 관리");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("예약시스템");
 
@@ -121,18 +127,27 @@ public class UserMainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ////상단 메뉴바 종료 버튼
+    //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    //로그아웃 버튼
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         Start st = new Start();
         st.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    //객실 관리 버튼
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Room room = new Room(1);
+        room.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

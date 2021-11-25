@@ -109,9 +109,6 @@ public class Start extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Login in = new Login(1);
-        /*in.num = 1;
-        in.id = "user1";
-        in.password = "1111";*/
         in.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -121,9 +118,6 @@ public class Start extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Login in = new Login(2);
-        /*in.num = 2;
-        in.id = "manager";
-        in.password = "1111";*/
         in.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

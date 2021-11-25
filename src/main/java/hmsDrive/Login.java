@@ -14,7 +14,7 @@ public class Login extends javax.swing.JFrame {
     public Login(int num) {
         super("로그인");
         this.num = num;
-        if(num == 1) {          //직원이면
+        if(num == 1) {              //직원이면
             id = "user1";
             password = "1111";
         }
@@ -25,6 +25,9 @@ public class Login extends javax.swing.JFrame {
         else {
         }
         initComponents();
+    }
+    public int getnum() {
+        return num;
     }
     
     @SuppressWarnings("unchecked")
