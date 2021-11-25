@@ -19,6 +19,7 @@ public class CheckTextFiles {
     private static final String RESERVE_TXT_NAME = "reserveList.txt";
     private static final String CHECK_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
+    private static final String FEEDBACK_TXT_NAME = "feedback.txt";
     
     private static String chargeTest = "10000";  //test 요금
     
@@ -86,20 +87,16 @@ public class CheckTextFiles {
     
     //체크인 한 고객 체크인 txt에 저장       
     public static void setCheckinListTxt(ArrayList<Reserve> r){  
-        int reserveIdx = r.get(0).getReserveIdx();
-        int reservePeopleNum = r.get(0).getReservePeopleNum();
-        int charge = r.get(0).getCharge();
-        
         //int > String 형변환
-        String reserveIdxStr = Integer.toString(reserveIdx);
+        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
         String reserveName = r.get(0).getName();
         String phoneNum = r.get(0).getPhoneNum();
-        String reservePeopleNumStr = Integer.toString(reservePeopleNum);
+        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
         String checkInDate = r.get(0).getCheckInDate();
         String checkInTime = r.get(0).getCheckInTime();
         String checkOutDate = r.get(0).getCheckOutDate();
         String checkOutTime = r.get(0).getCheckOutTime();
-        String chargeStr = Integer.toString(charge);
+        String chargeStr = Integer.toString(r.get(0).getCharge());
         
         //1. 파일 객체 생성
         try{
@@ -186,6 +183,38 @@ public class CheckTextFiles {
             
         } catch(IOException e){
              System.out.println(e);
+        }
+    }
+    
+    //체크아웃 한 고객 체크아웃 목록 txt 추가
+    public static void setCheckOutListTxt(ArrayList<Reserve> r, String feedbackStr){
+        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+        String realCheckOutDate = "2021.11.25"; //현재날짜
+        String realCheckOutTime = "11:00"; //현재시간
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(FEEDBACK_TXT_NAME);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(FEEDBACK_TXT_NAME,true);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            String str = reserveIdxStr + "/" + realCheckOutDate + "/" + realCheckOutTime + "/" + feedbackStr +"\n";
+            
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
         }
     }
     
