@@ -20,6 +20,8 @@ public class CheckTextFiles {
     private static final String CHECK_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
     
+    private static String chargeTest = "10000";  //test 요금
+    
     //예약된 고객 txt 불러옴
     public static ArrayList getReserveListTxt() {
         
@@ -32,7 +34,10 @@ public class CheckTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3]));  //ArrayList에 저장
+               
+               //[0]예약번호 [1]방번호 [2]예약자명 [3]전화번호 [4]인원수 [5]체크인날짜 [6]시간 [7]체크아웃날짜 [8]시간 [9]요금
+               reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
+                                            splitedStr[6],splitedStr[7], splitedStr[8], chargeTest));  //ArrayList에 저장
             }
             in.close();
             
@@ -88,7 +93,12 @@ public class CheckTextFiles {
         //int > String 형변환
         String reserveIdxStr = Integer.toString(reserveIdx);
         String reserveName = r.get(0).getName();
+        String phoneNum = r.get(0).getPhoneNum();
         String reservePeopleNumStr = Integer.toString(reservePeopleNum);
+        String checkInDate = r.get(0).getCheckInDate();
+        String checkInTime = r.get(0).getCheckInTime();
+        String checkOutDate = r.get(0).getCheckOutDate();
+        String checkOutTime = r.get(0).getCheckOutTime();
         String chargeStr = Integer.toString(charge);
         
         //1. 파일 객체 생성
@@ -104,7 +114,9 @@ public class CheckTextFiles {
             FileOutputStream fos = new FileOutputStream(CHECK_TXT_NAME,true);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
-            String str = reserveIdxStr + "/" + reserveName + "/" + reservePeopleNumStr + "/" + chargeStr+"\n";
+            String str = reserveIdxStr + "/" + reserveName + "/" + phoneNum + "/" + reservePeopleNumStr + "/" +
+                    checkInDate + "/" + checkInTime + "/" + checkOutDate + "/" + checkOutTime + "/" + chargeStr+"\n";
+            
             byte[] content = str.getBytes();
             
             fos.write(content);
@@ -127,7 +139,8 @@ public class CheckTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3]));  //ArrayList에 저장
+               reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
+                                            splitedStr[6],splitedStr[7], splitedStr[8], splitedStr[9]));  //ArrayList에 저장
             }
             in.close();
             

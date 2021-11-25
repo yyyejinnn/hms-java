@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class CheckDrive{    
     private ArrayList<Reserve> checkArrayList = new ArrayList<>();
+    BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
     
     public void checkInDrive() throws IOException {
         System.out.println("============================================================");
@@ -21,7 +22,6 @@ public class CheckDrive{
         System.out.print(">> 체크인 할 객실 번호를 입력해주세요: ");
         
         //사용자 입력
-        BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
         String inputLine = is.readLine();
          
         //체크인 실행
@@ -46,7 +46,6 @@ public class CheckDrive{
             System.out.print(">> 체크아웃 할 객실 번호를 입력해주세요: ");
         
             //사용자 입력
-            BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
             String inputLine = is.readLine();
         
             //체크아웃 실행

@@ -29,8 +29,9 @@ public class Check {
         for(Reserve r : reserveList){
             //방번호 또는 예약자명이 일치하는 목록만 출력
             if(r.getReserveIdx() == Integer.parseInt(str)  || r.getName().matches(str)){                
-                System.out.println("방번호        예약자      인원수      금액");
-                System.out.printf("%d             %s          %d          %d \n", r.getReserveIdx(), r.getName(), r.getReservePeopleNum(), r.getCharge());
+                System.out.println("방번호    예약자        전화번호        인원수      금액         체크인        체크아웃");
+                System.out.printf("%d           %s          %s             %d          %d           %s %s         %s %s \n",
+                                 r.getReserveIdx(), r.getName(), r.getPhoneNum(), r.getReservePeopleNum(), r.getCharge(), r.getCheckInDate(), r.getCheckInTime(), r.getCheckOutDate(), r.getCheckOutTime());
                 checkList.add(r);
             }
         }
