@@ -52,6 +52,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setText("예약시스템");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("체크인/아웃");
 
@@ -148,6 +153,14 @@ public class UserMainMenu extends javax.swing.JFrame {
         room.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    //상단 메뉴바 뒤로가기 버튼
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Reservation rv = new Reservation(1);
+        rv.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
