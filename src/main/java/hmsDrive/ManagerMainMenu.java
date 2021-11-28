@@ -60,6 +60,11 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         });
 
         jButton3.setText("체크인/아웃");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("식품 판매 및 추적");
 
@@ -167,6 +172,14 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         rv.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    //체크인/아웃 버튼
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Check ch = new Check(2);
+        ch.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
