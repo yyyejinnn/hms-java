@@ -2,11 +2,13 @@
 package hms.check;
 
 import hms.room.Reserve;
-import hms.textifiles.CheckTextFiles;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -24,23 +26,43 @@ public class CheckOut extends Check{
         
         //체크아웃 진행
         if(inputLine.matches("y")){
-            CheckTextFiles.deleteCheckInListTxt(checkOutList); //체크인 목록 txt에서 삭제
-            this.pay(checkOutList.get(0).getCharge()); //결제
-            String feedbackStr = feedback();
-            CheckTextFiles.setCheckOutListTxt(checkOutList, feedbackStr);//체크아웃 목록 txt에 추가
-            CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
+            //CheckTextFiles.deleteCheckInListTxt(checkOutList); //체크인 목록 txt에서 삭제
+            this.pay(checkOutList); //결제
+            //String feedbackStr = feedback();  //피드백 입력
+            //CheckTextFiles.setCheckOutListTxt(checkOutList, feedbackStr);//체크아웃 목록 txt에 추가
+            //CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
             System.out.println("\n 체크아웃 되었습니다.");
         } else{
             //메인 화면으로 돌아가기
         }
     }   
     
-    @Override
-    public void pay(int charge)throws IOException{  //결제
-        //11시 이후 체크아웃 시, 1박 추가 요금 청구
-        //
-        //
+    //결제
+    public void pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제
+        int charge = checkOutList.get(0).getCharge();  // 기본 요금
         
+        //1. 오전 11시 이후 체크아웃 시, 1박 추가 요금 청구
+        LocalDate nowDate = LocalDate.now();
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        String formatedNowDate = nowDate.format(formatterDate); //현재 날짜
+        LocalTime nowTime = LocalTime.now();
+        int nowHour = nowTime.getHour(); //현재 시간
+        String checkOutDate = checkOutList.get(0).getCheckOutDate();  //예상 체크아웃 날짜
+        
+        //test
+        System.out.println(formatedNowDate);
+        System.out.println(nowHour);
+        System.out.println(charge);
+        
+        if (checkOutDate.equals(formatedNowDate)){  //예상 체크아웃 날짜가 오늘이면
+            if(nowHour >= 11){  //오전 11시부터
+                charge += 10000;  //추가 요금 //나중에 수정
+            }
+        } else {
+            System.out.println("예상 체크인 날짜가 아닙니다.");
+        }
+
+        //2. 결제 진행
         while(true){
             System.out.println("============================================================");
             System.out.println("                                       [결제]");
@@ -52,7 +74,7 @@ public class CheckOut extends Check{
             BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
             String inputLine = is.readLine();
         
-            //1. 카드 결제
+            //2-1. 카드 결제
             if(inputLine.matches("1")){
                 while(true){
                     System.out.print("카드번호 16자리를 입력해주세요.: ");
@@ -67,7 +89,7 @@ public class CheckOut extends Check{
                     }
                 }
                 
-            //2. 현금 결제
+            //2-2. 현금 결제
             }else if(inputLine.matches("2")){
                 while(true){
                     System.out.print("지불할 액수를 입력해주세요.: ");

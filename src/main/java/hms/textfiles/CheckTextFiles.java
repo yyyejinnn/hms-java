@@ -1,5 +1,5 @@
 
-package hms.textifiles;
+package hms.textfiles;
 
 import hms.room.Reserve;
 import java.io.BufferedReader;
