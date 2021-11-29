@@ -1,5 +1,5 @@
 
-package hms.textifiles;
+package hms.textfiles;
 
 import hms.room.Reserve;
 import java.io.BufferedReader;
@@ -19,6 +19,9 @@ public class CheckTextFiles {
     private static final String RESERVE_TXT_NAME = "reserveList.txt";
     private static final String CHECK_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
+    private static final String FEEDBACK_TXT_NAME = "feedback.txt";
+    
+    private static String chargeTest = "10000";  //test 요금
     
     //예약된 고객 txt 불러옴
     public static ArrayList getReserveListTxt() {
@@ -32,7 +35,10 @@ public class CheckTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3]));  //ArrayList에 저장
+               
+               //[0]예약번호 [1]방번호 [2]예약자명 [3]전화번호 [4]인원수 [5]체크인날짜 [6]시간 [7]체크아웃날짜 [8]시간
+               reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
+                                            splitedStr[6],splitedStr[7], splitedStr[8], chargeTest));  //ArrayList에 저장
             }
             in.close();
             
@@ -81,15 +87,16 @@ public class CheckTextFiles {
     
     //체크인 한 고객 체크인 txt에 저장       
     public static void setCheckinListTxt(ArrayList<Reserve> r){  
-        int reserveIdx = r.get(0).getReserveIdx();
-        int reservePeopleNum = r.get(0).getReservePeopleNum();
-        int charge = r.get(0).getCharge();
-        
         //int > String 형변환
-        String reserveIdxStr = Integer.toString(reserveIdx);
+        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
         String reserveName = r.get(0).getName();
-        String reservePeopleNumStr = Integer.toString(reservePeopleNum);
-        String chargeStr = Integer.toString(charge);
+        String phoneNum = r.get(0).getPhoneNum();
+        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        String checkInDate = r.get(0).getCheckInDate();
+        String checkInTime = r.get(0).getCheckInTime();
+        String checkOutDate = r.get(0).getCheckOutDate();
+        String checkOutTime = r.get(0).getCheckOutTime();
+        String chargeStr = Integer.toString(r.get(0).getCharge());
         
         //1. 파일 객체 생성
         try{
@@ -104,7 +111,9 @@ public class CheckTextFiles {
             FileOutputStream fos = new FileOutputStream(CHECK_TXT_NAME,true);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
-            String str = reserveIdxStr + "/" + reserveName + "/" + reservePeopleNumStr + "/" + chargeStr+"\n";
+            String str = reserveIdxStr + "/" + reserveName + "/" + phoneNum + "/" + reservePeopleNumStr + "/" +
+                    checkInDate + "/" + checkInTime + "/" + checkOutDate + "/" + checkOutTime + "/" + chargeStr+"\n";
+            
             byte[] content = str.getBytes();
             
             fos.write(content);
@@ -127,7 +136,10 @@ public class CheckTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3]));  //ArrayList에 저장
+               
+               //[0]방번호 [1]예약자명 [2]전화번호 [3]인원수 [4]체크인날짜 [5]시간 [6]체크아웃날짜 [7]시간 [8]요금
+               reserveList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],
+                                            splitedStr[5],splitedStr[6], splitedStr[7], splitedStr[8]));  //ArrayList에 저장
             }
             in.close();
             
@@ -171,6 +183,38 @@ public class CheckTextFiles {
             
         } catch(IOException e){
              System.out.println(e);
+        }
+    }
+    
+    //체크아웃 한 고객 체크아웃 목록 txt 추가
+    public static void setCheckOutListTxt(ArrayList<Reserve> r, String feedbackStr){
+        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+        String realCheckOutDate = "2021.11.25"; //현재날짜
+        String realCheckOutTime = "11:00"; //현재시간
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(FEEDBACK_TXT_NAME);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(FEEDBACK_TXT_NAME,true);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            String str = reserveIdxStr + "/" + realCheckOutDate + "/" + realCheckOutTime + "/" + feedbackStr +"\n";
+            
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
         }
     }
     
