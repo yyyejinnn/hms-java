@@ -9,6 +9,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -17,8 +20,9 @@ import java.util.ArrayList;
  */
 public class CheckTextFiles {
     private static final String RESERVE_TXT_NAME = "reserveList.txt";
-    private static final String CHECK_TXT_NAME = "checkInList.txt";
+    private static final String CHECKIN_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
+    private static final String CHECKOUT_TXT_NAME = "checkOutList.txt";
     private static final String FEEDBACK_TXT_NAME = "feedback.txt";
     
     private static String chargeTest = "10000";  //test 요금
@@ -99,7 +103,7 @@ public class CheckTextFiles {
         
         //1. 파일 객체 생성
         try{
-            File file = new File(CHECK_TXT_NAME);
+            File file = new File(CHECKIN_TXT_NAME);
         
             //2. 파일 존재여부 체크 및 생성
             if(!file.exists()){
@@ -107,7 +111,7 @@ public class CheckTextFiles {
             }
             
             //3. 파일 쓰기
-            FileOutputStream fos = new FileOutputStream(CHECK_TXT_NAME,true);
+            FileOutputStream fos = new FileOutputStream(CHECKIN_TXT_NAME,true);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             String str = reserveIdxStr + "/" + reserveName + "/" + phoneNum + "/" + reservePeopleNumStr + "/" +
@@ -130,7 +134,7 @@ public class CheckTextFiles {
         String[] splitedStr = null;
         
         try {
-            BufferedReader in = new BufferedReader(new FileReader(CHECK_TXT_NAME));
+            BufferedReader in = new BufferedReader(new FileReader(CHECKIN_TXT_NAME));
             String line = null;
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
@@ -156,7 +160,7 @@ public class CheckTextFiles {
         
         try{
             //1. 파일 생성
-            File file = new File(CHECK_TXT_NAME);
+            File file = new File(CHECKIN_TXT_NAME);
             String dummy = "";
             
             //2. 파일 읽기
@@ -171,7 +175,7 @@ public class CheckTextFiles {
             }
             
             //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(CHECK_TXT_NAME);
+            FileOutputStream fos = new FileOutputStream(CHECKIN_TXT_NAME);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             byte[] content = str.getBytes();
@@ -186,14 +190,23 @@ public class CheckTextFiles {
     }
     
     //체크아웃 한 고객 체크아웃 목록 txt 추가
-    public static void setCheckOutListTxt(ArrayList<Reserve> r, String feedbackStr){
+    public static void setCheckOutListTxt(ArrayList<Reserve> r){
+         //int > String 형변환
         String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
-        String realCheckOutDate = "2021.11.25"; //현재날짜
-        String realCheckOutTime = "11:00"; //현재시간
+        String reserveName = r.get(0).getName();
+        String phoneNum = r.get(0).getPhoneNum();
+        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        
+        LocalDate nowDate = LocalDate.now();
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        String formatedNowDate = nowDate.format(formatterDate); //현재 날짜
+        LocalTime nowTime = LocalTime.now();
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+        String formatedNowTime = nowTime.format(formatterTime); //현재 시간
         
         //1. 파일 객체 생성
         try{
-            File file = new File(FEEDBACK_TXT_NAME);
+            File file = new File(CHECKOUT_TXT_NAME);
         
             //2. 파일 존재여부 체크 및 생성
             if(!file.exists()){
@@ -201,11 +214,12 @@ public class CheckTextFiles {
             }
             
             //3. 파일 쓰기
-            FileOutputStream fos = new FileOutputStream(FEEDBACK_TXT_NAME,true);
+            FileOutputStream fos = new FileOutputStream(CHECKOUT_TXT_NAME,true);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
-            String str = reserveIdxStr + "/" + realCheckOutDate + "/" + realCheckOutTime + "/" + feedbackStr +"\n";
-            
+           String str = reserveIdxStr + "/" + reserveName + "/" + phoneNum + "/" + reservePeopleNumStr + "/" +
+                    formatedNowDate + "/" + formatedNowTime + "\n";
+           
             byte[] content = str.getBytes();
             
             fos.write(content);
@@ -245,7 +259,7 @@ public class CheckTextFiles {
             }
             
             //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(ROOM_TXT_NAME);
+            FileOutputStream fos = new FileOutputStream(ROOM_TXT_NAME);  //false
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             byte[] content = str.getBytes();
@@ -258,4 +272,3 @@ public class CheckTextFiles {
         }
     }
 }
-
