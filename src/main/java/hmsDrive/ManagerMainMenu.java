@@ -71,6 +71,11 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         jButton5.setText("고객 기록");
 
         jButton6.setText("사용자 관리");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("로그아웃");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +185,13 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         ch.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+    //사용자 관리 버튼
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        UserControl uc = new UserControl();
+        uc.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
