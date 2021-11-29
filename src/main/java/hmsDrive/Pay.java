@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ddac9
+ * @author LYJ
  */
 public class Pay extends javax.swing.JFrame {
 

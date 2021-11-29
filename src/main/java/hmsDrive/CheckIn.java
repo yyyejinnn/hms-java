@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author HOME
+ * @author LYJ
  */
 public class CheckIn extends javax.swing.JFrame {
     /**
