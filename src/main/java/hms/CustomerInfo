@@ -1,0 +1,66 @@
+package hms;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+
+public class CustomerInfo {
+    int reservationNum = 0;     // 예약 번호
+    int roomNum;                // 객실 번호
+    String roomType;            // 객실 타입
+    String customerName;        // 고객 이름
+    String customerPhoneNum;    // 고객 전화번호
+    int reservationPeopleNum;   // 인원 수
+    int optionNum;              //메뉴 번호
+    int foodCharge;             //음식 가격
+    int sendCharge;             //객실로 청구할 요금을 입력하세요
+    String str;     
+    String foodReservation;     //레스토랑 예약 유무
+    String foodChargeType;      //음식 결제 유형
+    
+    boolean usingRoom;          // 방 사용 여부
+    String expectedCheckinDate; // 예상 체크인 날짜
+    String expectedCheckinTime; // 예상 체크인 시간
+    String expectedCheckoutDate; // 예상 체크아웃 날짜
+    String expectedCheckoutTime; // 예상 체크아웃 시간
+    
+    CustomerInfo[] customerInfo = new CustomerInfo[1000];  // reservation 객체 생성
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    
+    public void CustomerInfoList() throws FileNotFoundException, UnsupportedEncodingException, IOException{
+            
+        BufferedWriter cf = new BufferedWriter(new FileWriter("CumtomFile.txt", true));
+        
+        int j = 0 ;
+        String search = "" ;
+        
+        System.out.println("찾고자 하는 고객의 이름을 적으세요: ");
+        
+        try{
+            search = br.readLine();
+        }catch(Exception e){
+            System.out.println("찾고자 하는 고객님의 이름이 없습니다.");
+        }
+        
+        for (int i = 0; i < 1000; i++) {  // 고객의 이름의 인덱스 찾기
+            if (search.equals(customerInfo[i].customerName)) {
+                j = i;
+                break;
+            }
+        }
+        
+        str = String.format("%s/%d/%d/%s",customerName,reservationPeopleNum,roomNum,customerPhoneNum); //이름 인원수 방 번호 전화번호 기록
+        System.out.println(str);
+        
+        cf.close();  
+        br.close();
+    }
