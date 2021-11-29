@@ -47,19 +47,6 @@ public class CheckIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jDialog2 = new javax.swing.JDialog();
-        jDialog3 = new javax.swing.JDialog();
-        jDialog4 = new javax.swing.JDialog();
-        jDialog5 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         SEARCH_FIELD = new javax.swing.JTextField();
         SEARCH_BTN = new javax.swing.JButton();
@@ -67,130 +54,11 @@ public class CheckIn extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         CHECKIN_TABLE = new javax.swing.JTable();
         CHECKIN_BTN = new javax.swing.JButton();
+        PRE_BTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-
-        jDialog1.setMinimumSize(new java.awt.Dimension(800, 300));
-        jDialog1.setModal(true);
-
-        jButton4.setText("체크인");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("종료");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel16.setText("예약 검색 결과");
-        jLabel16.setToolTipText("");
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        jMenu2.setText("메뉴");
-
-        jMenuItem3.setText("창닫기");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar2.add(jMenu2);
-
-        jDialog1.setJMenuBar(jMenuBar2);
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(322, 322, 322)
-                .addComponent(jLabel16)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-
-        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
-        jDialog2.getContentPane().setLayout(jDialog2Layout);
-        jDialog2Layout.setHorizontalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog2Layout.setVerticalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
-        jDialog3.getContentPane().setLayout(jDialog3Layout);
-        jDialog3Layout.setHorizontalGroup(
-            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog3Layout.setVerticalGroup(
-            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
-        jDialog4.getContentPane().setLayout(jDialog4Layout);
-        jDialog4Layout.setHorizontalGroup(
-            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog4Layout.setVerticalGroup(
-            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
-        jDialog5.getContentPane().setLayout(jDialog5Layout);
-        jDialog5Layout.setHorizontalGroup(
-            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog5Layout.setVerticalGroup(
-            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +108,14 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
+        PRE_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        PRE_BTN.setText("이전");
+        PRE_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRE_BTNActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("메뉴");
 
         jMenuItem1.setText("뒤로가기");
@@ -283,8 +159,10 @@ public class CheckIn extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(239, 239, 239))
             .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(171, 171, 171)
                 .addComponent(CHECKIN_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -301,7 +179,9 @@ public class CheckIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(CHECKIN_BTN)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CHECKIN_BTN)
+                    .addComponent(PRE_BTN))
                 .addGap(25, 25, 25))
         );
 
@@ -321,7 +201,9 @@ public class CheckIn extends javax.swing.JFrame {
 
             //예약 되지않은 고객일 경우
             if(checkArrayList.isEmpty()){
-                JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다. 예약이 필요합니다.");  //예약화면으로 돌아가기
+                JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다. 예약이 필요합니다.");
+                new Reservation().setVisible(true); //예약화면으로 돌아가기
+                dispose();
             } else{
             //테이블에 검색 목록 출력
                 for (Reserve r : checkArrayList){
@@ -338,20 +220,9 @@ public class CheckIn extends javax.swing.JFrame {
         } catch(IOException e){
             System.out.println(e);
         }
-        
-        //jDialog1.setVisible(true);
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
     
-    //예약 검색 결과 모달창 종료 버튼
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jButton6ActionPerformed
-    //예약 검색 결과 모달창 체크인 버튼
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-    
+   
   
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -365,11 +236,6 @@ public class CheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-    //예약 검색 결과 모달창 상단 메뉴바 창닫기 버튼
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     //체크인 버튼
     private void CHECKIN_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKIN_BTNActionPerformed
@@ -382,20 +248,24 @@ public class CheckIn extends javax.swing.JFrame {
         
        //체크인 실행
         try {
-            checkArrayList = check.check(checkInIdx.trim(),1);  //1: 체크인 2: 체크아웃
+            checkArrayList = check.check(checkInIdx.trim(),1);  //1: 체크인 2: 체크아웃            
+            checkIn.checkIn(checkArrayList);
+            JOptionPane.showMessageDialog(null, "체크인 완료했습니다.");
+            dTable.setNumRows(0);
             
-            if(checkArrayList.isEmpty()){
-                JOptionPane.showMessageDialog(null, "존재하지 않는 고객입니다.");
-            } else{
-                checkIn.checkIn(checkArrayList);
-                JOptionPane.showMessageDialog(null, "체크인 완료했습니다.");
-            }
         } catch (IOException ex) {
             Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }//GEN-LAST:event_CHECKIN_BTNActionPerformed
+
+    private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
+        // TODO add your handling code here:
+        Check pre = new Check();
+        pre.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_PRE_BTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,27 +308,15 @@ public class CheckIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CHECKIN_BTN;
     private javax.swing.JTable CHECKIN_TABLE;
+    private javax.swing.JButton PRE_BTN;
     private javax.swing.JButton SEARCH_BTN;
     private javax.swing.JTextField SEARCH_FIELD;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JDialog jDialog2;
-    private javax.swing.JDialog jDialog3;
-    private javax.swing.JDialog jDialog4;
-    private javax.swing.JDialog jDialog5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

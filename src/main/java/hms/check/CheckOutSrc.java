@@ -24,11 +24,16 @@ public class CheckOutSrc extends CheckSrc{
             CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
     }   
     
-    //결제
-    public void pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제
-        int charge = checkOutList.get(0).getCharge();  // 기본 요금
+    //요금
+    public int[] pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제       
+        //[0]기본요금 FEE [1]추가요금 ADD_FEE [2]식사서비스 FOOD_FEE
+        int[] feeArray = {0, 0, 0};
         
-        //1. 오전 11시 이후 체크아웃 시, 1박 추가 요금 청구
+        //feeArray[0] = checkOutList.get(0).getCharge();
+        feeArray[0] = 20000;
+        feeArray[2] = 10000;
+        
+        //오전 11시 이후 체크아웃 시, 1박 추가 요금 청구
         LocalDate nowDate = LocalDate.now();
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         String formatedNowDate = nowDate.format(formatterDate); //현재 날짜
@@ -36,66 +41,15 @@ public class CheckOutSrc extends CheckSrc{
         int nowHour = nowTime.getHour(); //현재 시간
         String checkOutDate = checkOutList.get(0).getCheckOutDate();  //예상 체크아웃 날짜
         
-        //test
-        System.out.println(formatedNowDate);
-        System.out.println(nowHour);
-        System.out.println(charge);
-        
         if (checkOutDate.equals(formatedNowDate)){  //예상 체크아웃 날짜가 오늘이면
-            if(nowHour >= 11){  //오전 11시부터
-                charge += 10000;  //추가 요금 //나중에 수정
+            if(nowHour >= 11){  //오전 11시 이후
+                feeArray[1] += feeArray[0];  //1박 요금 추가
             }
         } else {
             System.out.println("예상 체크인 날짜가 아닙니다.");
         }
-
-        //2. 결제 진행
-        while(true){
-            System.out.println("============================================================");
-            System.out.println("                                       [결제]");
-            System.out.println("============================================================");
-            System.out.println("결제 금액: " + charge +"원\n");
-            System.out.println(">> 결제 방법을 선택해주세요. ");
-            System.out.println("1. 카드     2. 현금");
         
-            BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
-            String inputLine = is.readLine();
-        
-            //2-1. 카드 결제
-            if(inputLine.matches("1")){
-                while(true){
-                    System.out.print("카드번호 16자리를 입력해주세요.: ");
-                    String cardNum = is.readLine();
-                
-                    if(cardNum.length() != 16){
-                        continue;
-                    } else{
-                        System.out.println("결제 완료되었습니다.");
-                        //체크인 txt 요금 0으로 변경
-                        break;
-                    }
-                }
-                
-            //2-2. 현금 결제
-            }else if(inputLine.matches("2")){
-                while(true){
-                    System.out.print("지불할 액수를 입력해주세요.: ");
-                    String payed = is.readLine();
-                    int payedInt = Integer.parseInt(payed);
-                
-                    if(charge > payedInt){
-                        System.out.println("금액이 부족합니다. ");
-                        continue;
-                    } else{
-                        System.out.println("결제 완료되었습니다.");
-                        System.out.printf("거스름돈: %d \n", payedInt - charge);
-                        //체크인 txt 요금 0으로 변경
-                        break;
-                    }
-                }
-            }
-            break;
-        }//end of while
+        return feeArray;
     }
     
     public String feedback() throws IOException {

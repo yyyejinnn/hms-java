@@ -271,4 +271,33 @@ public class CheckTextFiles {
             System.out.println(e);
         }
     }
+
+    //고객 피드백 feedbackList.txt에 저장
+    public static void setFeedbackListTxt(String feedbackStr){
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(FEEDBACK_TXT_NAME);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(FEEDBACK_TXT_NAME,true);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            String str = feedbackStr+ "\n";
+           
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
 }
