@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author LYJ
  */
-public class CheckOut extends Check{
+public class CheckOutSrc extends CheckSrc{
     BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
     
     public void checkOut(ArrayList<Reserve> checkOutList) throws IOException{  //체크아웃

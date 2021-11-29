@@ -25,7 +25,6 @@ public class CheckTextFiles {
     
     //예약된 고객 txt 불러옴
     public static ArrayList getReserveListTxt() {
-        
         ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
         String[] splitedStr = null;
         

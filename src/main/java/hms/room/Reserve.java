@@ -15,7 +15,7 @@ public class Reserve {  //예약 목록 클래스
     private int charge;  //총 결제 금액
     
     public Reserve(String reserveIdx, String name, String phoneNum, String reservePeopleStr, String checkInDate,
-                    String checkInTime,String checkOutDate, String checkOutTime, String charge){
+                    String checkInTime, String checkOutDate, String checkOutTime, String charge){
         this.reserveIdx = Integer.parseInt(reserveIdx);
         this.name = name;
         this.phoneNum = phoneNum;

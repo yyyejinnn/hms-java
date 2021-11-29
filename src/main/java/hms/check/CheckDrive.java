@@ -25,7 +25,7 @@ public class CheckDrive{
         String inputLine = is.readLine();
          
         //체크인 실행
-        CheckIn checkIn = new CheckIn();
+        CheckInSrc checkIn = new CheckInSrc();
         checkArrayList = checkIn.check(inputLine.trim(),1);  //1: 체크인 2: 체크아웃
         
         //1. 예약 되지않은 고객일 경우
@@ -49,7 +49,7 @@ public class CheckDrive{
             String inputLine = is.readLine();
         
             //체크아웃 실행
-            CheckOut checkOut = new CheckOut();
+            CheckOutSrc checkOut = new CheckOutSrc();
             checkArrayList = checkOut.check(inputLine.trim(),2); //1: 체크인 2: 체크아웃
         
             //1. 존재하지 않는 고객일 경우
