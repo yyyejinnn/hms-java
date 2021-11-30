@@ -15,7 +15,7 @@ public class Reserve {  //예약 목록 클래스
     private int charge;  //총 결제 금액
     
     public Reserve(String reserveIdx, String name, String phoneNum, String reservePeopleStr, String checkInDate,
-                    String checkInTime,String checkOutDate, String checkOutTime, String charge){
+                    String checkInTime, String checkOutDate, String checkOutTime){
         this.reserveIdx = Integer.parseInt(reserveIdx);
         this.name = name;
         this.phoneNum = phoneNum;
@@ -24,79 +24,42 @@ public class Reserve {  //예약 목록 클래스
         this.checkInTime = checkInTime;
         this.checkOutDate = checkOutDate;
         this.checkOutTime = checkOutTime;
-        this.charge = Integer.parseInt(charge);
+        //this.charge = Integer.parseInt(charge);
     }
 
     public String getPhoneNum() {
         return phoneNum;
     }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
-    }
-    
     
     public int getReserveIdx() {
         return reserveIdx;
-    }
-
-    public void setReserveIdx(int reserveIdx) {
-        this.reserveIdx = reserveIdx;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getReservePeopleNum() {
         return reservePeopleNum;
-    }
-
-    public void setReservePeopleNum(int reservePeopleNum) {
-        this.reservePeopleNum = reservePeopleNum;
     }
 
     public String getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
-        this.checkInDate = checkInDate;
-    }
-
     public String getCheckInTime() {
         return checkInTime;
-    }
-
-    public void setCheckInTime(String checkInTime) {
-        this.checkInTime = checkInTime;
     }
 
     public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
-        this.checkOutDate = checkOutDate;
-    }
-
     public String getCheckOutTime() {
         return checkOutTime;
-    }
-
-    public void setCheckOutTime(String checkOutTime) {
-        this.checkOutTime = checkOutTime;
     }
     
     public int getCharge() {
         return charge;
     }
-
-    public void setCharge(int charge) {
-        this.charge = charge;
-    }     
 }

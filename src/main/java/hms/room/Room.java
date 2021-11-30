@@ -20,7 +20,7 @@ public class Room {                             //객실 클래스
 
     
     public Room() {                             //객실생성될때 기본으로 초기화되어야할 인스턴스변수들 초기화
-    	reservationRoom = false;		//현재 예약된 방인지 아닌
+        reservationRoom = false;		//현재 예약된 방인지 아닌
         clean = true;                           //기본 청소된방으로하기위해 true
         usingRoom = false;                      //사용중인방아니기때문에 false
         maxPeopleNum = 4;                       //기본 최대인원 4

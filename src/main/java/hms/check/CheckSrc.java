@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author LYJ
  */
-public class Check {
+public class CheckSrc {
     //검색 메소드
     public ArrayList check(String str, int checkType) throws IOException {
         //1. 예약 목록에서 불러옴 > 객체 배열로
@@ -27,12 +27,9 @@ public class Check {
         
         //2. 검색 후 출력
         for(Reserve r : reserveList){
-            //방번호 또는 예약자명이 일치하는 목록만 출력
+            //방번호 또는 예약자명이 일치하는 목록 추가
             if(r.getReserveIdx() == Integer.parseInt(str)  || r.getName().matches(str)){                
-                System.out.println("방번호    예약자        전화번호        인원수      금액         체크인        체크아웃");
-                System.out.printf("%d           %s          %s             %d          %d           %s %s         %s %s \n",
-                                 r.getReserveIdx(), r.getName(), r.getPhoneNum(), r.getReservePeopleNum(), r.getCharge(), r.getCheckInDate(), r.getCheckInTime(), r.getCheckOutDate(), r.getCheckOutTime());
-                checkList.add(r);
+              checkList.add(r);
             }
         }
         return checkList;
