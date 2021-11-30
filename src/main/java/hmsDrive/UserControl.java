@@ -5,8 +5,6 @@
  */
 package hmsDrive;
 
-import javax.swing.JTable;
-import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,10 +19,6 @@ public class UserControl extends javax.swing.JFrame {
     private DefaultTableModel model;
     private String[] tableType =  {"num","ID","Password"};
     private Object[][] data = {
-        {"1", "user1", "1111"},
-        {"2", "user2", "2222"},
-        {"3", "user3", "3333"},
-        {"4", "user4", "4444"}
     };
     
     public UserControl() {
