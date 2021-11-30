@@ -36,8 +36,6 @@ public class Reser {
     private String expCheckoutDate;  // 예상 체크아웃 날짜
     private String expCheckoutTime;  // 예상 체크아웃 시간
     
-    int a = 0;
-    
 
     // 매개변수가 있는 생성자
     Reser(String reservationNum, String roomNum, String name, String phoneNum, String peopleNum, String expCheckinDate, String expCheckinTime, String expCheckoutDate, String expCheckoutTime) {
