@@ -141,9 +141,9 @@ public class Dish extends javax.swing.JFrame {
     //룸서비스 버튼
     private void RS_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RS_BTNActionPerformed
         // TODO add your handling code here:
-        //RoomService rs = new RoomService();
-        //rs.setVisible(true);
-        //this.setVisible(false);
+        RoomService rs = new RoomService();
+        rs.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_RS_BTNActionPerformed
     
     //상단 메뉴바 뒤로가기 버튼
