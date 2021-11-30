@@ -67,6 +67,11 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         });
 
         jButton4.setText("식품 판매 및 추적");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("고객 기록");
 
@@ -192,6 +197,13 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         uc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Dish food = new Dish();
+        food.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
