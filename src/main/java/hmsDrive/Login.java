@@ -7,6 +7,9 @@ public class Login extends javax.swing.JFrame {
     public String id;
     public String password;
     
+    
+    
+    
     public Login() {
         super("로그인");
         initComponents();
