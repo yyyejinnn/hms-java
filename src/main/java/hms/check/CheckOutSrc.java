@@ -25,12 +25,13 @@ public class CheckOutSrc extends CheckSrc{
     }   
     
     //요금
-    public int[] pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제       
+    public int[] pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제
+        int roomIdx = checkOutList.get(0).getReserveIdx();
+        
         //[0]기본요금 FEE [1]추가요금 ADD_FEE [2]식사서비스 FOOD_FEE
         int[] feeArray = {0, 0, 0};
         
-        //feeArray[0] = checkOutList.get(0).getCharge();
-        feeArray[0] = 20000;
+        feeArray[0] = CheckTextFiles.getRoomCharge(roomIdx);
         feeArray[2] = 10000;
         
         //오전 11시 이후 체크아웃 시, 1박 추가 요금 청구
@@ -50,13 +51,5 @@ public class CheckOutSrc extends CheckSrc{
         }
         
         return feeArray;
-    }
-    
-    public String feedback() throws IOException {
-        System.out.println("피드백 입력");
-        
-        String inputLine = is.readLine();
-        
-        return inputLine;
     }
 }
