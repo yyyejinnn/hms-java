@@ -59,7 +59,7 @@
                   <Component id="SEARCH_FIELD" max="32767" attributes="0"/>
                   <Component id="jLabel3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="273" max="32767" attributes="0"/>
+              <EmptySpace pref="308" max="32767" attributes="0"/>
               <Component id="SEARCH_BTN" min="-2" pref="92" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -70,14 +70,14 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
               <Component id="CHECKOUT_BTN" min="-2" pref="92" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="PRE_BTN" min="-2" pref="92" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -143,9 +143,10 @@
         <Component class="javax.swing.JTable" name="CHECKIN_TABLE">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="&#xd638;&#xc2e4;" type="java.lang.String"/>
                 <Column editable="false" title="&#xc608;&#xc57d;&#xc790;&#xba85;" type="java.lang.String"/>
+                <Column editable="false" title="&#xc804;&#xd654;&#xbc88;&#xd638;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xc778;&#xc6d0; &#xc218;" type="java.lang.String"/>
                 <Column editable="false" title="&#xccb4;&#xd06c;&#xc778; &#xb0a0;&#xc9dc;" type="java.lang.String"/>
                 <Column editable="false" title="&#xccb4;&#xd06c;&#xc544;&#xc6c3; &#xb0a0;&#xc9dc;" type="java.lang.String"/>
@@ -153,6 +154,11 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

@@ -80,14 +80,14 @@ public class CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "예약자명", "인원 수", "체크인 날짜", "체크아웃 날짜"
+                "호실", "예약자명", "전화번호", "인원 수", "체크인 날짜", "체크아웃 날짜"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -147,7 +147,7 @@ public class CheckOut extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SEARCH_FIELD)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addComponent(SEARCH_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
@@ -156,13 +156,13 @@ public class CheckOut extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(239, 239, 239))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
                 .addComponent(CHECKOUT_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -197,7 +197,7 @@ public class CheckOut extends javax.swing.JFrame {
             searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
             searchTbl.setNumRows(0);
             
-            //예약자 목록 검색
+            //체크인 목록 검색
             checkArrayList = check.check(search.trim(), 2);  //1: 체크인 2: 체크아웃
 
             //존재하지 않는 고객일 경우
@@ -209,6 +209,7 @@ public class CheckOut extends javax.swing.JFrame {
                     searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
                         Integer.toString(r.getReserveIdx()),
                         r.getName(),
+                        r.getPhoneNum(),
                         Integer.toString(r.getReservePeopleNum()),
                         r.getCheckInDate(),
                         r.getCheckOutDate()
