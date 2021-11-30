@@ -3,6 +3,7 @@ package hms.check;
 
 import hms.room.Reserve;
 import hms.textfiles.CheckTextFiles;
+import hms.textfiles.DishTextFiles;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,11 +30,11 @@ public class CheckOutSrc extends CheckSrc{
     public int[] pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제
         int roomIdx = checkOutList.get(0).getReserveIdx();  //방번호
         int initFee = CheckTextFiles.getRoomCharge(roomIdx);  //객실요금
+        int dishFee = DishTextFiles.getDishCharge(roomIdx);  //식사요금
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");       
         
         //[0]기본요금 FEE [1]추가요금 ADD_FEE [2]식사서비스 FOOD_FEE
         int[] feeArray = {0, 0, 0};
-        feeArray[2] = 10000;
         
         //1. 기본 요금 = 날 수 * 객실 요금
         //몇박
@@ -60,8 +61,8 @@ public class CheckOutSrc extends CheckSrc{
         }
         
         //3. 식사 서비스 요금
+        feeArray[2] = dishFee;
         
         return feeArray;
     }
-    
 }

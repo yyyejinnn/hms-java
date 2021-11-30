@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author LYJ
  */
-public class Restaurant extends javax.swing.JFrame {
+public class RoomService extends javax.swing.JFrame {
     /**
      * Creates new form CheckInSrc
      */
@@ -33,11 +33,11 @@ public class Restaurant extends javax.swing.JFrame {
     
     public int num;
     
-    public Restaurant() {
+    public RoomService() {
         initComponents();
     }
     
-    public Restaurant(int num) {
+    public RoomService(int num) {
         this.num = num;
         initComponents();
     }
@@ -273,7 +273,7 @@ public class Restaurant extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel1.setText("레스토랑 서비스");
+        jLabel1.setText("룸 서비스");
 
         SEARCH_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         SEARCH_BTN.setText("검색");
@@ -324,7 +324,7 @@ public class Restaurant extends javax.swing.JFrame {
         jLabel5.setText("가격:");
 
         MENU_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        MENU_BTN.setText("레스토랑 서비스 메뉴");
+        MENU_BTN.setText("룸 서비스 메뉴");
         MENU_BTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_BTNActionPerformed(evt);
@@ -408,10 +408,10 @@ public class Restaurant extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(MENU_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(49, 49, 49))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +501,7 @@ public class Restaurant extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) MENU_TBL.getModel();
             
         //1.restaurant.txt 불러오기
-        dishArrayList = DishTextFiles.getRestaurantListTxt();
+        dishArrayList = DishTextFiles.getRoomServiceListTxt();
 
         //2. 테이블에 목록 출력
         for (Dishtxt r : dishArrayList){
@@ -643,7 +643,7 @@ public class Restaurant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Restaurant().setVisible(true);
+                new RoomService().setVisible(true);
             }
         });
     }
