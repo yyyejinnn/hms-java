@@ -221,9 +221,7 @@ public class CheckIn extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
-    
-   
-  
+
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:

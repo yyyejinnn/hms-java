@@ -188,13 +188,14 @@ public class CheckOut extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-//체크인 검색 버튼
+    //체크아웃 검색 버튼
     private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
     
         try{
             String search = SEARCH_FIELD.getText();
             DefaultTableModel searchTbl;
             searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+            searchTbl.setNumRows(0);
             
             //예약자 목록 검색
             checkArrayList = check.check(search.trim(), 2);  //1: 체크인 2: 체크아웃
@@ -249,8 +250,6 @@ public class CheckOut extends javax.swing.JFrame {
             checkArrayList = check.check(checkInIdx.trim(),2);  //1: 체크인 2: 체크아웃
             checkOut.checkOut(checkArrayList);
             int[] feeArray = checkOut.pay(checkArrayList);
-            JOptionPane.showMessageDialog(null, "체크아웃 완료했습니다.");
-            dTable.setNumRows(0);
             
             new Pay(feeArray).setVisible(true);  //결제
             dispose();
