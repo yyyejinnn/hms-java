@@ -69,9 +69,7 @@ public class SystemRoom extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         ROOM_TYPE_TBL = new javax.swing.JTable();
         INSERT_DLG = new javax.swing.JDialog();
-        INSERT_FEE_FIELD = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        INSERT_MENU_FIELD = new javax.swing.JTextField();
+        INSERT_IDX_FIELD = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         INSERT_OK = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -154,15 +152,7 @@ public class SystemRoom extends javax.swing.JFrame {
 
         INSERT_DLG.setMinimumSize(new java.awt.Dimension(280, 280));
 
-        INSERT_FEE_FIELD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                INSERT_FEE_FIELDActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("가격:");
-
-        jLabel7.setText("서비스 종류:");
+        jLabel7.setText("객실 번호:");
 
         INSERT_OK.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         INSERT_OK.setText("추가");
@@ -178,16 +168,10 @@ public class SystemRoom extends javax.swing.JFrame {
             INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(INSERT_DLGLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(INSERT_DLGLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(INSERT_FEE_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(INSERT_DLGLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(INSERT_MENU_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(INSERT_IDX_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, INSERT_DLGLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(INSERT_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,17 +180,13 @@ public class SystemRoom extends javax.swing.JFrame {
         INSERT_DLGLayout.setVerticalGroup(
             INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(INSERT_DLGLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(47, 47, 47)
                 .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(INSERT_MENU_FIELD))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(INSERT_FEE_FIELD))
-                .addGap(31, 31, 31)
+                    .addComponent(INSERT_IDX_FIELD))
+                .addGap(55, 55, 55)
                 .addComponent(INSERT_OK)
-                .addGap(59, 59, 59))
+                .addContainerGap())
         );
 
         jLabel2.setText("jLabel2");
@@ -495,26 +475,29 @@ public class SystemRoom extends javax.swing.JFrame {
        
     }//GEN-LAST:event_ROOM_TYPE_OKActionPerformed
 
-    private void INSERT_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_FEE_FIELDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_INSERT_FEE_FIELDActionPerformed
-
     private void INSERT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_OKActionPerformed
         // TODO add your handling code here:
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        row = ROOM_TBL.getRowCount();
         
-       // menu = INSERT_MENU_FIELD.getText();
-       // fee = INSERT_FEE_FIELD.getText();
-        /*
-        if(menu.equals("") | fee.equals("")){
+        String roomIdx = INSERT_IDX_FIELD.getText();
+        
+        //유효성 검사
+        if(roomIdx.equals("")){
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
+        } else if (row == 100) {  //호텔이 100개이면
+            JOptionPane.showMessageDialog(null, "이 호텔의 객실은 100개로 한정되어있습니다.");
+            INSERT_DLG.dispose();
+        } else if(!(roomIdx.substring(0,0).matches("[1-5]"))){
+            JOptionPane.showMessageDialog(null, "객실 번호는 1~5사이의 번호로 시작되어야합니다.");
         } else {
-            SystemTextFiles.setRtRsListTxt(menu, fee, 1);
-            JOptionPane.showMessageDialog(null, "레스토랑 서비스가 추가 되었습니다.");
+            SystemTextFiles.setRoomListTxt(roomIdx);
+            JOptionPane.showMessageDialog(null, "객실이 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();
             new SystemRoom().setVisible(true);
         }
-       */
+       
     }//GEN-LAST:event_INSERT_OKActionPerformed
 
     private void UPDATE_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_OKActionPerformed
@@ -586,8 +569,7 @@ public class SystemRoom extends javax.swing.JFrame {
     private javax.swing.JTextField IDX_FIELD;
     private javax.swing.JButton INSERT_BTN;
     private javax.swing.JDialog INSERT_DLG;
-    private javax.swing.JTextField INSERT_FEE_FIELD;
-    private javax.swing.JTextField INSERT_MENU_FIELD;
+    private javax.swing.JTextField INSERT_IDX_FIELD;
     private javax.swing.JButton INSERT_OK;
     private javax.swing.JTextField NUM_FIELD;
     private javax.swing.JTable ROOM_TBL;
@@ -602,7 +584,6 @@ public class SystemRoom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

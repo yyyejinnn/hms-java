@@ -204,7 +204,6 @@ public class SystemTextFiles extends DishTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               
                roomTypeList.add(splitedStr);  //ArrayList에 저장
             }
             in.close();
@@ -214,6 +213,30 @@ public class SystemTextFiles extends DishTextFiles {
         }
         
         return roomTypeList;  //[0]방번호 [1]유형 [2]인원수 [3]요금
+    }
+    
+    private static String[] getRoomTypeListTxt(String idx) {
+        String[] reSplitedStr = null;
+        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(ROOM_TYPE_TXT_NAME));
+            String line = null;
+             String[] splitedStr = null;
+            
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+               splitedStr = line.split("/");
+               
+               if(idx.startsWith(splitedStr[0])){
+                    reSplitedStr = splitedStr;
+               }
+            }
+            in.close();
+            
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+        return reSplitedStr;  //[0]방번호 [1]유형 [2]인원수 [3]요금
     }
     
     //객실 유형 수정
@@ -290,6 +313,36 @@ public class SystemTextFiles extends DishTextFiles {
         }
     }
     
+    //객실 추가
+    public static void setRoomListTxt(String roomIdx){
+        String[] roomTypeList = null;
+        roomTypeList = getRoomTypeListTxt(roomIdx);  //해당하는 객실 유형 가져옴 [0]방번호 [1]유형 [2]인원수 [3]요금
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(ROOM_TXT_NAME);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(ROOM_TXT_NAME, true);  //추가
+            
+            //roomList에 추가 [0]방번호 [1]인원수 [2]요금 [3]점유여부
+            String str = roomIdx + "/" + roomTypeList[2] + "/" + roomTypeList[3] + "/f\n";
+            
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
     
     
    /* public static void main(String[]args){
