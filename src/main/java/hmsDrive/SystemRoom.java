@@ -68,6 +68,7 @@ public class SystemRoom extends javax.swing.JFrame {
         ROOM_TYPE_OK = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ROOM_TYPE_TBL = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         INSERT_DLG = new javax.swing.JDialog();
         INSERT_IDX_FIELD = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -129,23 +130,33 @@ public class SystemRoom extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ROOM_TYPE_TBL);
 
+        jLabel3.setFont(new java.awt.Font("굴림", 0, 10)); // NOI18N
+        jLabel3.setText("※ 인덱스는 객실 번호의 첫번째 숫자를 의미합니다.");
+
         javax.swing.GroupLayout ROOM_TYPE_DLGLayout = new javax.swing.GroupLayout(ROOM_TYPE_DLG.getContentPane());
         ROOM_TYPE_DLG.getContentPane().setLayout(ROOM_TYPE_DLGLayout);
         ROOM_TYPE_DLGLayout.setHorizontalGroup(
             ROOM_TYPE_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_TYPE_DLGLayout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(ROOM_TYPE_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ROOM_TYPE_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addGroup(ROOM_TYPE_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ROOM_TYPE_DLGLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_TYPE_DLGLayout.createSequentialGroup()
+                        .addGroup(ROOM_TYPE_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ROOM_TYPE_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))))
         );
         ROOM_TYPE_DLGLayout.setVerticalGroup(
             ROOM_TYPE_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_TYPE_DLGLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
                 .addComponent(ROOM_TYPE_OK)
                 .addGap(23, 23, 23))
         );
@@ -582,6 +593,7 @@ public class SystemRoom extends javax.swing.JFrame {
     private javax.swing.JButton UPDATE_OK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
