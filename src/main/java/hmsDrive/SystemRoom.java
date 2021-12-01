@@ -521,12 +521,12 @@ public class SystemRoom extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //업데이트
-        roomTypeIdx = ROOM_TYPE_FIELD.getText();
+        roomTypeIdx = IDX_FIELD.getText();
         updatePeopleNum = NUM_FIELD.getText();
-        updateFee = FEE_FIELD.getText();
-
-        SystemTextFiles.updateRoomTypeListTxt(roomTypeIdx, peopleNum, fee, updatePeopleNum, updateFee);
-
+        updateFee =  FEE_FIELD.getText();
+        SystemTextFiles.updateRoomTypeListTxt(roomTypeIdx,updatePeopleNum, updateFee);
+        SystemTextFiles.updateRoomListTxt(roomTypeIdx, updatePeopleNum, updateFee);
+        
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
         ROOM_TYPE_DLG.dispose();
