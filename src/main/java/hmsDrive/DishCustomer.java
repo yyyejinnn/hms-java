@@ -5,37 +5,43 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
-import hms.check.CheckSrc;
-import hms.check.CheckOutSrc;
-import java.io.IOException;
+import hms.check.CheckInSrc;
+import hms.room.Dishtxt;
+import hms.textfiles.DishTextFiles;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author HOME
+ * @author LYJ
  */
-public class CheckOut extends javax.swing.JFrame {
+public class DishCustomer extends javax.swing.JFrame {
     /**
      * Creates new form CheckInSrc
      */
-    private ArrayList<Reserve> checkArrayList = new ArrayList<>();
-    private CheckSrc check = new CheckSrc();
-    private CheckOutSrc checkOut = new CheckOutSrc();
+    private ArrayList<Dishtxt> dCustomerArrayList = new ArrayList<>();
+    private DefaultTableModel dTbl;
     
-    public int num;
-    
-    public CheckOut() {
+    public DishCustomer() {  //예약된 전체 목록 출력
         initComponents();
-    }
-    
-    public CheckOut(int num) {
-        this.num = num;
-        initComponents();
+        
+        dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
+        
+        //예약자 목록 검색
+        dCustomerArrayList = DishTextFiles.getDishCustomerListTxt();
+        
+        //테이블에 출력
+        for (Dishtxt r : dCustomerArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomIdx(),
+                r.getName(),
+                r.getPeopleNum(),
+                r.getMenu(),
+                r.getFee()
+            });
+        }
+        
     }
 
     /**
@@ -52,9 +58,10 @@ public class CheckOut extends javax.swing.JFrame {
         SEARCH_BTN = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        CHECKIN_TABLE = new javax.swing.JTable();
-        CHECKOUT_BTN = new javax.swing.JButton();
+        DCUSTOMER_TABLE = new javax.swing.JTable();
+        CANCEL_BTN = new javax.swing.JButton();
         PRE_BTN = new javax.swing.JButton();
+        FINISH_BTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -63,7 +70,7 @@ public class CheckOut extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel1.setText("체크아웃");
+        jLabel1.setText("식사 서비스 예약 내역");
 
         SEARCH_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         SEARCH_BTN.setText("검색");
@@ -75,19 +82,19 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setText("예약자 명 또는 객실 번호:");
 
-        CHECKIN_TABLE.setModel(new javax.swing.table.DefaultTableModel(
+        DCUSTOMER_TABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "호실", "예약자명", "전화번호", "인원 수", "체크인 날짜", "체크아웃 날짜"
+                "호실", "예약자명", "인원 수", "서비스 종류", "가격"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -98,13 +105,13 @@ public class CheckOut extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(CHECKIN_TABLE);
+        jScrollPane1.setViewportView(DCUSTOMER_TABLE);
 
-        CHECKOUT_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        CHECKOUT_BTN.setText("체크아웃");
-        CHECKOUT_BTN.addActionListener(new java.awt.event.ActionListener() {
+        CANCEL_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        CANCEL_BTN.setText("예약 취소");
+        CANCEL_BTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CHECKOUT_BTNActionPerformed(evt);
+                CANCEL_BTNActionPerformed(evt);
             }
         });
 
@@ -113,6 +120,14 @@ public class CheckOut extends javax.swing.JFrame {
         PRE_BTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PRE_BTNActionPerformed(evt);
+            }
+        });
+
+        FINISH_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        FINISH_BTN.setText("서비스 완료");
+        FINISH_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FINISH_BTNActionPerformed(evt);
             }
         });
 
@@ -152,18 +167,22 @@ public class CheckOut extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CHECKOUT_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FINISH_BTN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CANCEL_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(163, 163, 163))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,58 +197,22 @@ public class CheckOut extends javax.swing.JFrame {
                     .addComponent(SEARCH_BTN))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CHECKOUT_BTN)
-                    .addComponent(PRE_BTN))
-                .addGap(25, 25, 25))
+                    .addComponent(CANCEL_BTN)
+                    .addComponent(PRE_BTN)
+                    .addComponent(FINISH_BTN))
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    //체크아웃 검색 버튼
-    private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
-    
-        try{
-            String search = SEARCH_FIELD.getText();
-            DefaultTableModel searchTbl;
-            searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
-            searchTbl.setNumRows(0);
-            
-            //체크인 목록 검색
-            checkArrayList = check.check(search.trim(), 2);  //1: 체크인 2: 체크아웃
-
-            //존재하지 않는 고객일 경우
-            if(checkArrayList.isEmpty()){
-                JOptionPane.showMessageDialog(null, "존재하지 않는 고객입니다.");
-            } else{
-            //테이블에 검색 목록 출력
-                for (Reserve r : checkArrayList){
-                    searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
-                        r.getName(),
-                        r.getPhoneNum(),
-                        Integer.toString(r.getReservePeopleNum()),
-                        r.getCheckInDate(),
-                        r.getCheckOutDate()
-                        });
-                }
-            }
-            
-        } catch(IOException ex){
-           Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_SEARCH_BTNActionPerformed
-    
-   
-  
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Check ch = new Check(num);
-        ch.setVisible(true);
-        this.setVisible(false);
+        new Dish().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -237,35 +220,82 @@ public class CheckOut extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    //체크아웃 버튼
-    private void CHECKOUT_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKOUT_BTNActionPerformed
-        DefaultTableModel dTable;
-        dTable = (DefaultTableModel) CHECKIN_TABLE.getModel();
+    //식사 서비스 예약 취소 버튼
+    private void CANCEL_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCEL_BTNActionPerformed
+        dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
         int row = -1;
         
-        row = CHECKIN_TABLE.getSelectedRow();
-        String checkInIdx = (String) dTable.getValueAt(row, 0);
+        row = DCUSTOMER_TABLE.getSelectedRow();
+        String dCustomerIdx = (String) dTbl.getValueAt(row, 0);
         
-       //체크아웃 실행
-        try {
-            checkArrayList = check.check(checkInIdx.trim(),2);  //1: 체크인 2: 체크아웃
-            checkOut.checkOut(checkArrayList);
-            int[] feeArray = checkOut.pay(checkArrayList);
-            
-            new Pay(feeArray).setVisible(true);  //결제
-            dispose();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "취소할 목록을 선택해주십시오");
+        } else{
+            //dishCustomerList.txt에서 삭제
+            DishTextFiles.deleteReserveListTxt(dCustomerIdx);
+            JOptionPane.showMessageDialog(null, "식사서비스가 취소 되었습니다.");
+        
+            new DishCustomer().setVisible(true);
+            this.dispose();
         }
-    }//GEN-LAST:event_CHECKOUT_BTNActionPerformed
+        
+    }//GEN-LAST:event_CANCEL_BTNActionPerformed
 
+    //이전 버튼
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
-        Check pre = new Check();
-        pre.setVisible(true);
+        new Dish().setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed
+
+    //예약된 식사서비스 검색 버튼
+    private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
+
+        String search = SEARCH_FIELD.getText();
+        dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
+        dTbl.setNumRows(0);
+        
+        //예약자 목록 검색
+        dCustomerArrayList = DishTextFiles.getDishCustomerListTxt(search);
+        
+        //예약 되지않은 고객일 경우
+        if(dCustomerArrayList.isEmpty()){
+            JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다.");
+        } else{
+            //테이블에 검색된 목록 출력
+            for (Dishtxt r : dCustomerArrayList){
+                dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                        r.getRoomIdx(),
+                        r.getName(),
+                        r.getPeopleNum(),
+                        r.getMenu(),
+                        r.getFee()
+                    });
+                
+            }
+        }
+    }//GEN-LAST:event_SEARCH_BTNActionPerformed
+
+    //식사 서비스 완료
+    private void FINISH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FINISH_BTNActionPerformed
+        // TODO add your handling code here:
+        dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
+        int row = -1;
+        
+        row = DCUSTOMER_TABLE.getSelectedRow();
+        String dCustomerIdx = (String) dTbl.getValueAt(row, 0);
+        
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "완료된 목록을 선택해주십시오");
+        } else{
+            //dishCustomerList.txt에서 삭제
+            DishTextFiles.deleteReserveListTxt(dCustomerIdx);
+            JOptionPane.showMessageDialog(null, "식사서비스가 완료 되었습니다.");
+        
+            new DishCustomer().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_FINISH_BTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,13 +314,13 @@ public class CheckOut extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CheckOutSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CheckOutSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CheckOutSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CheckOutSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInSrc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -300,14 +330,15 @@ public class CheckOut extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckOut().setVisible(true);
+                new DishCustomer().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable CHECKIN_TABLE;
-    private javax.swing.JButton CHECKOUT_BTN;
+    private javax.swing.JButton CANCEL_BTN;
+    private javax.swing.JTable DCUSTOMER_TABLE;
+    private javax.swing.JButton FINISH_BTN;
     private javax.swing.JButton PRE_BTN;
     private javax.swing.JButton SEARCH_BTN;
     private javax.swing.JTextField SEARCH_FIELD;

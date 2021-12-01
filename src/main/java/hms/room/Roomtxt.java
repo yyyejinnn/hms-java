@@ -15,6 +15,10 @@ public class Roomtxt {
     private int maxPeopleNum;
     private int fee;
     private String roomClean;
+    
+    public Roomtxt(String roomIdx, String maxPeopleNum, String fee){
+        
+    }
 
     public int getRoomIdx() {
         return roomIdx;

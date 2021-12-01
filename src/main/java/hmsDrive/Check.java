@@ -131,7 +131,7 @@ public class Check extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        if(num== 1) {
+        if(num == 1) {
             UserMainMenu umain = new UserMainMenu();
             umain.setVisible(true);
             this.setVisible(false);
