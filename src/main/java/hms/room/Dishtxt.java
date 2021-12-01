@@ -51,6 +51,4 @@ public class Dishtxt {
         return peopleNum;
     }
     
-    
-    
 }

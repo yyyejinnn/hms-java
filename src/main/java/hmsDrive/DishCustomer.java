@@ -8,10 +8,7 @@ package hmsDrive;
 import hms.check.CheckInSrc;
 import hms.room.Dishtxt;
 import hms.textfiles.DishTextFiles;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

@@ -12,7 +12,6 @@ public class Reserve {  //예약 목록 클래스
     private String checkInTime;  //체크인 시간
     private String checkOutDate;  //체크아웃 날짜
     private String checkOutTime;  //체크아웃 시간
-    private int charge;  //총 결제 금액
     
     public Reserve(String reserveIdx, String name, String phoneNum, String reservePeopleStr, String checkInDate,
                     String checkInTime, String checkOutDate, String checkOutTime){
@@ -56,9 +55,5 @@ public class Reserve {  //예약 목록 클래스
 
     public String getCheckOutTime() {
         return checkOutTime;
-    }
-    
-    public int getCharge() {
-        return charge;
     }
 }
