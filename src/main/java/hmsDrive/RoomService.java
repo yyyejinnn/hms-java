@@ -5,12 +5,15 @@
  */
 package hmsDrive;
 
+
 import hms.room.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckInSrc;
 import hms.room.Dishtxt;
 import hms.textfiles.DishTextFiles;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -80,6 +83,7 @@ public class RoomService extends javax.swing.JFrame {
         MENU_BTN = new javax.swing.JButton();
         PAY_BTN = new javax.swing.JButton();
         RESERVE_BTN = new javax.swing.JButton();
+        PRE_BTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -345,6 +349,14 @@ public class RoomService extends javax.swing.JFrame {
             }
         });
 
+        PRE_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        PRE_BTN.setText("이전");
+        PRE_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRE_BTNActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("메뉴");
 
         jMenuItem1.setText("뒤로가기");
@@ -383,7 +395,8 @@ public class RoomService extends javax.swing.JFrame {
                                 .addComponent(SEARCH_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(RESERVE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(PAY_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -440,7 +453,8 @@ public class RoomService extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PAY_BTN)
-                    .addComponent(RESERVE_BTN))
+                    .addComponent(RESERVE_BTN)
+                    .addComponent(PRE_BTN))
                 .addGap(22, 22, 22))
         );
 
@@ -473,8 +487,8 @@ public class RoomService extends javax.swing.JFrame {
                 }
             }
             
-        } catch(IOException e){
-            System.out.println(e);
+        } catch(IOException ex){
+            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
@@ -608,6 +622,12 @@ public class RoomService extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
+        // TODO add your handling code here:
+        new Dish().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_PRE_BTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -661,6 +681,7 @@ public class RoomService extends javax.swing.JFrame {
     private javax.swing.JTextField PAY_FEE_FIELD;
     private javax.swing.JTextField PAY_MENU_FIELD;
     private javax.swing.JButton PAY_OK_BTN;
+    private javax.swing.JButton PRE_BTN;
     private javax.swing.JButton RESERVE_BTN;
     private javax.swing.JButton SEARCH_BTN;
     private javax.swing.JTextField SEARCH_FIELD;

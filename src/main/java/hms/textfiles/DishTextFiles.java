@@ -211,4 +211,46 @@ public class DishTextFiles {
         
         return fee;
     }
+    
+    
+    ////System////
+    //레스토랑 서비스 수정
+    public static void updateRestaurantListTxt(String menu, String fee, String updateMenu, String updateFee){
+        try{
+            File file = new File(RT_TXT_NAME);
+            String dummy = "";
+            
+            //1. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //2. 수정
+            while((dummy = is.readLine()) != null){
+                if(!(dummy.contains(menu) && dummy.contains(fee))) {
+                    str += dummy + "\n";
+                }else if(dummy.contains(menu)){  //해당 목록
+                    dummy = dummy.replace(menu, updateMenu);
+                    dummy = dummy.replace(fee, updateFee);
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME);  //false
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    /*
+    public static void main(String[]args){
+        updateRestaurantListTxt("test","10","test2","30");
+    }
+    */
 }

@@ -262,8 +262,8 @@ public class CheckIn extends javax.swing.JFrame {
                 }
             }
             
-        } catch(IOException e){
-            System.out.println(e);
+        } catch(IOException ex){
+            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
 
