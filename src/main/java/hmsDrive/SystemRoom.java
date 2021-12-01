@@ -19,11 +19,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author LYJ
  */
-public class SystemRoomService extends javax.swing.JFrame {
+public class SystemRoom extends javax.swing.JFrame {
     /**
      * Creates new form CheckInSrc
      */
-    private ArrayList<Dishtxt> restaurantArrayList = new ArrayList<>();
+    private ArrayList<String[]> roomArrayList = new ArrayList<>();
     private DefaultTableModel dTbl;
     private int row = -1;
     
@@ -34,19 +34,20 @@ public class SystemRoomService extends javax.swing.JFrame {
     
     public int num;
     
-    public SystemRoomService() {
+    public SystemRoom() {
         initComponents();
         
-        dTbl = (DefaultTableModel) RT_TBL.getModel();
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
         
-        //레스토랑 목록 검색
-        restaurantArrayList = SystemTextFiles.getRoomServiceListTxt();
+        //객실 목록 검색
+        roomArrayList  = SystemTextFiles.getRoomListTxt();
         
         //테이블에 출력
-        for (Dishtxt r : restaurantArrayList){
+        for (String[] r : roomArrayList){
             dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-                r.getMenu(),
-                r.getFee()
+                r[0],  //방번호
+                r[1],  //인원수
+                r[2]   //요금
             });
         }
     }
@@ -74,7 +75,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         INSERT_OK = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        RT_TBL = new javax.swing.JTable();
+        ROOM_TBL = new javax.swing.JTable();
         UPDATE_BTN = new javax.swing.JButton();
         DELETE_BTN = new javax.swing.JButton();
         INSERT_BTN = new javax.swing.JButton();
@@ -200,21 +201,21 @@ public class SystemRoomService extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel1.setText("룸 서비스 관리");
+        jLabel1.setText("객실 관리");
 
-        RT_TBL.setModel(new javax.swing.table.DefaultTableModel(
+        ROOM_TBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "서비스 종류", "가격"
+                "호실", "인원수", "요금"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -225,7 +226,7 @@ public class SystemRoomService extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(RT_TBL);
+        jScrollPane1.setViewportView(ROOM_TBL);
 
         UPDATE_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         UPDATE_BTN.setText("수정");
@@ -278,29 +279,28 @@ public class SystemRoomService extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(UPDATE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DELETE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(INSERT_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 82, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(121, 121, 121)
+                        .addComponent(UPDATE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
                 .addComponent(jLabel1)
-                .addGap(164, 164, 164))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UPDATE_BTN)
@@ -326,27 +326,24 @@ public class SystemRoomService extends javax.swing.JFrame {
 
     private void DELETE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETE_BTNActionPerformed
         // TODO add your handling code here:
-        dTbl = (DefaultTableModel) RT_TBL.getModel();
-        row = RT_TBL.getSelectedRow();
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        row = ROOM_TBL.getSelectedRow();
         
         if(row == -1){
-            JOptionPane.showMessageDialog(null, "삭제할 서비스를 선택해십시오.");
+            JOptionPane.showMessageDialog(null, "삭제할 객실을 선택해십시오.");
         } else{
-            menu = (String) dTbl.getValueAt(row, 0);
-            fee = (String) dTbl.getValueAt(row, 1);
-            
-            SystemTextFiles.deleteRtRsListTxt(menu, fee, 2);
+            SystemTextFiles.deleteRoomListTxt((String) dTbl.getValueAt(row, 0));
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
-            new SystemRoomService().setVisible(true);
+            new SystemRoom().setVisible(true);
         }
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
     private void UPDATE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_BTNActionPerformed
         // TODO add your handling code here:
-        dTbl = (DefaultTableModel) RT_TBL.getModel();
-        row = RT_TBL.getSelectedRow();
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        row = ROOM_TBL.getSelectedRow();
         
         if(row == -1){
             JOptionPane.showMessageDialog(null, "수정할 서비스를 선택해십시오.");
@@ -359,6 +356,7 @@ public class SystemRoomService extends javax.swing.JFrame {
             UPDATE_FEE_FIELD.setText(fee);
 
             UPDATE_DLG.setVisible(true);
+                   
         }
     }//GEN-LAST:event_UPDATE_BTNActionPerformed
 
@@ -374,12 +372,12 @@ public class SystemRoomService extends javax.swing.JFrame {
         updateMenu = UPDATE_MENU_FIELD.getText();
         updateFee = UPDATE_FEE_FIELD.getText();
         
-        SystemTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 2);
+        SystemTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 1);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
         this.dispose();
-        new SystemRoomService().setVisible(true);
+        new SystemRoom().setVisible(true);
     }//GEN-LAST:event_UPDATE_OKActionPerformed
 
     private void UPDATE_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_FEE_FIELDActionPerformed
@@ -399,11 +397,11 @@ public class SystemRoomService extends javax.swing.JFrame {
         if(menu.equals("") | fee.equals("")){
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else {
-            SystemTextFiles.setRtRsListTxt(menu, fee, 2);
-            JOptionPane.showMessageDialog(null, "룸 서비스가 추가 되었습니다.");
+            SystemTextFiles.setRtRsListTxt(menu, fee, 1);
+            JOptionPane.showMessageDialog(null, "레스토랑 서비스가 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();
-            new SystemRoomService().setVisible(true);
+            new SystemRoom().setVisible(true);
         }
     }//GEN-LAST:event_INSERT_OKActionPerformed
 
@@ -440,7 +438,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SystemRoomService().setVisible(true);
+                new SystemRoom().setVisible(true);
             }
         });
     }
@@ -452,7 +450,7 @@ public class SystemRoomService extends javax.swing.JFrame {
     private javax.swing.JTextField INSERT_FEE_FIELD;
     private javax.swing.JTextField INSERT_MENU_FIELD;
     private javax.swing.JButton INSERT_OK;
-    private javax.swing.JTable RT_TBL;
+    private javax.swing.JTable ROOM_TBL;
     private javax.swing.JButton UPDATE_BTN;
     private javax.swing.JDialog UPDATE_DLG;
     private javax.swing.JTextField UPDATE_FEE_FIELD;

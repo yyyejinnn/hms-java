@@ -100,30 +100,29 @@ public class System extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addContainerGap(161, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(165, 165, 165))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RS_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RT_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(165, 165, 165))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(ROOM_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(129, 129, 129)))))
+                    .addComponent(ROOM_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addComponent(ROOM_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RT_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RS_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,15 +154,15 @@ public class System extends javax.swing.JFrame {
     //객실 관리 버튼
     private void ROOM_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ROOM_BTNActionPerformed
         // TODO add your handling code here:
-        //new SystemRoom().setVisible(true);
-        //this.dispose();
+        new SystemRoom().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ROOM_BTNActionPerformed
 
     //룸서비스 관리 버튼
     private void RS_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RS_BTNActionPerformed
         // TODO add your handling code here:
-        //new SystemRoomService().setVisible(true);
-        //this.dispose();
+        new SystemRoomService().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_RS_BTNActionPerformed
 
     //레스토랑 관리 버튼

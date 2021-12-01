@@ -167,10 +167,10 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    //객실 관리 버튼
+    //시스템 관리 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       new System().setAlwaysOnTop(true);
+       new System().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
