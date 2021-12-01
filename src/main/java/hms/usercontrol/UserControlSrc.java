@@ -8,20 +8,31 @@ package hms.usercontrol;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HOME
  */
 public class UserControlSrc {
-    //UserID.txt 파일 읽어오기 
+    
+    File UserIDlist = new File("C:\\Users\\HOME\\Documents\\NetBeansProjects\\hms\\UserIDlist.txt");
+    
+    //UserIDlist.txt 파일 읽어오기 
     public ArrayList fileread() throws FileNotFoundException, IOException
     {
-        File UserIDlist = new File("C:\\Users\\HOME\\Documents\\NetBeansProjects\\hms\\UserIDlist.txt");
+        
         BufferedReader br = new BufferedReader(new FileReader(UserIDlist, Charset.forName("UTF-8")));
         ArrayList<String> str = new ArrayList<String>();
         String strtest = null;
@@ -29,5 +40,66 @@ public class UserControlSrc {
         str.add(strtest);
         }
         return str;
+    }
+    
+    //UserIDlist.txt에 계정 생성
+    public int createid(int num, String id, String password)
+    {
+        int successnum = 0;
+        try {
+            int idDoubleCheckNum=0;
+            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),true));
+            PrintWriter pw = new PrintWriter(bw,true);
+            ArrayList<String> str = new ArrayList<String>();
+            str = fileread();
+            
+            for(String r: str)
+            {
+                StringTokenizer st = new StringTokenizer(r, "/");
+                st.nextToken();
+                //String forcheck = st.nextToken();
+                if(st.nextToken().equals(id))
+                {
+                    idDoubleCheckNum++;
+                    break;
+                }
+                st.nextToken();
+            }
+            
+            //계정 100개 이하일때 && 기존에 없는 id값일때 && 뭐라도 입력했을때
+            /*if(idDoubleCheckNum == 0) {
+                pw.write("\r\n"+ num + "/" + id + "/" + password);
+                pw.close();
+                bw.close();
+                JOptionPane.showMessageDialog(null, "계정이 생성되었습니다.");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
+            }*/
+            
+            if(id.length()<4 && password.length()<4) {
+                JOptionPane.showMessageDialog(null, "아이디 또는 패스워드는 4자리 이상이 되야 합니다.");
+            }
+            else if(getLastLineNum()>=100) {
+                JOptionPane.showMessageDialog(null, "계정을 100개 이상 만들수없습니다.");
+            }
+            else if(idDoubleCheckNum != 0) {
+                JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
+            }
+            else {
+                successnum = 1;
+                pw.write("\r\n"+ num + "/" + id + "/" + password);
+                pw.close();
+                bw.close();
+                JOptionPane.showMessageDialog(null, "계정이 생성되었습니다.");
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+        return successnum;
+    }
+    public int getLastLineNum() throws IOException
+    {
+        return fileread().size();
     }
 }
