@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
         this.num = num;
         String[] str = null;
         try {
-            File file = new File("C:\\Users\\hesed\\Documents\\NetBeansProjects\\hms\\UserIDlist.txt");
+            File file = new File("C:\\Users\\HOME\\Documents\\NetBeansProjects\\hms\\UserIDlist.txt");
             FileReader read = new FileReader(file);
             BufferedReader in = new BufferedReader(read);
             int i = 0;
