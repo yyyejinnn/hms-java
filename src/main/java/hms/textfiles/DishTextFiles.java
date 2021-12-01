@@ -16,10 +16,10 @@ import java.util.ArrayList;
  * @author LYJ
  */
 public class DishTextFiles {
-    public static final String RT_TXT_NAME = "restaurantList.txt";
-    public static final String RS_TXT_NAME = "roomServiceList.txt";
-    public static final String DISH_TXT_NAME = "dishCustomerList.txt";
-    public static final String ROOM_TXT_NAME = "roomList.txt";
+    protected static final String RT_TXT_NAME = "restaurantList.txt";
+    protected static final String RS_TXT_NAME = "roomServiceList.txt";
+    protected static final String DISH_TXT_NAME = "dishCustomerList.txt";
+    protected static final String ROOM_TXT_NAME = "roomList.txt";
     
     //레스토랑 서비스 종류 txt 불러옴
     public static ArrayList getRestaurantListTxt() {

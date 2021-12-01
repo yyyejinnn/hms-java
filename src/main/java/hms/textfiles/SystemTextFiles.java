@@ -1,9 +1,5 @@
 package hms.textfiles;
 
-import hms.room.Reserve;
-import static hms.textfiles.DishTextFiles.ROOM_TXT_NAME;
-import static hms.textfiles.DishTextFiles.RS_TXT_NAME;
-import static hms.textfiles.DishTextFiles.RT_TXT_NAME;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +16,7 @@ import java.util.ArrayList;
  */
 public class SystemTextFiles extends DishTextFiles {
     private static String fileName = "";
+    
     //type 1:restaurantList.txt  2:roonService.txt    
     //레스토랑, 룸 서비스 수정
     public static void updateRtRsListTxt(String menu, String fee, String updateMenu, String updateFee, int type){
