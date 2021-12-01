@@ -28,7 +28,7 @@ public class CheckSrc {
         //2. 검색 후 출력
         for(Reserve r : reserveList){
             //방번호 또는 예약자명이 일치하는 목록 추가
-            if(r.getReserveIdx() == Integer.parseInt(str)  || r.getName().matches(str)){                
+            if(r.getReserveIdx() == Integer.parseInt(str)  || r.getName().equals(str)){                
               checkList.add(r);
             }
         }

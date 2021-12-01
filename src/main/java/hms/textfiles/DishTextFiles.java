@@ -103,6 +103,7 @@ public class DishTextFiles {
     public static int getDishCharge(int roomIdx){
         String roomInxStr = Integer.toString(roomIdx) + "/";
         String[] splitedStr = null;
+        int fee = 0;
         
         try{
             File file = new File(DISH_TXT_NAME);
@@ -116,6 +117,7 @@ public class DishTextFiles {
             while((dummy = is.readLine()) != null){
                 if(dummy.contains(roomInxStr)) {
                     splitedStr = dummy.split("/");
+                    fee = Integer.parseInt(splitedStr[5]);//[5]요금
                 }
             }
             
@@ -124,6 +126,6 @@ public class DishTextFiles {
             System.out.println(e);
         }
         
-        return Integer.parseInt(splitedStr[5]);  //[5]요금
+        return fee;
     }
 }

@@ -241,7 +241,7 @@ public class CheckIn extends javax.swing.JFrame {
             searchTbl.setNumRows(0);
 
             //예약자 목록 검색
-            checkArrayList = check.check(search.trim(),1);  //1: 체크인 2: 체크아웃
+            checkArrayList = check.check(search.trim(), 1);  //1: 체크인 2: 체크아웃
 
             //예약 되지않은 고객일 경우
             if(checkArrayList.isEmpty()){
@@ -261,7 +261,7 @@ public class CheckIn extends javax.swing.JFrame {
                     });
                 }
             }
-
+            
         } catch(IOException e){
             System.out.println(e);
         }

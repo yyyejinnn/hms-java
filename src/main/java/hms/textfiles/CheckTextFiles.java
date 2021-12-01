@@ -39,6 +39,9 @@ public class CheckTextFiles {
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
                
+               System.out.println(splitedStr[1]+"/"+splitedStr[2]+"/"+splitedStr[3]+"/"+splitedStr[4]+"/"+splitedStr[5]+"/"+
+                                            splitedStr[6]+"/"+splitedStr[7]+"/"+ splitedStr[8]);
+               
                //[0]예약번호 [1]방번호 [2]예약자명 [3]전화번호 [4]인원수 [5]체크인날짜 [6]시간 [7]체크아웃날짜 [8]시간
                reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
                                             splitedStr[6],splitedStr[7], splitedStr[8]));  //ArrayList에 저장

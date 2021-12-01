@@ -24,7 +24,6 @@ public class Reserve {  //예약 목록 클래스
         this.checkInTime = checkInTime;
         this.checkOutDate = checkOutDate;
         this.checkOutTime = checkOutTime;
-        //this.charge = Integer.parseInt(charge);
     }
 
     public String getPhoneNum() {
