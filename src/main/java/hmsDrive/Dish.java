@@ -171,6 +171,8 @@ public class Dish extends javax.swing.JFrame {
     //서비스 신청내역 조회
     private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
         // TODO add your handling code here:
+        new DishCustomer().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
 
     /**
