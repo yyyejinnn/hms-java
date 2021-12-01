@@ -330,7 +330,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         row = RT_TBL.getSelectedRow();
         
         if(row == -1){
-            JOptionPane.showMessageDialog(null, "삭제할 서비스를 선택해십시오.");
+            JOptionPane.showMessageDialog(null, "삭제할 서비스를 선택해주십시오.");
         } else{
             menu = (String) dTbl.getValueAt(row, 0);
             fee = (String) dTbl.getValueAt(row, 1);
@@ -349,7 +349,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         row = RT_TBL.getSelectedRow();
         
         if(row == -1){
-            JOptionPane.showMessageDialog(null, "수정할 서비스를 선택해십시오.");
+            JOptionPane.showMessageDialog(null, "수정할 서비스를 선택해주십시오.");
         } else{
             //UPDATE_DLG init
             menu = (String) dTbl.getValueAt(row, 0);

@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * @author LYJ
  */
 public class SystemTextFiles extends DishTextFiles {
+    private static final String ROOM_TXT_NAME = "roomList.txt";
+    private static final String ROOM_TYPE_NAME = "roomTypeList.txt";
     private static String fileName = "";
     
     //type 1:restaurantList.txt  2:roonService.txt    
@@ -156,7 +158,7 @@ public class SystemTextFiles extends DishTextFiles {
         return roomList;  //[0]방번호 [1]인원수 [2]요금 [3]점유여부
     }
     
-     //체크인 한 고객 예약 txt에서 삭제
+    //선택한 객실 삭제
     public static void deleteRoomListTxt(String roomIdx){
         String reserveIdxStr = roomIdx + "/";
         
@@ -190,6 +192,67 @@ public class SystemTextFiles extends DishTextFiles {
              System.out.println(e);
         }
     }
+    
+    //객실 유형 txt 불러옴
+    public static ArrayList getRoomTypeListTxt() {
+        ArrayList<String[]> roomTypeList = new ArrayList<>();
+        String[] splitedStr = null;
+        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(ROOM_TYPE_NAME));
+            String line = null;
+            
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+               splitedStr = line.split("/");
+               
+               roomTypeList.add(splitedStr);  //ArrayList에 저장
+            }
+            in.close();
+            
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+        return roomTypeList;  //[0]방번호 [1]유형 [2]인원수 [3]요금
+    }
+    
+    //레스토랑, 룸 서비스 수정
+    public static void updateRoomTypeListTxt(String roomTypeIdx, String peopleNum, String fee, String updatePeopleNum, String updateFee){        
+        try{
+            File file = new File(ROOM_TYPE_NAME);
+            String idx = roomTypeIdx + "/";
+            String dummy = "";
+            
+            //1. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //2. 수정
+            while((dummy = is.readLine()) != null){
+                if(!(dummy.contains(idx))) {
+                    str += dummy + "\n";
+                }else {  //해당 목록
+                    dummy = dummy.replace(peopleNum, updatePeopleNum);
+                    dummy = dummy.replace(fee, updateFee);
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(ROOM_TYPE_NAME);  //false
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    
+    
     
     /*public static void main(String[]args){
         setRtRsListTxt("test100","10",1);
