@@ -28,10 +28,10 @@ public class SystemRestaurant extends javax.swing.JFrame {
     private ArrayList<Dishtxt> restaurantArrayList = new ArrayList<>();
     private DefaultTableModel dTbl;
     
-    private String menu;
-    private String fee;
-    private String updateMenu;
-    private String updateFee;
+    private String menu = "";
+    private String fee = "";
+    private String updateMenu = "";
+    private String updateFee = "";
     
     public int num;
     
@@ -67,6 +67,12 @@ public class SystemRestaurant extends javax.swing.JFrame {
         UPDATE_MENU_FIELD = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         UPDATE_OK = new javax.swing.JButton();
+        INSERT_DLG = new javax.swing.JDialog();
+        INSERT_FEE_FIELD = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        INSERT_MENU_FIELD = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        INSERT_OK = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         RT_TBL = new javax.swing.JTable();
@@ -132,6 +138,63 @@ public class SystemRestaurant extends javax.swing.JFrame {
                     .addComponent(UPDATE_FEE_FIELD))
                 .addGap(31, 31, 31)
                 .addComponent(UPDATE_OK)
+                .addGap(59, 59, 59))
+        );
+
+        INSERT_DLG.setMinimumSize(new java.awt.Dimension(280, 280));
+
+        INSERT_FEE_FIELD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                INSERT_FEE_FIELDActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("가격:");
+
+        jLabel7.setText("서비스 종류:");
+
+        INSERT_OK.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        INSERT_OK.setText("추가");
+        INSERT_OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                INSERT_OKActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout INSERT_DLGLayout = new javax.swing.GroupLayout(INSERT_DLG.getContentPane());
+        INSERT_DLG.getContentPane().setLayout(INSERT_DLGLayout);
+        INSERT_DLGLayout.setHorizontalGroup(
+            INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(INSERT_DLGLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(INSERT_DLGLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(INSERT_FEE_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(INSERT_DLGLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(INSERT_MENU_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, INSERT_DLGLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(INSERT_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
+        );
+        INSERT_DLGLayout.setVerticalGroup(
+            INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(INSERT_DLGLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(INSERT_MENU_FIELD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(INSERT_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(INSERT_FEE_FIELD))
+                .addGap(31, 31, 31)
+                .addComponent(INSERT_OK)
                 .addGap(59, 59, 59))
         );
 
@@ -292,6 +355,7 @@ public class SystemRestaurant extends javax.swing.JFrame {
 
     private void INSERT_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_BTNActionPerformed
         // TODO add your handling code here:
+        INSERT_DLG.setVisible(true);
     }//GEN-LAST:event_INSERT_BTNActionPerformed
 
     private void UPDATE_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_OKActionPerformed
@@ -311,6 +375,23 @@ public class SystemRestaurant extends javax.swing.JFrame {
     private void UPDATE_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_FEE_FIELDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UPDATE_FEE_FIELDActionPerformed
+
+    private void INSERT_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_FEE_FIELDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_INSERT_FEE_FIELDActionPerformed
+
+    private void INSERT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_OKActionPerformed
+        // TODO add your handling code here:
+        
+        menu = INSERT_MENU_FIELD.getText();
+        fee = INSERT_FEE_FIELD.getText();
+        
+        DishTextFiles.setRestaurantListTxt(menu, fee);
+        
+        JOptionPane.showMessageDialog(null, "레스토랑 서비스가 추가 되었습니다.");
+        this.dispose();
+        new SystemRestaurant().setVisible(true);
+    }//GEN-LAST:event_INSERT_OKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,6 +434,10 @@ public class SystemRestaurant extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DELETE_BTN;
     private javax.swing.JButton INSERT_BTN;
+    private javax.swing.JDialog INSERT_DLG;
+    private javax.swing.JTextField INSERT_FEE_FIELD;
+    private javax.swing.JTextField INSERT_MENU_FIELD;
+    private javax.swing.JButton INSERT_OK;
     private javax.swing.JTable RT_TBL;
     private javax.swing.JButton UPDATE_BTN;
     private javax.swing.JDialog UPDATE_DLG;
@@ -362,6 +447,8 @@ public class SystemRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

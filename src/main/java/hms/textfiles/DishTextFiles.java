@@ -68,6 +68,7 @@ public class DishTextFiles {
         return dishList;
     }
     
+    //서비스 이용한 고객 정보 dishCustomerList.txt에 저장
     public static void setDishCustomerListTxt(String[] dishCustomer){
         
         //1. 파일 객체 생성
@@ -283,9 +284,37 @@ public class DishTextFiles {
         }
     }
     
-    /*
+    //레스토랑 서비스 추가
+    public static void setRestaurantListTxt(String menu, String fee){
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(RT_TXT_NAME);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME,true);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            String str = menu + "/" + fee + "\n";
+            
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    
     public static void main(String[]args){
-        deleteRestaurantListTxt("test","10");
-    }*/
+        setRestaurantListTxt("test100","10");
+    }
     
 }
