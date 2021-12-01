@@ -1,12 +1,19 @@
 
 package hmsDrive;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     public int num;                             //1이면 직원 2면 매니저
     public String id;
     public String password;
-    
+    ArrayList<String> userlist = new ArrayList<>();
     public Login() {
         super("로그인");
         initComponents();
@@ -14,16 +21,24 @@ public class Login extends javax.swing.JFrame {
     public Login(int num) {
         super("로그인");
         this.num = num;
-        if(num == 1) {              //직원이면
-            id = "user1";
-            password = "1111";
+        String[] str = null;
+        try {
+            File file = new File("C:\\Users\\hesed\\Documents\\NetBeansProjects\\hms\\UserIDlist.txt");
+            FileReader read = new FileReader(file);
+            BufferedReader in = new BufferedReader(read);
+            int i = 0;
+            String line = null;
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+                str = line.split("/");
+               userlist.add(str[i]);  //ArrayList에 저장
+               userlist.add(str[i+1]);
+               userlist.add(str[i+2]);
+            }
+            in.close();
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        else if(num == 2) {          //매니저이면
-            id = "manager";
-            password = "2222";
-        }
-        else {
-        }
+        System.out.println(userlist);
         initComponents();
     }
     public int getnum() {
@@ -159,16 +174,23 @@ public class Login extends javax.swing.JFrame {
     //로그인 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(num==1&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
+        for(int i = 0; i < userlist.size(); i++){
+        if(num == 1&&userlist.get(i+1).equals(jTextField1.getText())&&userlist.get(i+2).equals(jPasswordField1.getText())&&!userlist.get(1).equals(jTextField1.getText())) {
             UserMainMenu user = new UserMainMenu();
             user.setVisible(true);
             this.setVisible(false);
+            break;
         }
-        else if(num==2&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
+        else if(num == 2&&userlist.get(i+1).equals(jTextField1.getText())&&userlist.get(i+2).equals(jPasswordField1.getText())&&userlist.get(1).equals(jTextField1.getText())) {
             ManagerMainMenu manager = new ManagerMainMenu();
             manager.setVisible(true);
             this.setVisible(false);
+            break;
+        } else{
+            i =  i+2;
         }
+        }
+        JOptionPane.showMessageDialog(null,"ID 혹은 Password가 틀렸습니다.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //상단 메뉴바 뒤로가기 버튼
