@@ -66,17 +66,6 @@ public class UserControlSrc {
                 st.nextToken();
             }
             
-            //계정 100개 이하일때 && 기존에 없는 id값일때 && 뭐라도 입력했을때
-            /*if(idDoubleCheckNum == 0) {
-                pw.write("\r\n"+ num + "/" + id + "/" + password);
-                pw.close();
-                bw.close();
-                JOptionPane.showMessageDialog(null, "계정이 생성되었습니다.");
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
-            }*/
-            
             if(id.length()<4 && password.length()<4) {
                 JOptionPane.showMessageDialog(null, "아이디 또는 패스워드는 4자리 이상이 되야 합니다.");
             }
@@ -101,5 +90,26 @@ public class UserControlSrc {
     public int getLastLineNum() throws IOException
     {
         return fileread().size();
+    }
+    
+    public String setNowId(int row) {
+        String nowId = null;
+        Object forcheckid = null;
+        try{
+        /*ArrayList<String> forcheckid = new ArrayList<String>();
+        forcheckid = fileread();
+        String[] str = new String[forcheckid.size()];
+        for(int i = 0; i < forcheckid.size() ;i++) {
+            str[i] = forcheckid.get(i);
+            if()
+        }*/
+        forcheckid = fileread().get(row);
+        
+        
+        
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+        return nowId;
     }
 }

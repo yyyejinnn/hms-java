@@ -237,6 +237,18 @@ public class UserControl extends javax.swing.JFrame {
             }
         });
 
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
@@ -422,6 +434,7 @@ public class UserControl extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    //테이블 로우값 설정
     public void setRow() throws NullPointerException {
         try {
             model = (DefaultTableModel) jTable2.getModel();
@@ -470,6 +483,9 @@ public class UserControl extends javax.swing.JFrame {
     //계정 수정 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int row = jTable2.getSelectedRow();
+        jFormattedTextField2.setValue(ucs.setNowId(row));
+        
         jDialog2.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     //계정 삭제 버튼
@@ -493,21 +509,6 @@ public class UserControl extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         try {
-            /*if(jTextField1.getText().length()<4 && jTextField2.getText().length()<4)
-            {
-                JOptionPane.showMessageDialog(null, "아이디 또는 패스워드는 4자리 이상이 되야 합니다.");
-            }
-            else if(ucs.getLastLineNum()>=100) {
-                JOptionPane.showMessageDialog(null, "계정을 100개 이상 만들수없습니다.");
-            }
-            else {
-                ucs.createid(ucs.getLastLineNum(),jTextField1.getText(),jTextField2.getText());
-                jTextField1.setText("");
-                jTextField2.setText("");
-                model.setRowCount(0);
-                setRow();
-                jDialog1.setVisible(false);
-            }*/
             int successnum = ucs.createid(ucs.getLastLineNum(),jTextField1.getText(),jTextField2.getText());
             
             jTextField1.setText("");
@@ -550,19 +551,29 @@ public class UserControl extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDialog2.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
-
+    //계정 추가 모달창 아이디 텍스트 필드
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    //계정 추가 모달창 비밀번호 텍스트 필드
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
+    //계정 추가 모달창 현재 계정수 포맷텍스트 필드
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    
+    //계정 수정 모달창 현재 아이디 포맷텍스트필드
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    //계정 수정 모달창 현재 패스워드 포맷텍스트필드
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
