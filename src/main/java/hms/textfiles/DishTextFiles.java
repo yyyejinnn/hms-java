@@ -19,6 +19,7 @@ public class DishTextFiles {
     public static final String RT_TXT_NAME = "restaurantList.txt";
     public static final String RS_TXT_NAME = "roomServiceList.txt";
     public static final String DISH_TXT_NAME = "dishCustomerList.txt";
+    public static String fileName = "";
     
     //레스토랑 서비스 종류 txt 불러옴
     public static ArrayList getRestaurantListTxt() {
@@ -215,10 +216,17 @@ public class DishTextFiles {
     
     
     ////System////
-    //레스토랑 서비스 수정
-    public static void updateRestaurantListTxt(String menu, String fee, String updateMenu, String updateFee){
+    //type 1:restaurantList.txt  2:roonService.txt
+    //레스토랑, 룸 서비스 수정
+    public static void updateRtRsListTxt(String menu, String fee, String updateMenu, String updateFee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
+        
         try{
-            File file = new File(RT_TXT_NAME);
+            File file = new File(fileName);
             String dummy = "";
             
             //1. 파일 읽기
@@ -237,7 +245,7 @@ public class DishTextFiles {
             }
             
             //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME);  //false
+            FileOutputStream fos = new FileOutputStream(fileName);  //false
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             byte[] content = str.getBytes();
@@ -250,12 +258,17 @@ public class DishTextFiles {
         }
     }
     
-    //레스토랑 서비스 삭제
-    public static void deleteRestaurantListTxt(String menu, String fee){
+    //레스토랑, 룸 서비스 삭제
+    public static void deleteRtRsListTxt(String menu, String fee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
         
         try{
             //1. 파일 생성
-            File file = new File(RT_TXT_NAME);
+            File file = new File(fileName);
             String dummy = "";
             
             //2. 파일 읽기
@@ -270,7 +283,7 @@ public class DishTextFiles {
             }
             
             //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME);
+            FileOutputStream fos = new FileOutputStream(fileName);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             byte[] content = str.getBytes();
@@ -284,12 +297,17 @@ public class DishTextFiles {
         }
     }
     
-    //레스토랑 서비스 추가
-    public static void setRestaurantListTxt(String menu, String fee){
+    //레스토랑, 룸 서비스 추가
+    public static void setRtRsListTxt(String menu, String fee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
         
         //1. 파일 객체 생성
         try{
-            File file = new File(RT_TXT_NAME);
+            File file = new File(fileName);
         
             //2. 파일 존재여부 체크 및 생성
             if(!file.exists()){
@@ -297,7 +315,7 @@ public class DishTextFiles {
             }
             
             //3. 파일 쓰기
-            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME,true);
+            FileOutputStream fos = new FileOutputStream(fileName,true);
             
             //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
             String str = menu + "/" + fee + "\n";
@@ -314,7 +332,7 @@ public class DishTextFiles {
     }
     
     public static void main(String[]args){
-        setRestaurantListTxt("test100","10");
+        setRtRsListTxt("test100","10",1);
     }
     
 }

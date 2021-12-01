@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author LYJ
  */
-public class SystemRestaurant extends javax.swing.JFrame {
+public class SystemRoomService extends javax.swing.JFrame {
     /**
      * Creates new form CheckInSrc
      */
@@ -34,13 +34,13 @@ public class SystemRestaurant extends javax.swing.JFrame {
     
     public int num;
     
-    public SystemRestaurant() {
+    public SystemRoomService() {
         initComponents();
         
         dTbl = (DefaultTableModel) RT_TBL.getModel();
         
         //레스토랑 목록 검색
-        restaurantArrayList = DishTextFiles.getRestaurantListTxt();
+        restaurantArrayList = DishTextFiles.getRoomServiceListTxt();
         
         //테이블에 출력
         for (Dishtxt r : restaurantArrayList){
@@ -200,7 +200,7 @@ public class SystemRestaurant extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel1.setText("레스토랑 서비스 관리");
+        jLabel1.setText("룸 서비스 관리");
 
         RT_TBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,10 +278,6 @@ public class SystemRestaurant extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -293,13 +289,17 @@ public class SystemRestaurant extends javax.swing.JFrame {
                         .addGap(5, 5, 5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 82, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,11 +335,11 @@ public class SystemRestaurant extends javax.swing.JFrame {
             menu = (String) dTbl.getValueAt(row, 0);
             fee = (String) dTbl.getValueAt(row, 1);
             
-            DishTextFiles.deleteRtRsListTxt(menu, fee, 1);
+            DishTextFiles.deleteRtRsListTxt(menu, fee, 2);
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
-            new SystemRestaurant().setVisible(true);
+            new SystemRoomService().setVisible(true);
         }
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
@@ -359,7 +359,6 @@ public class SystemRestaurant extends javax.swing.JFrame {
             UPDATE_FEE_FIELD.setText(fee);
 
             UPDATE_DLG.setVisible(true);
-                   
         }
     }//GEN-LAST:event_UPDATE_BTNActionPerformed
 
@@ -375,12 +374,12 @@ public class SystemRestaurant extends javax.swing.JFrame {
         updateMenu = UPDATE_MENU_FIELD.getText();
         updateFee = UPDATE_FEE_FIELD.getText();
         
-        DishTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 1);
+        DishTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 2);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
         this.dispose();
-        new SystemRestaurant().setVisible(true);
+        new SystemRoomService().setVisible(true);
     }//GEN-LAST:event_UPDATE_OKActionPerformed
 
     private void UPDATE_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_FEE_FIELDActionPerformed
@@ -400,11 +399,11 @@ public class SystemRestaurant extends javax.swing.JFrame {
         if(menu.equals("") | fee.equals("")){
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else {
-            DishTextFiles.setRtRsListTxt(menu, fee, 1);
-            JOptionPane.showMessageDialog(null, "레스토랑 서비스가 추가 되었습니다.");
+            DishTextFiles.setRtRsListTxt(menu, fee, 2);
+            JOptionPane.showMessageDialog(null, "룸 서비스가 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();
-            new SystemRestaurant().setVisible(true);
+            new SystemRoomService().setVisible(true);
         }
     }//GEN-LAST:event_INSERT_OKActionPerformed
 
@@ -441,7 +440,7 @@ public class SystemRestaurant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SystemRestaurant().setVisible(true);
+                new SystemRoomService().setVisible(true);
             }
         });
     }
