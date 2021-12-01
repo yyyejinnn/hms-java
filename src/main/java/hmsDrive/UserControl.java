@@ -6,6 +6,18 @@
 package hmsDrive;
 
 import javax.swing.table.DefaultTableModel;
+import hms.usercontrol.UserControlSrc;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.io.BufferedReader;
+import java.util.StringTokenizer;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
+
 
 /**
  *
@@ -17,14 +29,12 @@ public class UserControl extends javax.swing.JFrame {
      * Creates new form UserControl
      */
     private DefaultTableModel model;
-    private String[] tableType =  {"num","ID","Password"};
-    private Object[][] data = {
-    };
+    private UserControlSrc ucs = new UserControlSrc();
     
     public UserControl() {
-        model = new DefaultTableModel(data, tableType);
-        //TableModel model = new MyTableModel();
-        initComponents();        
+        initComponents();     
+        setRow();
+        
     }
 
     /**
@@ -71,7 +81,6 @@ public class UserControl extends javax.swing.JFrame {
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 330));
         jDialog1.setModal(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 330));
 
         jLabel3.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel3.setText("계정 추가");
@@ -143,7 +152,6 @@ public class UserControl extends javax.swing.JFrame {
 
         jDialog2.setMinimumSize(new java.awt.Dimension(400, 350));
         jDialog2.setModal(true);
-        jDialog2.setPreferredSize(new java.awt.Dimension(400, 350));
 
         jLabel6.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel6.setText("계정 수정");
@@ -266,7 +274,22 @@ public class UserControl extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(model);
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "number", "ID", "Password"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable2.setShowGrid(false);
         jTable2.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(jTable2);
@@ -344,6 +367,34 @@ public class UserControl extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    public void setRow() throws NullPointerException {
+        try {
+            model = (DefaultTableModel) jTable2.getModel();
+            ArrayList<String> str = new ArrayList<String>();
+            str = ucs.fileread();
+            String strline;
+            String[] token= new String[str.size()*3+2];
+            ArrayList<String> token1= new ArrayList<String>();
+            
+            for(int i = 0;i <str.size();i++)
+            {
+                Vector v = new Vector();
+                strline = str.get(i);
+                StringTokenizer st = new StringTokenizer(strline, "/");
+                for(int j = 0;j < 3;j++)
+                {
+                //splitedstr[j] = strline.split("/");
+                token[j] = st.nextToken();
+                v.add(token[j]);
+                }
+                model.addRow(v);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("해당파일 찾을수없음(error) : " + ex.toString());
+        } catch (IOException ex) {
+            System.out.println("텍스트파일에 더이상 내용이 없음(error) : " + ex.toString()); 
+        }
+    }
     //뒤로가기 버튼
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
