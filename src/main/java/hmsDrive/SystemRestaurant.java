@@ -264,6 +264,15 @@ public class SystemRestaurant extends javax.swing.JFrame {
 
     private void DELETE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETE_BTNActionPerformed
         // TODO add your handling code here:
+        dTbl = (DefaultTableModel) RT_TBL.getModel();
+        int row = RT_TBL.getSelectedRow();
+        menu = (String) dTbl.getValueAt(row, 0);
+        fee = (String) dTbl.getValueAt(row, 1);
+        
+        DishTextFiles.deleteRestaurantListTxt(menu, fee);
+        JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
+        new SystemRestaurant().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
     private void UPDATE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_BTNActionPerformed

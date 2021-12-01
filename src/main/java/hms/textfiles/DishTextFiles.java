@@ -248,9 +248,44 @@ public class DishTextFiles {
             System.out.println(e);
         }
     }
+    
+    //레스토랑 서비스 삭제
+    public static void deleteRestaurantListTxt(String menu, String fee){
+        
+        try{
+            //1. 파일 생성
+            File file = new File(RT_TXT_NAME);
+            String dummy = "";
+            
+            //2. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //체크인된 행 제외
+            while((dummy = is.readLine()) != null){
+                if(!(dummy.contains(menu) && dummy.contains(fee))) {
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(RT_TXT_NAME);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+            
+        } catch(IOException e){
+             System.out.println(e);
+        }
+    }
+    
     /*
     public static void main(String[]args){
-        updateRestaurantListTxt("test","10","test2","30");
-    }
-    */
+        deleteRestaurantListTxt("test","10");
+    }*/
+    
 }
