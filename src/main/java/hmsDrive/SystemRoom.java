@@ -514,7 +514,7 @@ public class SystemRoom extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else if (row == 100) {  //호텔이 100개이면
             JOptionPane.showMessageDialog(null, "이 호텔의 객실은 100개로 한정되어있습니다.");
-        } else if(!(roomIdx.substring(0,0).matches("[1-5]"))){
+        } else if(roomIdx.substring(0,0).matches("(^[1-5]{1}+$)")){
             JOptionPane.showMessageDialog(null, "객실 번호는 1~5사이의 번호로 시작되어야합니다.");
         } else {
             RoomTextFiles.setRoomListTxt(roomIdx);
