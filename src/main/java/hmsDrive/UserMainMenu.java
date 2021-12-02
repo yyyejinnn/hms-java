@@ -44,7 +44,7 @@ public class UserMainMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 1, 14)); // NOI18N
         jLabel1.setText("직원용 호텔 관리 시스템");
 
-        jButton1.setText("객실 관리");
+        jButton1.setText("시스템 관리");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -68,6 +68,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         jButton4.setText("식품 판매 및 추적");
 
         jButton5.setText("고객 기록");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("로그아웃");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -151,12 +156,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    //객실 관리 버튼
+    //시스템 관리 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Room room = new Room(1);
-        room.setVisible(true);
-        this.setVisible(false);
+        new System().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //상단 메뉴바 뒤로가기 버튼
@@ -174,6 +178,12 @@ public class UserMainMenu extends javax.swing.JFrame {
         ch.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        new Record().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

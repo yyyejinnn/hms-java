@@ -83,7 +83,6 @@ public class Room extends javax.swing.JFrame {
 
         jDialog1.setMinimumSize(new java.awt.Dimension(525, 370));
         jDialog1.setModal(true);
-        jDialog1.setPreferredSize(new java.awt.Dimension(525, 370));
 
         jLabel4.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel4.setText("객실 검색 결과");
@@ -203,7 +202,6 @@ public class Room extends javax.swing.JFrame {
 
         jDialog2.setMinimumSize(new java.awt.Dimension(444, 440));
         jDialog2.setModal(true);
-        jDialog2.setPreferredSize(new java.awt.Dimension(444, 440));
         jDialog2.setResizable(false);
 
         jLabel10.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N

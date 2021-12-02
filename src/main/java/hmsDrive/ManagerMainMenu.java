@@ -45,7 +45,7 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 1, 14)); // NOI18N
         jLabel1.setText("매니저용 호텔 관리 시스템");
 
-        jButton1.setText("객실 관리");
+        jButton1.setText("시스템 관리");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -67,8 +67,18 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         });
 
         jButton4.setText("식품 판매 및 추적");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("고객 기록");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("사용자 관리");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -162,12 +172,11 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    //객실 관리 버튼
+    //시스템 관리 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Room room = new Room(2);
-        room.setVisible(true);
-        this.setVisible(false);
+       new System().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //상단 메뉴바 뒤로가기 버튼
@@ -192,6 +201,19 @@ public class ManagerMainMenu extends javax.swing.JFrame {
         uc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Dish food = new Dish();
+        food.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        new Record().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

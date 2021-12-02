@@ -112,7 +112,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; &#xad00;&#xb9ac;"/>
+        <Property name="text" type="java.lang.String" value="&#xc2dc;&#xc2a4;&#xd15c; &#xad00;&#xb9ac;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -138,11 +138,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc2dd;&#xd488; &#xd310;&#xb9e4; &#xbc0f; &#xcd94;&#xc801;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xace0;&#xac1d; &#xae30;&#xb85d;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>

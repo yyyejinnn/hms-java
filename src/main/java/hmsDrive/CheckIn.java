@@ -80,14 +80,14 @@ public class CheckIn extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "예약자명", "인원 수", "체크인 날짜", "체크아웃 날짜"
+                "호실", "예약자명", "전화번호", "인원 수", "체크인 날짜", "체크아웃 날짜"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -147,22 +147,22 @@ public class CheckIn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SEARCH_FIELD)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SEARCH_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(239, 239, 239))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
                 .addComponent(CHECKIN_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(PRE_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(262, 262, 262)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,11 +172,11 @@ public class CheckIn extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SEARCH_FIELD, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SEARCH_FIELD, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(SEARCH_BTN))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -188,40 +188,6 @@ public class CheckIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-//예약 검색 버튼
-    private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
-    
-        try{
-            String search = SEARCH_FIELD.getText();
-            DefaultTableModel searchTbl;
-            searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
-            
-            //예약자 목록 검색
-            checkArrayList = check.check(search.trim(),1);  //1: 체크인 2: 체크아웃
-
-            //예약 되지않은 고객일 경우
-            if(checkArrayList.isEmpty()){
-                JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다. 예약이 필요합니다.");
-                new Reservation().setVisible(true); //예약화면으로 돌아가기
-                dispose();
-            } else{
-            //테이블에 검색 목록 출력
-                for (Reserve r : checkArrayList){
-                    searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
-                        r.getName(),
-                        Integer.toString(r.getReservePeopleNum()),
-                        r.getCheckInDate(),
-                        r.getCheckOutDate()
-                        });
-                }
-            }
-            
-        } catch(IOException e){
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_SEARCH_BTNActionPerformed
-
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -264,6 +230,42 @@ public class CheckIn extends javax.swing.JFrame {
         pre.setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed
+
+//예약 검색 버튼
+    private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
+
+        try{
+            String search = SEARCH_FIELD.getText();
+            DefaultTableModel searchTbl;
+            searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+            searchTbl.setNumRows(0);
+
+            //예약자 목록 검색
+            checkArrayList = check.check(search.trim(), 1);  //1: 체크인 2: 체크아웃
+
+            //예약 되지않은 고객일 경우
+            if(checkArrayList.isEmpty()){
+                JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다. 예약이 필요합니다.");
+                new Reservation().setVisible(true); //예약화면으로 돌아가기
+                dispose();
+            } else{
+                //테이블에 검색 목록 출력
+                for (Reserve r : checkArrayList){
+                    searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
+                        Integer.toString(r.getReserveIdx()),
+                        r.getName(),
+                        r.getPhoneNum(),
+                        Integer.toString(r.getReservePeopleNum()),
+                        r.getCheckInDate(),
+                        r.getCheckOutDate()
+                    });
+                }
+            }
+            
+        } catch(IOException ex){
+            Logger.getLogger(RoomService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SEARCH_BTNActionPerformed
 
     /**
      * @param args the command line arguments
