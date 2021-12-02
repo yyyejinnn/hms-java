@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package hmsDrive;
-import hms.object.Reserve;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.lang.System;
 
-import hms.object.Reser;
+import hms.object.Reserve;
 import hms.textfiles.SystemTextFiles;
 /**
  *
