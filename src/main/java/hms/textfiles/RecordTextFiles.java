@@ -1,7 +1,7 @@
 
 package hms.textfiles;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

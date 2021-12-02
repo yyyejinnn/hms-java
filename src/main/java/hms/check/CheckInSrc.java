@@ -1,7 +1,7 @@
 
 package hms.check;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;

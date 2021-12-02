@@ -1,7 +1,7 @@
 package hms.user;
 
 public class Manager {
-    private String managerID;	
+        private String managerID;	
 	private String managerPassword;
 	
 	

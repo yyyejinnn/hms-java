@@ -6,10 +6,10 @@
 package hmsDrive;
 
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
+import hms.object.Dishtxt;
 import hms.textfiles.DishTextFiles;
 import java.io.IOException;
 import java.util.logging.Level;

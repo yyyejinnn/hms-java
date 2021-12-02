@@ -1,7 +1,7 @@
 
 package hms.check;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.textfiles.CheckTextFiles;
 import hms.textfiles.DishTextFiles;
 import java.io.BufferedReader;

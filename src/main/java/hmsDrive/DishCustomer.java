@@ -6,7 +6,7 @@
 package hmsDrive;
 
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
+import hms.object.Dishtxt;
 import hms.textfiles.DishTextFiles;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

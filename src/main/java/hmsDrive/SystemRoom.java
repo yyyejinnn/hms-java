@@ -6,7 +6,7 @@
 package hmsDrive;
 
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
+import hms.object.Dishtxt;
 import hms.textfiles.SystemTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;

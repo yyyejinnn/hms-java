@@ -5,7 +5,7 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckOutSrc;
 import hms.textfiles.RecordTextFiles;

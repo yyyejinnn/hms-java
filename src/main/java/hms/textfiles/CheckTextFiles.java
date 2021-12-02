@@ -1,7 +1,7 @@
 
 package hms.textfiles;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author LYJ
  */
 public class CheckTextFiles {
-    private static final String RESERVE_TXT_NAME = "reserveList.txt";
+    private static final String RESERVE_TXT_NAME = "Reser.txt";
     private static final String CHECKIN_TXT_NAME = "checkInList.txt";
     private static final String ROOM_TXT_NAME = "roomList.txt";
     private static final String CHECKOUT_TXT_NAME = "checkOutList.txt";

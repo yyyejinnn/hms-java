@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hmsDrive;
+package hms.object;
 
 
 
@@ -24,8 +24,7 @@ import javax.swing.JTextField;
  */
 public class Reser {
     
-    ArrayList<Reser> reserList = new ArrayList<>();
-    
+    private ArrayList<Reser> reserList = new ArrayList<>();
     private String reservationNum;  // 예약번호
     private String roomNum;  // 객실번호
     private String name;  // 이름
@@ -38,7 +37,7 @@ public class Reser {
     
 
     // 매개변수가 있는 생성자
-    Reser(String reservationNum, String roomNum, String name, String phoneNum, String peopleNum, String expCheckinDate, String expCheckinTime, String expCheckoutDate, String expCheckoutTime) {
+    public Reser(String reservationNum, String roomNum, String name, String phoneNum, String peopleNum, String expCheckinDate, String expCheckinTime, String expCheckoutDate, String expCheckoutTime) {
         this.reservationNum = reservationNum;
         this.roomNum = roomNum;
         this.name = name;

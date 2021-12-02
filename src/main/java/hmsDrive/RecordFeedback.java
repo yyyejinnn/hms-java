@@ -6,7 +6,7 @@
 package hmsDrive;
 
 import hms.check.CheckOutSrc;
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.textfiles.RecordTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package hms.room;
+package hms.object;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

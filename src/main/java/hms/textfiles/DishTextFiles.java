@@ -1,7 +1,7 @@
 
 package hms.textfiles;
 
-import hms.room.Dishtxt;
+import hms.object.Dishtxt;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
