@@ -223,6 +223,18 @@ public class UserControl extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         jLabel10.setText("수정할 Password :");
 
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+
         jButton7.setText("수정 완료");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,9 +470,9 @@ public class UserControl extends javax.swing.JFrame {
                 model.addRow(v);
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("해당파일 찾을수없음(error) : " + ex.toString());
+            java.lang.System.out.println("해당파일 찾을수없음(error) : " + ex.toString());
         } catch (IOException ex) {
-            System.out.println("텍스트파일에 더이상 내용이 없음(error) : " + ex.toString()); 
+            java.lang.System.out.println("텍스트파일에 더이상 내용이 없음(error) : " + ex.toString()); 
         }
     }
     //뒤로가기 버튼
@@ -480,13 +492,20 @@ public class UserControl extends javax.swing.JFrame {
         }
         jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+    
     //계정 수정 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int row = jTable2.getSelectedRow();
-        jFormattedTextField2.setValue(ucs.setNowId(row));
-        
-        jDialog2.setVisible(true);
+        int rowNum = jTable2.getSelectedRow();
+        if(rowNum != -1) {
+            
+            jFormattedTextField2.setValue(ucs.setNowId(rowNum));
+            jFormattedTextField3.setValue(ucs.setNowPassword(rowNum));
+            jDialog2.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "선택된 계정이 없습니다.\r\n수정하려는 계정을 클릭후 수정버튼을 눌러주세요.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     //계정 삭제 버튼
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -502,7 +521,7 @@ public class UserControl extends javax.swing.JFrame {
     //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        java.lang.System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     
     //계정 추가 모달창 생성 버튼
@@ -513,10 +532,11 @@ public class UserControl extends javax.swing.JFrame {
             
             jTextField1.setText("");
             jTextField2.setText("");
+            
             if(successnum == 1) {
-            model.setRowCount(0);
-            setRow();
-            jDialog1.setVisible(false);
+                model.setRowCount(0);
+                setRow();
+                jDialog1.setVisible(false);
             }
         } catch (IOException ex) {
             //오류팝업창
@@ -531,20 +551,24 @@ public class UserControl extends javax.swing.JFrame {
     //계정 수정 모달창 수정 완료 버튼
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-         if(jFormattedTextField2.equals(jTextField6.getText())&&jFormattedTextField3.equals(jTextField7.getText())) {
-            //바뀐게 없어서 수정 불가하다는 팝업창 뜨게 하기
+        int rowNum = jTable2.getSelectedRow();
+        
+        if(jFormattedTextField2.equals(jTextField6.getText())&&jFormattedTextField3.equals(jTextField7.getText())) {
+            JOptionPane.showMessageDialog(null, "변경된 값이 없습니다.");
+            jTextField6.setText("");
+            jTextField7.setText("");
         }
-        /*
-         else if(기존에 존재하는 계정의 아이디와 같은 아이디일때)
-                 {
-                     수정 불가하다는 팝업창
-                 }
-         */
-         else
-         {
-             //변경된 아이디 또는 패스워드값을 넘기는 코드 필요함
-             jDialog2.setVisible(false);
-         }
+        else
+        {
+            int successNum =0;//= ucs.editingUser(rowNum,jTextField6.toString(),jTextField7.toString());
+            if(successNum==1){
+            model.setRowCount(0);
+            setRow();
+            jDialog2.setVisible(false);
+            jTextField6.setText("");
+            jTextField7.setText("");
+            }
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
     //계정 수정 모달창 취소 버튼
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -574,6 +598,15 @@ public class UserControl extends javax.swing.JFrame {
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+    
+    //계정 수정 모달창 수정할 ID 텍스트필드
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+    //계정 수정 모달창 수정할 Password 텍스트필드
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
