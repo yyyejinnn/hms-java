@@ -26,7 +26,7 @@ import javax.swing.table.TableModel;
 import java.lang.System;
 
 import hms.object.Reserve;
-import hms.textfiles.SystemTextFiles;
+import hms.textfiles.RoomTextFiles;
 /**
  *
  * @author PCB
@@ -1343,7 +1343,7 @@ public final class Reservation extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) ROOM_TBL.getModel();
         
         ArrayList<String[]> roomArrayList = new ArrayList<>();
-        roomArrayList = SystemTextFiles.getRoomTypeListTxt();
+        roomArrayList = RoomTextFiles.getRoomTypeListTxt();
         
         //테이블에 출력
         for (String[] r : roomArrayList){

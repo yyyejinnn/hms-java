@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hms.textfiles;
 
 import hms.object.Dishtxt;
@@ -15,11 +19,124 @@ import java.util.ArrayList;
  *
  * @author LYJ
  */
-public class DishTextFiles {
-    protected static final String RT_TXT_NAME = "restaurantList.txt";
-    protected static final String RS_TXT_NAME = "roomServiceList.txt";
-    protected static final String DISH_TXT_NAME = "dishCustomerList.txt";
+public class DishTextFiles extends TextFiles{
+    private static String fileName = ""; //type 1:restaurantList.txt  2:roonService.txt
+        
+    //****restaurantLixt.txt roomServiceLixt.txt ****//
+    //레스토랑, 룸 서비스 수정
+    public static void updateRtRsListTxt(String menu, String fee, String updateMenu, String updateFee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
+        
+        try{
+            File file = new File(fileName);
+            String dummy = "";
+            
+            //1. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //2. 수정
+            while((dummy = is.readLine()) != null){
+                if(!(dummy.contains(menu) && dummy.contains(fee))) {
+                    str += dummy + "\n";
+                }else if(dummy.contains(menu)){  //해당 목록
+                    dummy = dummy.replace(menu, updateMenu);
+                    dummy = dummy.replace(fee, updateFee);
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(fileName);  //false
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
     
+    //레스토랑, 룸 서비스 삭제
+    public static void deleteRtRsListTxt(String menu, String fee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
+        
+        try{
+            //1. 파일 생성
+            File file = new File(fileName);
+            String dummy = "";
+            
+            //2. 파일 읽기
+            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
+            String str = "";
+            
+            //체크인된 행 제외
+            while((dummy = is.readLine()) != null){
+                if(!(dummy.contains(menu) && dummy.contains(fee))) {
+                    str += dummy + "\n";
+                }
+            }
+            
+            //3. 파일 덮어쓰기
+            FileOutputStream fos = new FileOutputStream(fileName);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+            
+        } catch(IOException e){
+             System.out.println(e);
+        }
+    }
+    
+    //레스토랑, 룸 서비스 추가
+    public static void setRtRsListTxt(String menu, String fee, int type){
+        if(type == 1){
+            fileName = RT_TXT_NAME;
+        }else{
+            fileName = RS_TXT_NAME;
+        }
+        
+        //1. 파일 객체 생성
+        try{
+            File file = new File(fileName);
+        
+            //2. 파일 존재여부 체크 및 생성
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            //3. 파일 쓰기
+            FileOutputStream fos = new FileOutputStream(fileName,true);
+            
+            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
+            String str = menu + "/" + fee + "\n";
+            
+            byte[] content = str.getBytes();
+            
+            fos.write(content);
+            fos.flush();
+            fos.close();
+        
+        } catch(IOException e){
+            System.out.println(e);
+        }
+    }
+
     //레스토랑 서비스 종류 txt 불러옴
     public static ArrayList getRestaurantListTxt() {
         ArrayList<Dishtxt> dishList = new ArrayList<>();
@@ -43,7 +160,7 @@ public class DishTextFiles {
         
         return dishList;
     }
-    
+
     //룸서비스 서비스 종류 txt 불러옴
     public static ArrayList getRoomServiceListTxt() {
         ArrayList<Dishtxt> dishList = new ArrayList<>();
@@ -68,7 +185,8 @@ public class DishTextFiles {
         return dishList;
     }
     
-    //서비스 이용한 고객 정보 dishCustomerList.txt에 저장
+    //****dishCustomerList.txt****//
+    //서비스 이용한 고객 정보 저장
     public static void setDishCustomerListTxt(String[] dishCustomer){
         
         //1. 파일 객체 생성
@@ -99,7 +217,7 @@ public class DishTextFiles {
         }
     }
     
-    //예약된 식사 서비스 내역 dishCustomerList.txt 불러옴
+    //예약된 식사 서비스 내역 불러옴
     public static ArrayList getDishCustomerListTxt() {
         ArrayList<Dishtxt> dishCustomerList = new ArrayList<>();
         String[] splitedStr = null;
@@ -148,8 +266,8 @@ public class DishTextFiles {
         return dishCustomerList;
     }
     
-    //선택한 목록 dishCustomerList.txt에서 삭제
-    public static void deleteReserveListTxt(String dCustomerIdx){
+    //선택한 목록 삭제
+    public static void deleteDishCustomerListTxt(String dCustomerIdx){
         dCustomerIdx = dCustomerIdx + "/";
         
         try{
@@ -212,8 +330,5 @@ public class DishTextFiles {
         
         return fee;
     }
-    
-    
-    ////System////
     
 }

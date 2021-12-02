@@ -7,7 +7,7 @@ package hmsDrive;
 
 import hms.check.CheckInSrc;
 import hms.object.Dishtxt;
-import hms.textfiles.SystemTextFiles;
+import hms.textfiles.RoomTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public class SystemRoom extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) ROOM_TBL.getModel();
         
         //객실 목록 검색
-        roomArrayList  = SystemTextFiles.getRoomListTxt();
+        roomArrayList  = RoomTextFiles.getRoomListTxt();
         
         //테이블에 출력
         for (String[] r : roomArrayList){
@@ -426,7 +426,7 @@ public class SystemRoom extends javax.swing.JFrame {
         if(row == -1){
             JOptionPane.showMessageDialog(null, "삭제할 객실을 선택해십시오.");
         } else{
-            SystemTextFiles.deleteRoomListTxt((String) dTbl.getValueAt(row, 0));
+            RoomTextFiles.deleteRoomListTxt((String) dTbl.getValueAt(row, 0));
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
@@ -438,7 +438,7 @@ public class SystemRoom extends javax.swing.JFrame {
         // TODO add your handling code here:
         dTbl = (DefaultTableModel) ROOM_TYPE_TBL.getModel();        
         
-        roomArrayList = SystemTextFiles.getRoomTypeListTxt();
+        roomArrayList = RoomTextFiles.getRoomTypeListTxt();
         
         //테이블에 출력
         for (String[] r : roomArrayList){
@@ -502,7 +502,7 @@ public class SystemRoom extends javax.swing.JFrame {
         } else if(!(roomIdx.substring(0,0).matches("[1-5]"))){
             JOptionPane.showMessageDialog(null, "객실 번호는 1~5사이의 번호로 시작되어야합니다.");
         } else {
-            SystemTextFiles.setRoomListTxt(roomIdx);
+            RoomTextFiles.setRoomListTxt(roomIdx);
             JOptionPane.showMessageDialog(null, "객실이 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();
@@ -518,8 +518,8 @@ public class SystemRoom extends javax.swing.JFrame {
         roomTypeIdx = IDX_FIELD.getText();
         updatePeopleNum = NUM_FIELD.getText();
         updateFee =  FEE_FIELD.getText();
-        SystemTextFiles.updateRoomTypeListTxt(roomTypeIdx,updatePeopleNum, updateFee);
-        SystemTextFiles.updateRoomListTxt(roomTypeIdx, updatePeopleNum, updateFee);
+        RoomTextFiles.updateRoomTypeListTxt(roomTypeIdx,updatePeopleNum, updateFee);
+        RoomTextFiles.updateRoomListTxt(roomTypeIdx, updatePeopleNum, updateFee);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
