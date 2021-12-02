@@ -5,20 +5,12 @@
  */
 package hmsDrive;
 
-
-
-
-
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import hmsDrive.Reser;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,29 +25,19 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import hmsDrive.Reser;
+
 /**
  *
  * @author PCB
  */
 public final class Reservation extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Reservation
-     */
     public int num;
 
     ArrayList<Reser> reserList = new ArrayList<>();  // 어레이 리스트 생성
 
-    public String getKey() {  // 선택한 열의 전화번호 가져오는 함수
-        String key = null;
-        DefaultTableModel model = (DefaultTableModel) reserTable.getModel();
-        int row = reserTable.getSelectedRow();  // reserTable에서 선택한 열 값
-        key = (String) model.getValueAt(row, 3);  // 전화번호 
-
-        return key;
-    }
-
-    public Reservation() { 
+    public Reservation() {
         initComponents();
         reserList();  // 테이블에 예약 리스트 넣는 함수
         setArr();  // 텍스트 파일 구분자로 잘라서 어레이리스트에 넣는 함수 
@@ -84,10 +66,20 @@ public final class Reservation extends javax.swing.JFrame {
             }
 
             br.close();  // 파일 닫기
-            
+
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+
+    // 선택한 열의 전화번호를 반환하는 함수
+    public String getSelectedPhoneNum() {
+        String selectedPhoneNum = null;
+        DefaultTableModel model = (DefaultTableModel) reserTable.getModel();
+        int row = reserTable.getSelectedRow();  // reserTable에서 선택한 열 값
+        selectedPhoneNum = (String) model.getValueAt(row, 3);  // 전화번호 
+
+        return selectedPhoneNum;
     }
 
     // 테이블에 예약 리스트 넣기
@@ -265,32 +257,32 @@ public final class Reservation extends javax.swing.JFrame {
             .addGroup(jDialog_addLayout.createSequentialGroup()
                 .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jDialog_addLayout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel13)
-                                .addComponent(jLabel14))
-                            .addGap(18, 18, 18)
-                            .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(roomNum)
-                                .addComponent(name)
-                                .addComponent(phoneNum)
-                                .addComponent(peopleNum)
-                                .addComponent(expCheckinDate)
-                                .addComponent(expCheckinTime)
-                                .addComponent(expCheckoutDate)
-                                .addComponent(expCheckoutTime, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                        .addGroup(jDialog_addLayout.createSequentialGroup()
-                            .addGap(160, 160, 160)
-                            .addComponent(jLabel15))))
+                    .addGroup(jDialog_addLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roomNum)
+                            .addComponent(name)
+                            .addComponent(phoneNum)
+                            .addComponent(peopleNum)
+                            .addComponent(expCheckinDate)
+                            .addComponent(expCheckinTime)
+                            .addComponent(expCheckoutDate)
+                            .addComponent(expCheckoutTime, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
                 .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_addLayout.createSequentialGroup()
+                .addGap(0, 183, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(135, 135, 135))
         );
         jDialog_addLayout.setVerticalGroup(
             jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +407,9 @@ public final class Reservation extends javax.swing.JFrame {
                     .addGroup(jDialog_searchLayout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(sCH, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(49, 49, 49)
                         .addComponent(sDEL, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
+                        .addGap(57, 57, 57)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDialog_searchLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -704,6 +696,7 @@ public final class Reservation extends javax.swing.JFrame {
 
         jLabel4.setText("예약자 전화번호 :");
 
+        jButt_CHANGE.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         jButt_CHANGE.setText("예약 수정");
         jButt_CHANGE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -711,6 +704,7 @@ public final class Reservation extends javax.swing.JFrame {
             }
         });
 
+        delete.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         delete.setText("예약 삭제");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -890,20 +884,27 @@ public final class Reservation extends javax.swing.JFrame {
     //예약 수정 버튼
     private void jButt_CHANGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButt_CHANGEActionPerformed
 
-        int row = reserTable.getSelectedRow();  // 선택한 열 값 
-        TableModel data = reserTable.getModel();
+        int row;
+        row = reserTable.getSelectedRow();
 
-        // 선택한 값 넣기
-        cRoomNum.setText((String) data.getValueAt(row, 1));
-        cName.setText((String) data.getValueAt(row, 2));
-        cPhoneNum.setText((String) data.getValueAt(row, 3));
-        cPeopleNum.setText((String) data.getValueAt(row, 4));
-        cExpCheckinDate.setText((String) data.getValueAt(row, 5));
-        cExpCheckinTime.setText((String) data.getValueAt(row, 6));
-        cExpCheckoutDate.setText((String) data.getValueAt(row, 7));
-        cExpCheckoutTime.setText((String) data.getValueAt(row, 8));
+        if (row == -1) {  // 열이 선택되지 않았을 경우
+            JOptionPane.showMessageDialog(null, "수정할 라인을 선택하세요");
+        } else {
+            TableModel data = reserTable.getModel();
 
-        jDialog_change.setVisible(true);
+            // 선택한 값 넣기
+            cRoomNum.setText((String) data.getValueAt(row, 1));
+            cName.setText((String) data.getValueAt(row, 2));
+            cPhoneNum.setText((String) data.getValueAt(row, 3));
+            cPeopleNum.setText((String) data.getValueAt(row, 4));
+            cExpCheckinDate.setText((String) data.getValueAt(row, 5));
+            cExpCheckinTime.setText((String) data.getValueAt(row, 6));
+            cExpCheckoutDate.setText((String) data.getValueAt(row, 7));
+            cExpCheckoutTime.setText((String) data.getValueAt(row, 8));
+
+            jDialog_change.setVisible(true);
+        }
+
     }//GEN-LAST:event_jButt_CHANGEActionPerformed
 
     //예약 삭제 버튼
@@ -911,50 +912,56 @@ public final class Reservation extends javax.swing.JFrame {
 
         try {
 
-            setArr();  // 파일 데이테 어레이리스트에 넣기
+            int row;
+            row = reserTable.getSelectedRow();
 
-            String str = null;
+            if (row == -1) {  // 열이 선택되지 않았을 경우
+                JOptionPane.showMessageDialog(null, "삭제할 라인을 선택하세요");
+            } else {
+                setArr();  // 파일 데이테 어레이리스트에 넣기
+                String str = null;
+                String selectedPhoneNum = getSelectedPhoneNum();
 
-            DefaultTableModel model = (DefaultTableModel) reserTable.getModel();
-            int row = reserTable.getSelectedRow();  // 선택한 열 값
-            String dName = (String) model.getValueAt(row, 2);  // 삭제할 예약의 이름 
+                for (int i = 0; i < reserList.size(); i++) {
 
-            for (int i = 0; i < reserList.size(); i++) {
-
-                // 선택한 열의 이름과 어레이리스트에 있는 이름이 같으면
-                if (dName.equals(reserList.get(i).getName())) {
-                    reserList.remove(i);  // 삭제
+                    // 선택한 열의 전화번호와 어레이리스트에 있는 전화번호가 같으면
+                    if (selectedPhoneNum.equals(reserList.get(i).getPhoneNum())) {
+                        reserList.remove(i);  // 삭제
+                    }
                 }
+
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
+                for (int i = 0; i < reserList.size(); i++) {
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    bw.write(str);  // 텍스트 파일에 넣기
+                }
+                bw.close();
+
+                JOptionPane.showMessageDialog(null, "예약 삭제 완료");
+
+                DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
+                table.setNumRows(0);  // 테이블 초기화
+                reserList();  // 테이블에 예약 리스트 넣기
+
             }
-
-            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
-            for (int i = 0; i < reserList.size(); i++) {
-                str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
-                bw1.write(str);  // 텍스트 파일에 넣기
-            }
-            bw1.close();
-
-            JOptionPane.showMessageDialog(null, "예약 삭제 완료");
-
-            DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
-            table.setNumRows(0);  // 테이블 초기화
-            reserList();  // 테이블에 예약 리스트 넣기
 
         } catch (IOException ex) {
             System.out.println(ex);
         }
+
+
     }//GEN-LAST:event_deleteActionPerformed
 
     // 예약 추가 메뉴의 예약 추가 버튼
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        boolean check = true; 
+        boolean check = true;
 
         try {
 
             // 모든 정보가 입력되지 않으면
             if (roomNum.getText().isEmpty() || name.getText().isEmpty() || phoneNum.getText().isEmpty() || peopleNum.getText().isEmpty() || expCheckinDate.getText().isEmpty() || expCheckinTime.getText().isEmpty() || expCheckoutDate.getText().isEmpty() || expCheckoutTime.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "모든 정보를 입력하세요");
-            } else {  
+            } else {
                 for (int i = 0; i < reserList.size(); i++) {
                     if (reserList.get(i).getRoomNum().equals(roomNum.getText())) {  // 예약리스트에 있는 객실번호이면
                         check = false;  // check를 false로 변경
@@ -995,7 +1002,7 @@ public final class Reservation extends javax.swing.JFrame {
                     DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
                     table.setNumRows(0);
                     reserList();
-                    
+
                 } else {  // check가 false이면
                     JOptionPane.showMessageDialog(null, "이미 예약된 객실입니다. 다시 입력하세요.");
                 }
@@ -1014,9 +1021,9 @@ public final class Reservation extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addActionPerformed
 
-    // 예약 변경 버튼
+    // 예약 수정 버튼
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
-        
+
         // 입력된 값 불러오기
         String roomNum = cRoomNum.getText();
         String name = cName.getText();
@@ -1028,26 +1035,27 @@ public final class Reservation extends javax.swing.JFrame {
         String expCheckoutTime = cExpCheckoutTime.getText();
 
         String str = null;
-        String key = getKey(); // 선택한 열의 전화번호 가져옴
+        String selcetedPhoneNum = getSelectedPhoneNum(); // 선택한 열의 전화번호 가져옴
         FileOutputStream file;
 
-        
         try {
+
             // 모든 정보를 입력하지 않았을 때
-            if (cRoomNum.getText().isEmpty() || cName.getText().isEmpty() || cPhoneNum.getText().isEmpty() || cPeopleNum.getText().isEmpty() || cExpCheckinDate.getText().isEmpty() || cExpCheckinTime.getText().isEmpty() || cExpCheckoutDate.getText().isEmpty() || cExpCheckoutTime.getText().isEmpty()) {
+            if (roomNum.isEmpty() || name.isEmpty() || phoneNum.isEmpty() || peopleNum.isEmpty() || expCheckinDate.isEmpty() || expCheckinTime.isEmpty() || expCheckoutDate.isEmpty() || expCheckoutTime.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "모든 정보를 입력하세요");
-            } else {  
+
+            } else {
 
                 setArr();  // 파일 데이터 어레이 리스트에 넣기
 
                 file = new FileOutputStream("Reser.txt");
                 BufferedWriter bw = new BufferedWriter(new FileWriter("Reser.txt"));
 
-                for (int i = 0; i < reserList.size(); i++) {  
+                for (int i = 0; i < reserList.size(); i++) {
 
-                    if (key.equals(reserList.get(i).getPhoneNum())) {  // 선택한 열의 전화번호와 어레이리스트의 전화번호가 같으면
+                    if (selcetedPhoneNum.equals(reserList.get(i).getPhoneNum())) {  // 선택한 열의 전화번호와 어레이리스트의 전화번호가 같으면
                         // 같은 인덱스 정보들 변경
-                        reserList.get(i).setRoomNum(roomNum); 
+                        reserList.get(i).setRoomNum(roomNum);
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
                         reserList.get(i).setPeopleNum(peopleNum);
@@ -1073,7 +1081,7 @@ public final class Reservation extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "예약 수정 완료");
                 DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
-                
+
                 // 테이블 업데이트
                 table.setNumRows(0); // 테이블 지우기
                 reserList();  // 테이블 값 넣기 
@@ -1093,21 +1101,29 @@ public final class Reservation extends javax.swing.JFrame {
 
     // 예약 검색 결과 수정 들어가는 버튼
     private void sCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sCHActionPerformed
-       
-        DefaultTableModel data = (DefaultTableModel) reserSearchTable.getModel();
-        int row = reserSearchTable.getSelectedRow();  // 클릭한 열 
 
-        // 예약 수정에서 선택한 라인의 값 넣기
-        cRoomNum.setText((String) data.getValueAt(row, 1));
-        cName.setText((String) data.getValueAt(row, 2));
-        cPhoneNum.setText((String) data.getValueAt(row, 3));
-        cPeopleNum.setText((String) data.getValueAt(row, 4));
-        cExpCheckinDate.setText((String) data.getValueAt(row, 5));
-        cExpCheckinTime.setText((String) data.getValueAt(row, 6));
-        cExpCheckoutDate.setText((String) data.getValueAt(row, 7));
-        cExpCheckoutTime.setText((String) data.getValueAt(row, 8));
+        int row;
+        row = reserSearchTable.getSelectedRow();
 
-        jDialog_change.setVisible(true);
+        if (row == -1) {  // 열이 선택되지 않았을 경우
+            JOptionPane.showMessageDialog(null, "수정할 라인을 선택하세요");
+        } else {
+            DefaultTableModel data = (DefaultTableModel) reserSearchTable.getModel();
+
+            // 예약 수정에서 선택한 라인의 값 넣기
+            cRoomNum.setText((String) data.getValueAt(row, 1));
+            cName.setText((String) data.getValueAt(row, 2));
+            cPhoneNum.setText((String) data.getValueAt(row, 3));
+            cPeopleNum.setText((String) data.getValueAt(row, 4));
+            cExpCheckinDate.setText((String) data.getValueAt(row, 5));
+            cExpCheckinTime.setText((String) data.getValueAt(row, 6));
+            cExpCheckoutDate.setText((String) data.getValueAt(row, 7));
+            cExpCheckoutTime.setText((String) data.getValueAt(row, 8));
+
+            jDialog_change.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_sCHActionPerformed
 
     // 예약 검색 결과 삭제 
@@ -1115,49 +1131,54 @@ public final class Reservation extends javax.swing.JFrame {
 
         try {
 
-            setArr();  // 파일 데이테 어레이리스트에 넣기
+            int row;
+            row = reserSearchTable.getSelectedRow();
 
-            String str = null;  
+            if (row == -1) {  // 열이 선택되지 않았을 경우
+                JOptionPane.showMessageDialog(null, "삭제할 라인을 선택하세요");
+            } else {
+                setArr();  // 파일 데이터 어레이리스트에 넣기
 
-            DefaultTableModel model = (DefaultTableModel) reserSearchTable.getModel();
-            int row = reserSearchTable.getSelectedRow();  // 선택한 열 값
-            String dPhoneNum = (String) model.getValueAt(row, 3);  // 삭제할 예약의 전화번호
+                String str = null;
 
-            for (int i = 0; i < reserList.size(); i++) {
+                DefaultTableModel model = (DefaultTableModel) reserSearchTable.getModel();
+                String dPhoneNum = (String) model.getValueAt(row, 3);  // 삭제할 예약의 전화번호
 
-                // 선택한 열의 이름과 어레이리스트에 있는 이름이 같으면
-                if (dPhoneNum.equals(reserList.get(i).getPhoneNum())) {
-                    reserList.remove(i);  // 삭제
+                for (int i = 0; i < reserList.size(); i++) {
+
+                    // 선택한 열의 이름과 어레이리스트에 있는 이름이 같으면
+                    if (dPhoneNum.equals(reserList.get(i).getPhoneNum())) {
+                        reserList.remove(i);  // 삭제
+                    }
                 }
-            }
-            
-            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
-            for (int i = 0; i < reserList.size(); i++) {
-                str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
-                bw1.write(str);  // 파일에 쓰기
-            }
-            bw1.close();
 
-            JOptionPane.showMessageDialog(null, "예약 삭제 완료");
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
+                for (int i = 0; i < reserList.size(); i++) {
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    bw.write(str);  // 파일에 쓰기
+                }
+                bw.close();
 
-            DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
-            table.setNumRows(0);  // 테이블 초기화
-            reserList();  // 테이블에 예약 리스트 넣기
+                JOptionPane.showMessageDialog(null, "예약 삭제 완료");
+
+                DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
+                table.setNumRows(0);  // 테이블 초기화
+                reserList();  // 테이블에 예약 리스트 넣기
+            }
 
         } catch (IOException ex) {
             System.out.println(ex);
         }
 
-
     }//GEN-LAST:event_sDELActionPerformed
 
- //검색 결과 변경
+    // 예약 검색 결과 수정
     private void schangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schangeActionPerformed
 
-        String scPhoneNum = null;  // 바꿀 전화번호 
-        DefaultTableModel model = (DefaultTableModel) reserSearchTable.getModel();  
-        int row = reserSearchTable.getSelectedRow();  // 
-        scPhoneNum = (String) model.getValueAt(row, 3);  // 전화번호
+        String scPhoneNum = null;
+        DefaultTableModel model = (DefaultTableModel) reserSearchTable.getModel();
+        int row = reserSearchTable.getSelectedRow();
+        scPhoneNum = (String) model.getValueAt(row, 3);  // 예약을 수정할 열의 전화번호
 
         String roomNum = cRoomNum.getText();
         String name = cName.getText();
@@ -1173,20 +1194,22 @@ public final class Reservation extends javax.swing.JFrame {
         FileOutputStream file;
 
         try {
-            setArr();  // 파일 데이터 어레이 리스트에 넣기
-            file = new FileOutputStream("Reser.txt");
-
+            
             // 입력받는 정보가 하나라도 비어있으면 다시 입력받기
-            if (cRoomNum.getText().isEmpty() || cName.getText().isEmpty() || cPhoneNum.getText().isEmpty() || cPeopleNum.getText().isEmpty() || cExpCheckinDate.getText().isEmpty() || cExpCheckinTime.getText().isEmpty() || cExpCheckoutDate.getText().isEmpty() || cExpCheckoutTime.getText().isEmpty()) {
+            if (roomNum.isEmpty() || name.isEmpty() || phoneNum.isEmpty() || peopleNum.isEmpty() || expCheckinDate.isEmpty() || expCheckinTime.isEmpty() || expCheckoutDate.isEmpty() || expCheckoutTime.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "모든 정보를 입력하세요");
 
             } else {  // 모든 정보가 입력 되어있으면 
 
+                setArr();  // 파일 데이터 어레이 리스트에 넣기
+
+                file = new FileOutputStream("Reser.txt");
+                BufferedWriter bw = new BufferedWriter(new FileWriter("Reser.txt"));
+
                 for (int i = 0; i < reserList.size(); i++) {
 
-                    if (scPhoneNum.equals(reserList.get(i).getPhoneNum())) {  // 바꿀 전화번호와 어레이리스트의 전화번호가 같은 값이 들어있는 인덱스 i 
-                        
-                        // 값 변경
+                    if (scPhoneNum.equals(reserList.get(i).getPhoneNum())) {  // 선택한 열의 전화번호와 어레이리스트의 전화번호가 같으면
+                        // 같은 인덱스 정보들 변경
                         reserList.get(i).setRoomNum(roomNum);
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
@@ -1196,38 +1219,35 @@ public final class Reservation extends javax.swing.JFrame {
                         reserList.get(i).setExpCheckoutDate(expCheckoutDate);
                         reserList.get(i).setExpCheckoutTime(expCheckoutTime);
                     }
-                }
-
-                BufferedWriter bw = new BufferedWriter(new FileWriter("Reser.txt"));
-
-                for (int i = 0; i < reserList.size(); i++) {
                     str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
-                    bw.write(str);  // 파일 쓰기
+                    bw.write(str);
                 }
+                bw.close();
 
-                bw.close();  // 파일 닫기
-            }
+                // 초기화
+                cRoomNum.setText("");
+                cName.setText("");
+                cPhoneNum.setText("");
+                cPeopleNum.setText("");
+                cExpCheckinDate.setText("");
+                cExpCheckinTime.setText("");
+                cExpCheckoutDate.setText("");
+                cExpCheckoutTime.setText("");
+                
+                JOptionPane.showMessageDialog(null, "예약 수정 완료");
+                DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
+
+                // 테이블 업데이트
+                table.setNumRows(0); // 테이블 지우기
+                reserList();  // 테이블 값 넣기 
+                
+            } 
 
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         } catch (IOException ex) {
             System.out.println(ex);
         }
-
-        cRoomNum.setText("");
-        cName.setText("");
-        cPhoneNum.setText("");
-        cPeopleNum.setText("");
-        cExpCheckinDate.setText("");
-        cExpCheckinTime.setText("");
-        cExpCheckoutDate.setText("");
-        cExpCheckoutTime.setText("");
-
-        JOptionPane.showMessageDialog(null, "예약 수정 완료");
-        DefaultTableModel table = (DefaultTableModel) reserSearchTable.getModel();
-        table.setNumRows(0);  // 테이블 초기화 
-        reserList();  // 테이블에 값 넣기 
-
 
     }//GEN-LAST:event_schangeActionPerformed
 

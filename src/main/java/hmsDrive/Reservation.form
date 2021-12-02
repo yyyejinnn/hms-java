@@ -17,38 +17,37 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="add" alignment="1" min="-2" pref="119" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="roomNum" max="32767" attributes="0"/>
-                                  <Component id="name" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="phoneNum" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="peopleNum" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="expCheckinDate" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="expCheckinTime" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="expCheckoutDate" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="expCheckoutTime" alignment="0" pref="100" max="32767" attributes="0"/>
-                              </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="roomNum" max="32767" attributes="0"/>
+                              <Component id="name" alignment="0" max="32767" attributes="0"/>
+                              <Component id="phoneNum" alignment="0" max="32767" attributes="0"/>
+                              <Component id="peopleNum" alignment="0" max="32767" attributes="0"/>
+                              <Component id="expCheckinDate" alignment="0" max="32767" attributes="0"/>
+                              <Component id="expCheckinTime" alignment="0" max="32767" attributes="0"/>
+                              <Component id="expCheckoutDate" alignment="0" max="32767" attributes="0"/>
+                              <Component id="expCheckoutTime" alignment="0" pref="100" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="125" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="183" max="32767" attributes="0"/>
+                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -222,9 +221,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                           <Component id="sCH" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="sDEL" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="jButton6" min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -951,6 +950,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButt_CHANGE">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xad74;&#xb9bc;" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#xc608;&#xc57d; &#xc218;&#xc815;"/>
       </Properties>
       <Events>
@@ -959,6 +961,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="delete">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xad74;&#xb9bc;" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#xc608;&#xc57d; &#xc0ad;&#xc81c;"/>
       </Properties>
       <Events>

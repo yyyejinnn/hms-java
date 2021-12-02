@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author asdf0
+ * @author PCB
  */
 public class Reser {
     
