@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class UserControlSrc {
             ArrayList<String> str = new ArrayList<String>();
             str = fileread();
             
-            for(String r: str)
+            for(String r : str)
             {
                 StringTokenizer st = new StringTokenizer(r, "/");
                 st.nextToken();
@@ -131,12 +130,15 @@ public class UserControlSrc {
     //UserIDlist.txt에 아이디 패스워드 수정
     public int editingUser(int row,String inputid, String inputpassword) {
         int successnum = 0;
+        int rowNum = row;
+        
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),true));
-            FileWriter fw = new FileWriter(UserIDlist,false);
-            int idDoubleCheckNum=0;
             ArrayList<String> str = new ArrayList<String>();
             str = fileread();
+            //FileWriter fw = new FileWriter(UserIDlist,false);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),false));
+            int idDoubleCheckNum=0;
+            
             String[] forEditstr = new String[str.size()];
             
             for(String r: str)
@@ -159,23 +161,34 @@ public class UserControlSrc {
             }
             else {
                 successnum = 1;
-                String editedUser = String.format("%s/&s/%s",row, inputid, inputpassword);
-                /*
-                for(int i = 0; i<row;i++) {
-                    forEditstr[i] = str.get(i).toString();
+                
+                
+                if(rowNum == 0)
+                {
+                    String editedUser = String.format("%d/%s/%s",rowNum, inputid,inputpassword);
+                    forEditstr[0] = editedUser;
+                    for(int i = row+1; i<str.size(); i++) {
+                        forEditstr[i] = "\r\n" + str.get(i);
+                    }
                 }
-                forEditstr[row] = editedUser;
-                for(int i = row+1; i<str.size(); i++) {
-                    forEditstr[i] = str.get(i).toString();
-                }*/
+                else {
+                    String editedUser = String.format("\r\n%d/%s/%s",rowNum, inputid,inputpassword);
+                    forEditstr[0] = str.get(0);
+                    for(int i = 1; i<rowNum;i++) {
+                        forEditstr[i] = "\r\n" + str.get(i);
+                    }
+                    forEditstr[row] = editedUser;
+                    for(int i = row+1; i<str.size(); i++) {
+                        forEditstr[i] = "\r\n" + str.get(i);
+                    }
+                }
+                for(String r:forEditstr) {
+                    bw.write(r);
+                }
+
+                bw.flush();
+                bw.close();
                 
-               // for(String r:forEditstr) {
-                //fw.write(editedUser);
-                //}
-                
-                //fw.close();
-               
-                /*
                 JOptionPane.showMessageDialog(null, "계정이 수정되었습니다.");
             }
         } catch (IOException ex) {

@@ -1,7 +1,11 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hms.textfiles;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,16 +22,10 @@ import java.util.ArrayList;
  *
  * @author LYJ
  */
-public class CheckTextFiles {
-    private static final String RESERVE_TXT_NAME = "reserveList.txt";
-    private static final String CHECKIN_TXT_NAME = "checkInList.txt";
-    private static final String ROOM_TXT_NAME = "roomList.txt";
-    private static final String CHECKOUT_TXT_NAME = "checkOutList.txt";
-    private static final String FEEDBACK_TXT_NAME = "feedback.txt";
+public class CheckTextFiles extends TextFiles {
     
-    //private static String chargeInit = "0";  //요금 초기값
-    
-    //예약된 고객 txt 불러옴
+    //****Reser.txt****//
+    //예약된 고객 불러옴
     public static ArrayList getReserveListTxt() {
         ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
         String[] splitedStr = null;
@@ -38,9 +36,6 @@ public class CheckTextFiles {
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
-               
-               System.out.println(splitedStr[1]+"/"+splitedStr[2]+"/"+splitedStr[3]+"/"+splitedStr[4]+"/"+splitedStr[5]+"/"+
-                                            splitedStr[6]+"/"+splitedStr[7]+"/"+ splitedStr[8]);
                
                //[0]예약번호 [1]방번호 [2]예약자명 [3]전화번호 [4]인원수 [5]체크인날짜 [6]시간 [7]체크아웃날짜 [8]시간
                reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
@@ -55,10 +50,10 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-    //체크인 한 고객 예약 txt에서 삭제
+    //체크인 한 고객 예약 목록에서 삭제
     public static void deleteReserveListTxt(ArrayList<Reserve> r){
-        int reserveIdx = r.get(0).getReserveIdx();
-        String reserveIdxStr = Integer.toString(reserveIdx) + "/";
+        String reserveIdx = r.get(0).getRoomNum();
+        String reserveIdxStr = reserveIdx + "/";
         
         try{
             //1. 파일 생성
@@ -90,19 +85,18 @@ public class CheckTextFiles {
              System.out.println(e);
         }
     }
-    
-    //체크인 한 고객 체크인 txt에 저장       
-    public static void setCheckinListTxt(ArrayList<Reserve> r){  
-        //int > String 형변환
-        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+
+    //****checkInList.txt****//
+    //체크인 한 고객 저장       
+    public static void setCheckinListTxt(ArrayList<Reserve> r){
+        String reserveIdxStr = r.get(0).getRoomNum();
         String reserveName = r.get(0).getName();
         String phoneNum = r.get(0).getPhoneNum();
-        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        String reservePeopleNumStr = r.get(0).getPeopleNum();
         String checkInDate = r.get(0).getCheckInDate();
         String checkInTime = r.get(0).getCheckInTime();
         String checkOutDate = r.get(0).getCheckOutDate();
         String checkOutTime = r.get(0).getCheckOutTime();
-        //String chargeStr = Integer.toString(r.get(0).getCharge());
         
         //1. 파일 객체 생성
         try{
@@ -131,7 +125,7 @@ public class CheckTextFiles {
         }
     }
     
-    //체크인 목록 txt 불러옴
+    //체크인 목록 불러옴
     public static ArrayList getCheckListTxt(){
         ArrayList<Reserve> reserveList = new ArrayList<>();  //예약자 목록 객체
         String[] splitedStr = null;
@@ -156,10 +150,10 @@ public class CheckTextFiles {
         return reserveList;
     }
     
-    //체크인 목록 txt에서 삭제
+    //체크인 목록에서 삭제
     public static void deleteCheckInListTxt(ArrayList<Reserve> r){
-        int checkInIdx = r.get(0).getReserveIdx();
-        String checkInIdxStr = Integer.toString(checkInIdx) + "/";
+        String checkInIdx = r.get(0).getRoomNum();
+        String checkInIdxStr = checkInIdx + "/";
         
         try{
             //1. 파일 생성
@@ -192,13 +186,37 @@ public class CheckTextFiles {
         }
     }
     
-    //체크아웃 한 고객 체크아웃 목록 txt 추가
+    //****checkOutList.txt****//
+    //체크아웃 내역 불러옴
+    public static ArrayList getCheckOutListTxt(){
+        ArrayList<Reserve> checkOutArrayList = new ArrayList<>();
+        String[] splitedStr = null;
+        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(CHECKOUT_TXT_NAME));
+            String line = null;
+            
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+               splitedStr = line.split("/");
+               
+               //[0]방번호 [1]예약자명 [2]전화번호 [3]인원수 [4]실제 체크아웃날짜 [5]시간
+               checkOutArrayList.add(new Reserve(splitedStr[0],splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4], splitedStr[5]));  //ArrayList에 저장
+            }
+            in.close();
+            
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+        return checkOutArrayList;
+    }
+    
+    //체크아웃 한 고객 추가
     public static void setCheckOutListTxt(ArrayList<Reserve> r){
-         //int > String 형변환
-        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+        String reserveIdxStr = r.get(0).getRoomNum();
         String reserveName = r.get(0).getName();
         String phoneNum = r.get(0).getPhoneNum();
-        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        String reservePeopleNumStr = r.get(0).getPeopleNum();
         
         LocalDate nowDate = LocalDate.now();
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");
@@ -234,76 +252,28 @@ public class CheckTextFiles {
         }
     }
 
-    //roomList.txt 점유상태 변경   //t:사용중, f:비어있음
-    public static void updateRoomClean(int roomIdx){
-        String roomInxStr = Integer.toString(roomIdx) + "/";
+    //***feedbackList.txt****//
+     //피드백 내역 불러옴    
+    public static ArrayList getFeedbackListTxt(){
+        ArrayList<String> feedbackArrayList = new ArrayList<>();  //피드백 목록 객체
         
-        try{
-            File file = new File(ROOM_TXT_NAME);
-            String dummy = "";
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(FEEDBACK_TXT_NAME));
+            String line = null;
             
-            //1. 파일 읽기
-            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
-            String str = "";
-            
-            //2. 해당 객실 사용 여부 변경
-            while((dummy = is.readLine()) != null){
-                if(!(dummy.contains(roomInxStr))) {
-                    str += dummy + "\n";
-                }else if(dummy.contains(roomInxStr)) {  //해당 객실                    
-                    //해당 객실이 사용 중이면 비어있는 상태로 변경
-                    if(dummy.contains("t")){
-                        str += dummy.replace("t", "f") + "\n";
-                    //해당 객실이 비어있는 상태이면 사용 중으로 변경
-                    } else{
-                        str += dummy.replace("f", "t") + "\n";
-                    }
-                }
+            while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
+              feedbackArrayList.add(line);
             }
+            in.close();
             
-            //3. 파일 덮어쓰기
-            FileOutputStream fos = new FileOutputStream(ROOM_TXT_NAME);  //false
-            
-            //FileOutputStream은 파일에 바이트 단위로 내보냄 > 바이트 변환 필요
-            byte[] content = str.getBytes();
-            
-            fos.write(content);
-            fos.flush();
-            fos.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
+        
+        return feedbackArrayList;
     }
     
-    //rooList.txt에서 요금 불러옴
-    public static int getRoomCharge(int roomIdx){
-        String roomInxStr = Integer.toString(roomIdx) + "/";
-        String[] splitedStr = null;
-        
-        try{
-            File file = new File(ROOM_TXT_NAME);
-            String dummy = "";
-            
-            //1. 파일 읽기
-            BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(file)));           
-            String charge = "";
-            
-            //2. 해당하는 객실 line 불러옴
-            while((dummy = is.readLine()) != null){
-                if(dummy.contains(roomInxStr)) {
-                    splitedStr = dummy.split("/");
-                }
-            }
-            
-            is.close();
-        } catch(IOException e){
-            System.out.println(e);
-        }
-        
-        return Integer.parseInt(splitedStr[2]);  //[2]요금
-    }
-
-    //고객 피드백 feedbackList.txt에 저장
+    //고객 피드백 저장
     public static void setFeedbackListTxt(String feedbackStr){
         
         //1. 파일 객체 생성
@@ -331,4 +301,5 @@ public class CheckTextFiles {
             System.out.println(e);
         }
     }    
+
 }

@@ -6,8 +6,8 @@
 package hmsDrive;
 
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
-import hms.textfiles.SystemTextFiles;
+import hms.object.Dishtxt;
+import hms.textfiles.DishTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -40,7 +40,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) RT_TBL.getModel();
         
         //레스토랑 목록 검색
-        restaurantArrayList = SystemTextFiles.getRoomServiceListTxt();
+        restaurantArrayList = DishTextFiles.getRoomServiceListTxt();
         
         //테이블에 출력
         for (Dishtxt r : restaurantArrayList){
@@ -335,7 +335,7 @@ public class SystemRoomService extends javax.swing.JFrame {
             menu = (String) dTbl.getValueAt(row, 0);
             fee = (String) dTbl.getValueAt(row, 1);
             
-            SystemTextFiles.deleteRtRsListTxt(menu, fee, 2);
+            DishTextFiles.deleteRtRsListTxt(menu, fee, 2);
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
@@ -374,7 +374,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         updateMenu = UPDATE_MENU_FIELD.getText();
         updateFee = UPDATE_FEE_FIELD.getText();
         
-        SystemTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 2);
+        DishTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 2);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
@@ -399,7 +399,7 @@ public class SystemRoomService extends javax.swing.JFrame {
         if(menu.equals("") | fee.equals("")){
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else {
-            SystemTextFiles.setRtRsListTxt(menu, fee, 2);
+            DishTextFiles.setRtRsListTxt(menu, fee, 2);
             JOptionPane.showMessageDialog(null, "룸 서비스가 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();

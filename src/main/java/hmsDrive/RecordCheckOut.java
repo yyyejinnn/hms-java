@@ -5,10 +5,10 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckOutSrc;
-import hms.textfiles.RecordTextFiles;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,15 +35,15 @@ public class RecordCheckOut extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) CHECKOUT_TBL.getModel();
         
         //체크아웃 목록 검색
-        checkOutArrayList = RecordTextFiles.getCheckOutListTxt();
+        checkOutArrayList = CheckTextFiles.getCheckOutListTxt();
         
         //테이블에 출력
         for (Reserve r : checkOutArrayList){
             dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-                Integer.toString(r.getReserveIdx()),
+                r.getRoomNum(),
                 r.getName(),
                 r.getPhoneNum(),
-                Integer.toString(r.getReservePeopleNum()),
+                r.getPeopleNum(),
                 r.getCheckOutDate(),
                 r.getCheckOutTime()
             });

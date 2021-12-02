@@ -6,7 +6,7 @@
 package hmsDrive;
 
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
+import hms.object.Dishtxt;
 import hms.textfiles.DishTextFiles;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -232,7 +232,7 @@ public class DishCustomer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "취소할 목록을 선택해주십시오");
         } else{
             //dishCustomerList.txt에서 삭제
-            DishTextFiles.deleteReserveListTxt(dCustomerIdx);
+            DishTextFiles.deleteDishCustomerListTxt(dCustomerIdx);
             JOptionPane.showMessageDialog(null, "식사서비스가 취소 되었습니다.");
         
             new DishCustomer().setVisible(true);
@@ -289,7 +289,7 @@ public class DishCustomer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "완료된 목록을 선택해주십시오");
         } else{
             //dishCustomerList.txt에서 삭제
-            DishTextFiles.deleteReserveListTxt(dCustomerIdx);
+            DishTextFiles.deleteDishCustomerListTxt(dCustomerIdx);
             JOptionPane.showMessageDialog(null, "식사서비스가 완료 되었습니다.");
         
             new DishCustomer().setVisible(true);

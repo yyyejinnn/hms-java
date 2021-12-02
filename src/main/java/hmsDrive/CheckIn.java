@@ -5,9 +5,10 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckInSrc;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,11 +27,27 @@ public class CheckIn extends javax.swing.JFrame {
     private ArrayList<Reserve> checkArrayList = new ArrayList<>();
     private CheckSrc check = new CheckSrc();
     private CheckInSrc checkIn = new CheckInSrc();
+    private DefaultTableModel dTbl;
     
     public int num;
     
     public CheckIn() {
         initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+        checkArrayList = CheckTextFiles.getReserveListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
+                r.getCheckInDate(),
+                r.getCheckOutDate()
+            });
+        }
     }
     
     public CheckIn(int num) {
@@ -252,11 +269,11 @@ public class CheckIn extends javax.swing.JFrame {
                 //테이블에 검색 목록 출력
                 for (Reserve r : checkArrayList){
                     searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
-                        r.getName(),
-                        r.getPhoneNum(),
-                        Integer.toString(r.getReservePeopleNum()),
-                        r.getCheckInDate(),
+                         r.getRoomNum(),
+                         r.getName(),
+                         r.getPhoneNum(),
+                         r.getPeopleNum(),
+                         r.getCheckInDate(),
                         r.getCheckOutDate()
                     });
                 }

@@ -6,8 +6,8 @@
 package hmsDrive;
 
 import hms.check.CheckOutSrc;
-import hms.room.Reserve;
-import hms.textfiles.RecordTextFiles;
+import hms.object.Reserve;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -34,7 +34,7 @@ public class RecordFeedback extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) FEEDBACK_TBL.getModel();
         
         //피드백 내역 검색
-        feedbackArrayList = RecordTextFiles.getFeedbackListTxt();
+        feedbackArrayList = CheckTextFiles.getFeedbackListTxt();
         
         //테이블에 출력
         for (String str : feedbackArrayList){

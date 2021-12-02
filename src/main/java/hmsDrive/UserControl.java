@@ -560,13 +560,13 @@ public class UserControl extends javax.swing.JFrame {
         }
         else
         {
-            int successNum =0;//= ucs.editingUser(rowNum,jTextField6.toString(),jTextField7.toString());
-            if(successNum==1){
-            model.setRowCount(0);
-            setRow();
-            jDialog2.setVisible(false);
-            jTextField6.setText("");
-            jTextField7.setText("");
+            int successNum = ucs.editingUser(rowNum,jTextField6.getText(),jTextField7.getText());
+            if(successNum==1) {
+                model.setRowCount(0);
+                setRow();
+                jDialog2.setVisible(false);
+                jTextField6.setText("");
+                jTextField7.setText("");
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
