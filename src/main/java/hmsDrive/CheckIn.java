@@ -8,6 +8,7 @@ package hmsDrive;
 import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckInSrc;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,11 +27,27 @@ public class CheckIn extends javax.swing.JFrame {
     private ArrayList<Reserve> checkArrayList = new ArrayList<>();
     private CheckSrc check = new CheckSrc();
     private CheckInSrc checkIn = new CheckInSrc();
+    private DefaultTableModel dTbl;
     
     public int num;
     
     public CheckIn() {
         initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+        checkArrayList = CheckTextFiles.getReserveListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+            Integer.toString(r.getReserveIdx()),
+            r.getName(),
+            r.getPhoneNum(),
+            Integer.toString(r.getReservePeopleNum()),
+            r.getCheckInDate(),
+            r.getCheckOutDate()
+            });
+        }
     }
     
     public CheckIn(int num) {
