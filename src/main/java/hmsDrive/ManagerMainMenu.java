@@ -180,11 +180,11 @@ public class ManagerMainMenu extends javax.swing.JFrame {
     //시스템 관리 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       new System().setVisible(true);
+       new System(2).setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    //상단 메뉴바 뒤로가기 버튼
+    //예약
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Reservation rv = new Reservation(2);
@@ -209,14 +209,14 @@ public class ManagerMainMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Dish food = new Dish();
+        Dish food = new Dish(2);
         food.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new Record().setVisible(true);
+        new Record(2).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 

@@ -116,15 +116,15 @@ public class Record extends javax.swing.JFrame {
     //체크아웃 내역 조회 버튼
     private void CKO_RECORD_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CKO_RECORD_BTNActionPerformed
         // TODO add your handling code here:
-        new RecordCheckOut().setVisible(true);
-        this.dispose();
+        new RecordCheckOut(num).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CKO_RECORD_BTNActionPerformed
 
     //피드백 조회 버튼
     private void FRECORD_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FRECORD_BTNActionPerformed
         // TODO add your handling code here:
-        new RecordFeedback().setVisible(true);
-        this.dispose();
+        new RecordFeedback(num).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_FRECORD_BTNActionPerformed
     
     //상단 메뉴바 뒤로가기 버튼
@@ -180,7 +180,7 @@ public class Record extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Record().setVisible(true);
+                new Record(2).setVisible(true);
             }
         });
     }

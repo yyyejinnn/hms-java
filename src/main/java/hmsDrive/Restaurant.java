@@ -495,7 +495,7 @@ public class Restaurant extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Dish pre = new Dish();
+        Dish pre = new Dish(num);
         pre.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -533,7 +533,7 @@ public class Restaurant extends javax.swing.JFrame {
         MENU_FIELD.setText((String) dTbl.getValueAt(row, 0));
         MENU_FEE_FIELD.setText((String) dTbl.getValueAt(row, 1));
         
-        MENU_DLG.setVisible(false);
+        MENU_DLG.dispose();
     }//GEN-LAST:event_MENU_OKActionPerformed
 
     //예약 및 바로결제
@@ -623,7 +623,7 @@ public class Restaurant extends javax.swing.JFrame {
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
-        new Dish().setVisible(true);
+        new Dish(num).setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed
 
@@ -660,7 +660,7 @@ public class Restaurant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Restaurant().setVisible(true);
+                new Restaurant(2).setVisible(true);
             }
         });
     }

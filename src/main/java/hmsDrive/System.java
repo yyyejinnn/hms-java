@@ -154,21 +154,21 @@ public class System extends javax.swing.JFrame {
     //객실 관리 버튼
     private void ROOM_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ROOM_BTNActionPerformed
         // TODO add your handling code here:
-        new SystemRoom().setVisible(true);
+        new SystemRoom(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ROOM_BTNActionPerformed
 
     //룸서비스 관리 버튼
     private void RS_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RS_BTNActionPerformed
         // TODO add your handling code here:
-        new SystemRoomService().setVisible(true);
+        new SystemRoomService(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RS_BTNActionPerformed
 
     //레스토랑 관리 버튼
     private void RT_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RT_BTNActionPerformed
         // TODO add your handling code here:
-        new SystemRestaurant().setVisible(true);
+        new SystemRestaurant(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RT_BTNActionPerformed
 
@@ -209,7 +209,7 @@ public class System extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new System().setVisible(true);
+                new System(2).setVisible(true);
             }
         });
     }
