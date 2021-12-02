@@ -565,12 +565,12 @@ public class UserControl extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
     
-    //계정 수정 모달창 현재 아이디 포맷텍스트필드
+    //계정 수정 모달창 현재 ID 포맷텍스트필드
     private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jFormattedTextField2ActionPerformed
-    //계정 수정 모달창 현재 패스워드 포맷텍스트필드
+    //계정 수정 모달창 현재 Password 포맷텍스트필드
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
