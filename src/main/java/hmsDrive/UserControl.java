@@ -504,12 +504,24 @@ public class UserControl extends javax.swing.JFrame {
             jDialog2.setVisible(true);
         }
         else {
-            JOptionPane.showMessageDialog(null, "선택된 계정이 없습니다.\r\n수정하려는 계정을 클릭후 수정버튼을 눌러주세요.");
+            JOptionPane.showMessageDialog(null, "선택된 계정이 없습니다.\r\n수정할 계정을 클릭후 수정버튼을 눌러주세요.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     //계정 삭제 버튼
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        int rowNum = jTable2.getSelectedRow();
+        if(rowNum != -1 && rowNum != 0) {
+            ucs.deleteUser(rowNum);
+            model.setRowCount(0);
+            setRow();
+        }
+        else if (rowNum == 0) {
+            JOptionPane.showMessageDialog(null, "매니저 계정은 삭제할수 없습니다.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "선택된 계정이 없습니다.\r\n삭제할 계정을 클릭후 삭버튼을 눌러주세요.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -527,21 +539,18 @@ public class UserControl extends javax.swing.JFrame {
     //계정 추가 모달창 생성 버튼
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        try {
-            int successnum = ucs.createid(ucs.getLastLineNum(),jTextField1.getText(),jTextField2.getText());
+     
+        int successnum = ucs.createid(jTextField1.getText(),jTextField2.getText());
             
-            jTextField1.setText("");
-            jTextField2.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
             
-            if(successnum == 1) {
-                model.setRowCount(0);
-                setRow();
-                jDialog1.setVisible(false);
-            }
-        } catch (IOException ex) {
-            //오류팝업창
-            JOptionPane.showMessageDialog(null, "파일 에러");
+        if(successnum == 1) {
+            model.setRowCount(0);
+            setRow();
+            jDialog1.setVisible(false);
         }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
     //계정 추가 모달창 취소 버튼
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

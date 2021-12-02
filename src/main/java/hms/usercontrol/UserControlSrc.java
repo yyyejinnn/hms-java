@@ -12,7 +12,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.nio.charset.Charset;
 import java.util.StringTokenizer;
@@ -39,22 +38,73 @@ public class UserControlSrc {
         return str;
     }
     
+    //로그인 ID , Password 확인
+    public int loginLogic(int num, String id, String password) {
+        int success = 0;
+        int falseNum = 0;
+        try {
+            
+            if(num == 1) {
+                ArrayList<String> str = new ArrayList<String>();
+                str = fileread();
+                for(int i = 1; i<str.size();i++)
+                {
+                    StringTokenizer st = new StringTokenizer(str.get(i), "/");
+                    st.nextToken();
+                    String checkid=st.nextToken();
+                    String checkpassword=st.nextToken();
+                    if(checkid.equals(id) && checkpassword.equals(password))
+                    {
+                        success = 1;
+                        break;
+                    }
+                    else {
+                        falseNum ++;
+                    }
+                    if(falseNum == str.size()-1) {
+                        JOptionPane.showMessageDialog(null, "아이디 또는 패스워드가 틀립니다.");
+                    }
+                }
+
+
+            }
+            else if(num == 2) {
+                ArrayList<String> str = new ArrayList<String>();
+                str = fileread();
+                StringTokenizer st = new StringTokenizer(str.get(0), "/");
+                st.nextToken();
+                String checkid=st.nextToken();
+                String checkpassword=st.nextToken();
+                if(checkid.equals(id) && checkpassword.equals(password))
+                {
+                    success = 2;
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "아이디 또는 패스워드가 틀립니다.");
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+        
+        return success;
+    }
+    
     //UserIDlist.txt에 계정 생성
-    public int createid(int num, String id, String password)
+    public int createid(String id, String password)
     {
         int successnum = 0;
         try {
             int idDoubleCheckNum=0;
-            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),true));
-            PrintWriter pw = new PrintWriter(bw,true);
+            
             ArrayList<String> str = new ArrayList<String>();
             str = fileread();
+            String[] addNewstr = new String[str.size()+1];
             
             for(String r : str)
             {
                 StringTokenizer st = new StringTokenizer(r, "/");
                 st.nextToken();
-                //String forcheck = st.nextToken();
                 if(st.nextToken().equals(id))
                 {
                     idDoubleCheckNum++;
@@ -73,10 +123,43 @@ public class UserControlSrc {
                 JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
             }
             else {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),false));
                 successnum = 1;
-                pw.write("\r\n"+ num + "/" + id + "/" + password);
-                pw.close();
+                int newUserNum = 0;
+                
+                //새로추가될 계정의 번호 = i
+                for(String r : str)
+                {
+                    
+                    StringTokenizer st = new StringTokenizer(r, "/");
+                    int number = Integer.parseInt(st.nextToken());
+                    
+                    if(number != newUserNum)
+                    {
+                        break;
+                    }
+                    newUserNum++;
+                }
+                
+                addNewstr[0] = str.get(0);
+                for(int i = 1; i< newUserNum; i++)
+                {
+                    addNewstr[i] = "\r\n" + str.get(i);
+                }
+                addNewstr[newUserNum] = "\r\n"+ newUserNum + "/" + id + "/" + password;
+                for(int i= newUserNum+1;i<str.size()+1;i++)
+                {
+                    addNewstr[i] = "\r\n" + str.get(i-1);
+                }
+                
+                for(String r:addNewstr) {
+                    bw.write(r);
+                }
+
+                bw.flush();
                 bw.close();
+                
+                
                 JOptionPane.showMessageDialog(null, "계정이 생성되었습니다.");
             }
         } catch (IOException ex) {
@@ -135,8 +218,7 @@ public class UserControlSrc {
         try {
             ArrayList<String> str = new ArrayList<String>();
             str = fileread();
-            //FileWriter fw = new FileWriter(UserIDlist,false);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),false));
+            
             int idDoubleCheckNum=0;
             
             String[] forEditstr = new String[str.size()];
@@ -161,7 +243,7 @@ public class UserControlSrc {
             }
             else {
                 successnum = 1;
-                
+                BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),false));
                 
                 if(rowNum == 0)
                 {
@@ -169,7 +251,7 @@ public class UserControlSrc {
                     forEditstr[0] = editedUser;
                     for(int i = row+1; i<str.size(); i++) {
                         forEditstr[i] = "\r\n" + str.get(i);
-                    }
+                    } 
                 }
                 else {
                     String editedUser = String.format("\r\n%d/%s/%s",rowNum, inputid,inputpassword);
@@ -195,5 +277,36 @@ public class UserControlSrc {
             System.out.println(ex.toString());
         }
         return successnum;
-     }
+    }
+    //계정 삭제
+    public void deleteUser (int row) {
+        int rowNum = row;
+        
+        try {
+            ArrayList<String> str = new ArrayList<String>();
+            str = fileread();
+            String[] forEditstr = new String[str.size()-1];
+            BufferedWriter bw = new BufferedWriter(new FileWriter(UserIDlist, Charset.forName("UTF-8"),false));
+            
+                forEditstr[0] = str.get(0);
+                for(int i = 1; i<rowNum;i++) {
+                    forEditstr[i] = "\r\n" + str.get(i);
+                }
+                for(int i = rowNum; i<str.size()-1; i++) {
+                    forEditstr[i] = "\r\n" + str.get(i+1);
+                }
+            
+            for(String r:forEditstr) {
+                    bw.write(r);
+                }
+
+                bw.flush();
+                bw.close();
+                
+                JOptionPane.showMessageDialog(null, "계정이 삭제되었습니다.");
+            
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+    }
 }
