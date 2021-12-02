@@ -39,11 +39,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -54,8 +54,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("로그인");
 
         jTextField1.setToolTipText("아이디를 입력해주세요");
-
-        jTextField2.setToolTipText("패스워드를 입력해주세요");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("로그인");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +73,12 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("ID :");
 
         jLabel4.setText("Password :");
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("메뉴");
         jMenu1.setActionCommand("Menu");
@@ -107,8 +116,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(jLabel1))
@@ -133,8 +142,8 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -153,12 +162,12 @@ public class Login extends javax.swing.JFrame {
     //로그인 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(num==1&&id.equals(jTextField1.getText())&&password.equals(jTextField2.getText())) {
+        if(num==1&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
             UserMainMenu user = new UserMainMenu();
             user.setVisible(true);
             this.setVisible(false);
         }
-        else if(num==2&&id.equals(jTextField1.getText())&&password.equals(jTextField2.getText())) {
+        else if(num==2&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
             ManagerMainMenu manager = new ManagerMainMenu();
             manager.setVisible(true);
             this.setVisible(false);
@@ -172,6 +181,14 @@ public class Login extends javax.swing.JFrame {
         st.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+    //Psssword 필드
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    //ID 텍스트 필드
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +239,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

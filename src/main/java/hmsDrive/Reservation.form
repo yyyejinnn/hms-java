@@ -240,6 +240,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
@@ -247,6 +248,17 @@
                       <Component id="sCH" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="sDEL" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jButton6" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+=======
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" pref="168" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButton6" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jButton4" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+>>>>>>> 12a7f4d1092898265d9c6d8ec7c326e4e5c87ff8
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
