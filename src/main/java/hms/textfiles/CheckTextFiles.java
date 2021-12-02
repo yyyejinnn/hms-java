@@ -233,7 +233,7 @@ public class CheckTextFiles {
             System.out.println(e);
         }
     }
-    
+
     //roomList.txt 점유상태 변경   //t:사용중, f:비어있음
     public static void updateRoomClean(int roomIdx){
         String roomInxStr = Integer.toString(roomIdx) + "/";
@@ -330,9 +330,5 @@ public class CheckTextFiles {
         } catch(IOException e){
             System.out.println(e);
         }
-    }
-    
-   /* public static void main(String[]args){
-        System.out.println(getRoomCharge(202));
-    }*/
+    }    
 }
