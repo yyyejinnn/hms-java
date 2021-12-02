@@ -40,12 +40,12 @@ public class CheckOut extends javax.swing.JFrame {
         //테이블에 출력
         for (Reserve r : checkArrayList){
             dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-            Integer.toString(r.getReserveIdx()),
-            r.getName(),
-            r.getPhoneNum(),
-            Integer.toString(r.getReservePeopleNum()),
-            r.getCheckInDate(),
-            r.getCheckOutDate()
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
+                r.getCheckInDate(),
+                r.getCheckOutDate()
             });
         }
     }
@@ -224,12 +224,12 @@ public class CheckOut extends javax.swing.JFrame {
             //테이블에 검색 목록 출력
                 for (Reserve r : checkArrayList){
                     searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
-                        r.getName(),
-                        r.getPhoneNum(),
-                        Integer.toString(r.getReservePeopleNum()),
-                        r.getCheckInDate(),
-                        r.getCheckOutDate()
+                         r.getRoomNum(),
+                         r.getName(),
+                         r.getPhoneNum(),
+                         r.getPeopleNum(),
+                         r.getCheckInDate(),
+                         r.getCheckOutDate()
                         });
                 }
             }

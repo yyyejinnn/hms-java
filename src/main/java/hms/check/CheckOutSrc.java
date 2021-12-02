@@ -23,12 +23,12 @@ public class CheckOutSrc extends CheckSrc{
     public void checkOut(ArrayList<Reserve> checkOutList) throws IOException{  //체크아웃
             CheckTextFiles.deleteCheckInListTxt(checkOutList); //체크인 목록 txt에서 삭제
             CheckTextFiles.setCheckOutListTxt(checkOutList);//체크아웃 목록 txt에 추가
-            CheckTextFiles.updateRoomClean(checkOutList.get(0).getReserveIdx()); //점유상태 변경
+            CheckTextFiles.updateRoomClean(checkOutList.get(0).getRoomNum()); //점유상태 변경
     }   
     
     //요금
     public int[] pay(ArrayList<Reserve> checkOutList)throws IOException{  //결제
-        int roomIdx = checkOutList.get(0).getReserveIdx();  //방번호
+        String roomIdx = checkOutList.get(0).getRoomNum();  //방번호
         int initFee = CheckTextFiles.getRoomCharge(roomIdx);  //객실요금
         int dishFee = DishTextFiles.getDishCharge(roomIdx);  //식사요금
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");       

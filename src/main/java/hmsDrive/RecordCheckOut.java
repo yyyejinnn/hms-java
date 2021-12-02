@@ -40,10 +40,10 @@ public class RecordCheckOut extends javax.swing.JFrame {
         //테이블에 출력
         for (Reserve r : checkOutArrayList){
             dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-                Integer.toString(r.getReserveIdx()),
+                r.getRoomNum(),
                 r.getName(),
                 r.getPhoneNum(),
-                Integer.toString(r.getReservePeopleNum()),
+                r.getPeopleNum(),
                 r.getCheckOutDate(),
                 r.getCheckOutTime()
             });

@@ -479,9 +479,9 @@ public class Restaurant extends javax.swing.JFrame {
             //테이블에 검색 목록 출력
                 for (Reserve r : checkArrayList){
                     dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
+                        r.getRoomNum(),
                         r.getName(),
-                        Integer.toString(r.getReservePeopleNum())
+                        r.getPeopleNum()
                         });
                 }
             }

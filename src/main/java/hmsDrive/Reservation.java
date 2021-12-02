@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package hmsDrive;
-import hms.object.Reser;
+import hms.object.Reserve;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public final class Reservation extends javax.swing.JFrame {
 
     public int num;
 
-    ArrayList<Reser> reserList = new ArrayList<>();  // 어레이 리스트 생성
+    ArrayList<Reserve> reserList = new ArrayList<>();  // 어레이 리스트 생성
 
     public Reservation() {
         initComponents();
@@ -63,7 +63,7 @@ public final class Reservation extends javax.swing.JFrame {
 
             while ((line = br.readLine()) != null) {  // 더 이상 읽을 데이터가 없을 때 까지 
                 str = line.split("/");  // 구분자(/)로 데이터 자르기  
-                reserList.add(new Reser(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8]));  // 어레이리스트에 데이터 넣기 
+                reserList.add(new Reserve(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8]));  // 어레이리스트에 데이터 넣기 
             }
 
             br.close();  // 파일 닫기
@@ -939,7 +939,7 @@ public final class Reservation extends javax.swing.JFrame {
         table.setNumRows(0);
         for (int i = 0; i < reserList.size(); i++) {
             if (phoneNum.equals(reserList.get(i).getPhoneNum())) {  // 입력받은 전화번호와 에러이리스트의 전화번호가 같은 인덱스  
-                Object[] list = {reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime()};
+                Object[] list = {reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime()};
                 table.addRow(list);  // 테이블에 리스트 넣기 
             }
         }
@@ -1015,7 +1015,7 @@ public final class Reservation extends javax.swing.JFrame {
 
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 텍스트 파일에 넣기
                 }
                 bw.close();
@@ -1058,7 +1058,7 @@ public final class Reservation extends javax.swing.JFrame {
                     reservationNum = Integer.toString(a);  // string형으로 변환
 
                     //리스트에 저장
-                    reserList.add(new Reser(reservationNum, roomNum.getText(), name.getText(), phoneNum.getText(), peopleNum.getText(), expCheckinDate.getText(), expCheckinTime.getText(), expCheckoutDate.getText(), expCheckoutTime.getText()));
+                    reserList.add(new Reserve(reservationNum, roomNum.getText(), name.getText(), phoneNum.getText(), peopleNum.getText(), expCheckinDate.getText(), expCheckinTime.getText(), expCheckoutDate.getText(), expCheckoutTime.getText()));
                     BufferedWriter bw;
 
                     bw = new BufferedWriter(new FileWriter("Reser.txt", true)); // 파일 열기
@@ -1142,12 +1142,12 @@ public final class Reservation extends javax.swing.JFrame {
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
                         reserList.get(i).setPeopleNum(peopleNum);
-                        reserList.get(i).setExpCheckinDate(expCheckinDate);
-                        reserList.get(i).setExpCheckinTime(expCheckinTime);
-                        reserList.get(i).setExpCheckoutDate(expCheckoutDate);
-                        reserList.get(i).setExpCheckoutTime(expCheckoutTime);
+                        reserList.get(i).setCheckInDate(expCheckinDate);
+                        reserList.get(i).setCheckInTime(expCheckinTime);
+                        reserList.get(i).setCheckOutDate(expCheckoutDate);
+                        reserList.get(i).setCheckOutTime(expCheckoutTime);
                     }
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);
                 }
                 bw.close();
@@ -1237,7 +1237,7 @@ public final class Reservation extends javax.swing.JFrame {
 
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 파일에 쓰기
                 }
                 bw.close();
@@ -1297,12 +1297,12 @@ public final class Reservation extends javax.swing.JFrame {
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
                         reserList.get(i).setPeopleNum(peopleNum);
-                        reserList.get(i).setExpCheckinDate(expCheckinDate);
-                        reserList.get(i).setExpCheckinTime(expCheckinTime);
-                        reserList.get(i).setExpCheckoutDate(expCheckoutDate);
-                        reserList.get(i).setExpCheckoutTime(expCheckoutTime);
+                        reserList.get(i).setCheckInDate(expCheckinDate);
+                        reserList.get(i).setCheckInTime(expCheckinTime);
+                        reserList.get(i).setCheckOutDate(expCheckoutDate);
+                        reserList.get(i).setCheckOutTime(expCheckoutTime);
                     }
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);
                 }
                 bw.close();

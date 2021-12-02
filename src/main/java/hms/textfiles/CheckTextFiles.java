@@ -39,9 +39,6 @@ public class CheckTextFiles {
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
                splitedStr = line.split("/");
                
-               System.out.println(splitedStr[1]+"/"+splitedStr[2]+"/"+splitedStr[3]+"/"+splitedStr[4]+"/"+splitedStr[5]+"/"+
-                                            splitedStr[6]+"/"+splitedStr[7]+"/"+ splitedStr[8]);
-               
                //[0]예약번호 [1]방번호 [2]예약자명 [3]전화번호 [4]인원수 [5]체크인날짜 [6]시간 [7]체크아웃날짜 [8]시간
                reserveList.add(new Reserve(splitedStr[1],splitedStr[2],splitedStr[3],splitedStr[4],splitedStr[5],
                                             splitedStr[6],splitedStr[7], splitedStr[8]));  //ArrayList에 저장
@@ -57,8 +54,8 @@ public class CheckTextFiles {
     
     //체크인 한 고객 예약 txt에서 삭제
     public static void deleteReserveListTxt(ArrayList<Reserve> r){
-        int reserveIdx = r.get(0).getReserveIdx();
-        String reserveIdxStr = Integer.toString(reserveIdx) + "/";
+        String reserveIdx = r.get(0).getRoomNum();
+        String reserveIdxStr = reserveIdx + "/";
         
         try{
             //1. 파일 생성
@@ -92,17 +89,15 @@ public class CheckTextFiles {
     }
     
     //체크인 한 고객 체크인 txt에 저장       
-    public static void setCheckinListTxt(ArrayList<Reserve> r){  
-        //int > String 형변환
-        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+    public static void setCheckinListTxt(ArrayList<Reserve> r){
+        String reserveIdxStr = r.get(0).getRoomNum();
         String reserveName = r.get(0).getName();
         String phoneNum = r.get(0).getPhoneNum();
-        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        String reservePeopleNumStr = r.get(0).getPeopleNum();
         String checkInDate = r.get(0).getCheckInDate();
         String checkInTime = r.get(0).getCheckInTime();
         String checkOutDate = r.get(0).getCheckOutDate();
         String checkOutTime = r.get(0).getCheckOutTime();
-        //String chargeStr = Integer.toString(r.get(0).getCharge());
         
         //1. 파일 객체 생성
         try{
@@ -158,8 +153,8 @@ public class CheckTextFiles {
     
     //체크인 목록 txt에서 삭제
     public static void deleteCheckInListTxt(ArrayList<Reserve> r){
-        int checkInIdx = r.get(0).getReserveIdx();
-        String checkInIdxStr = Integer.toString(checkInIdx) + "/";
+        String checkInIdx = r.get(0).getRoomNum();
+        String checkInIdxStr = checkInIdx + "/";
         
         try{
             //1. 파일 생성
@@ -194,11 +189,10 @@ public class CheckTextFiles {
     
     //체크아웃 한 고객 체크아웃 목록 txt 추가
     public static void setCheckOutListTxt(ArrayList<Reserve> r){
-         //int > String 형변환
-        String reserveIdxStr = Integer.toString(r.get(0).getReserveIdx());
+        String reserveIdxStr = r.get(0).getRoomNum();
         String reserveName = r.get(0).getName();
         String phoneNum = r.get(0).getPhoneNum();
-        String reservePeopleNumStr = Integer.toString(r.get(0).getReservePeopleNum());
+        String reservePeopleNumStr = r.get(0).getPeopleNum();
         
         LocalDate nowDate = LocalDate.now();
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy.MM.dd");
@@ -235,8 +229,8 @@ public class CheckTextFiles {
     }
 
     //roomList.txt 점유상태 변경   //t:사용중, f:비어있음
-    public static void updateRoomClean(int roomIdx){
-        String roomInxStr = Integer.toString(roomIdx) + "/";
+    public static void updateRoomClean(String roomIdx){
+        String roomInxStr = roomIdx + "/";
         
         try{
             File file = new File(ROOM_TXT_NAME);
@@ -276,8 +270,8 @@ public class CheckTextFiles {
     }
     
     //rooList.txt에서 요금 불러옴
-    public static int getRoomCharge(int roomIdx){
-        String roomInxStr = Integer.toString(roomIdx) + "/";
+    public static int getRoomCharge(String roomIdx){
+        String roomInxStr = roomIdx + "/";
         String[] splitedStr = null;
         
         try{

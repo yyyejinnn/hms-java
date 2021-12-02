@@ -184,8 +184,8 @@ public class DishTextFiles {
     }
     
     //dishCustomerList.txt에서 요금 불러옴
-    public static int getDishCharge(int roomIdx){
-        String roomInxStr = Integer.toString(roomIdx) + "/";
+    public static int getDishCharge(String roomIdx){
+        String roomInxStr = roomIdx + "/";
         String[] splitedStr = null;
         int fee = 0;
         
