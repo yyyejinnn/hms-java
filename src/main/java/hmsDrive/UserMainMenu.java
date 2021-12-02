@@ -68,6 +68,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         jButton4.setText("식품 판매 및 추적");
 
         jButton5.setText("고객 기록");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("로그아웃");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +178,12 @@ public class UserMainMenu extends javax.swing.JFrame {
         ch.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        new Record().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

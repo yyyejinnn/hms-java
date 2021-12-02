@@ -25,6 +25,15 @@ public class Reserve {  //예약 목록 클래스
         this.checkOutTime = checkOutTime;
     }
 
+    public Reserve(String reserveIdx, String name, String phoneNum, String reservePeopleStr, String checkOutDate, String checkOutTime){
+        this.reserveIdx = Integer.parseInt(reserveIdx);
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.reservePeopleNum = Integer.parseInt(reservePeopleStr);
+        this.checkOutDate = checkOutDate;
+        this.checkOutTime = checkOutTime;
+    }
+    
     public String getPhoneNum() {
         return phoneNum;
     }

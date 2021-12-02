@@ -146,6 +146,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xace0;&#xac1d; &#xae30;&#xb85d;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
