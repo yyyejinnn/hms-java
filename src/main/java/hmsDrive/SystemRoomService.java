@@ -50,6 +50,24 @@ public class SystemRoomService extends javax.swing.JFrame {
             });
         }
     }
+    
+    public SystemRoomService(int num) {
+        this.num = num;
+        initComponents();
+        
+        dTbl = (DefaultTableModel) RT_TBL.getModel();
+        
+        //레스토랑 목록 검색
+        restaurantArrayList = DishTextFiles.getRoomServiceListTxt();
+        
+        //테이블에 출력
+        for (Dishtxt r : restaurantArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getMenu(),
+                r.getFee()
+            });
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -315,7 +333,7 @@ public class SystemRoomService extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new System().setVisible(true);
+        new System(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
@@ -338,8 +356,8 @@ public class SystemRoomService extends javax.swing.JFrame {
             DishTextFiles.deleteRtRsListTxt(menu, fee, 2);
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
-            this.dispose();
-            new SystemRoomService().setVisible(true);
+            this.setVisible(false);
+            new SystemRoomService(num).setVisible(true);
         }
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
@@ -378,8 +396,8 @@ public class SystemRoomService extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
+        new SystemRoomService(num).setVisible(true);
         this.dispose();
-        new SystemRoomService().setVisible(true);
     }//GEN-LAST:event_UPDATE_OKActionPerformed
 
     private void UPDATE_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_FEE_FIELDActionPerformed
@@ -402,8 +420,8 @@ public class SystemRoomService extends javax.swing.JFrame {
             DishTextFiles.setRtRsListTxt(menu, fee, 2);
             JOptionPane.showMessageDialog(null, "룸 서비스가 추가 되었습니다.");
             INSERT_DLG.dispose();
+            new SystemRoomService(num).setVisible(true);
             this.dispose();
-            new SystemRoomService().setVisible(true);
         }
     }//GEN-LAST:event_INSERT_OKActionPerformed
 

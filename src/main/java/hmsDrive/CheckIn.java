@@ -53,6 +53,21 @@ public class CheckIn extends javax.swing.JFrame {
     public CheckIn(int num) {
         this.num = num;
         initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+        checkArrayList = CheckTextFiles.getReserveListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
+                r.getCheckInDate(),
+                r.getCheckOutDate()
+            });
+        }
     }
 
     /**
@@ -243,7 +258,7 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
-        Check pre = new Check();
+        Check pre = new Check(num);
         pre.setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed

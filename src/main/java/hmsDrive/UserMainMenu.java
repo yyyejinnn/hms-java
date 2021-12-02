@@ -163,11 +163,11 @@ public class UserMainMenu extends javax.swing.JFrame {
     //시스템 관리 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new System().setVisible(true);
+        new System(1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    //상단 메뉴바 뒤로가기 버튼
+    //예약
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Reservation rv = new Reservation(1);
@@ -185,7 +185,7 @@ public class UserMainMenu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new Record().setVisible(true);
+        new Record(1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 

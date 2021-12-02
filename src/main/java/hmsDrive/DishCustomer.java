@@ -20,10 +20,35 @@ public class DishCustomer extends javax.swing.JFrame {
     /**
      * Creates new form CheckInSrc
      */
+    
+    public int num;
+    
     private ArrayList<Dishtxt> dCustomerArrayList = new ArrayList<>();
     private DefaultTableModel dTbl;
     
     public DishCustomer() {  //예약된 전체 목록 출력
+        initComponents();
+        
+        dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
+        
+        //예약자 목록 검색
+        dCustomerArrayList = DishTextFiles.getDishCustomerListTxt();
+        
+        //테이블에 출력
+        for (Dishtxt r : dCustomerArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomIdx(),
+                r.getName(),
+                r.getPeopleNum(),
+                r.getMenu(),
+                r.getFee()
+            });
+        }
+        
+    }
+    
+    public DishCustomer(int num) {  //예약된 전체 목록 출력
+        this.num = num;
         initComponents();
         
         dTbl = (DefaultTableModel) DCUSTOMER_TABLE.getModel();
@@ -211,7 +236,7 @@ public class DishCustomer extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new Dish().setVisible(true);
+        new Dish(num).setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
@@ -235,7 +260,7 @@ public class DishCustomer extends javax.swing.JFrame {
             DishTextFiles.deleteDishCustomerListTxt(dCustomerIdx);
             JOptionPane.showMessageDialog(null, "식사서비스가 취소 되었습니다.");
         
-            new DishCustomer().setVisible(true);
+            new DishCustomer(num).setVisible(true);
             this.dispose();
         }
         
@@ -244,7 +269,7 @@ public class DishCustomer extends javax.swing.JFrame {
     //이전 버튼
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
-        new Dish().setVisible(true);
+        new Dish(num).setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed
 
@@ -292,7 +317,7 @@ public class DishCustomer extends javax.swing.JFrame {
             DishTextFiles.deleteDishCustomerListTxt(dCustomerIdx);
             JOptionPane.showMessageDialog(null, "식사서비스가 완료 되었습니다.");
         
-            new DishCustomer().setVisible(true);
+            new DishCustomer(num).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_FINISH_BTNActionPerformed

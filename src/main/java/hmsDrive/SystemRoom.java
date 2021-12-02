@@ -54,6 +54,25 @@ public class SystemRoom extends javax.swing.JFrame {
             });
         }
     }
+    
+    public SystemRoom(int num) {
+        this.num = num;
+        initComponents();
+        
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        
+        //객실 목록 검색
+        roomArrayList  = RoomTextFiles.getRoomListTxt();
+        
+        //테이블에 출력
+        for (String[] r : roomArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r[0],  //방번호
+                r[1],  //인원수
+                r[2]   //요금
+            });
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -409,7 +428,7 @@ public class SystemRoom extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new System().setVisible(true);
+        new System(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
@@ -430,7 +449,7 @@ public class SystemRoom extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
-            new SystemRoom().setVisible(true);
+            new SystemRoom(num).setVisible(true);
         }
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
@@ -481,9 +500,6 @@ public class SystemRoom extends javax.swing.JFrame {
             ROOM_TYPE_DLG.dispose();
             UPDATE_DLG.setVisible(true);
         }
-        
-        
-       
     }//GEN-LAST:event_ROOM_TYPE_OKActionPerformed
 
     private void INSERT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INSERT_OKActionPerformed
@@ -498,15 +514,14 @@ public class SystemRoom extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else if (row == 100) {  //호텔이 100개이면
             JOptionPane.showMessageDialog(null, "이 호텔의 객실은 100개로 한정되어있습니다.");
-            INSERT_DLG.dispose();
         } else if(!(roomIdx.substring(0,0).matches("[1-5]"))){
             JOptionPane.showMessageDialog(null, "객실 번호는 1~5사이의 번호로 시작되어야합니다.");
         } else {
             RoomTextFiles.setRoomListTxt(roomIdx);
             JOptionPane.showMessageDialog(null, "객실이 추가 되었습니다.");
-            INSERT_DLG.dispose();
-            this.dispose();
-            new SystemRoom().setVisible(true);
+            INSERT_DLG.setVisible(false);
+            this.setVisible(false);
+            new SystemRoom(num).setVisible(true);
         }
        
     }//GEN-LAST:event_INSERT_OKActionPerformed
@@ -522,10 +537,10 @@ public class SystemRoom extends javax.swing.JFrame {
         RoomTextFiles.updateRoomListTxt(roomTypeIdx, updatePeopleNum, updateFee);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
-        UPDATE_DLG.dispose();
-        ROOM_TYPE_DLG.dispose();
-        this.dispose();
-        new SystemRoom().setVisible(true);
+        UPDATE_DLG.setVisible(false);
+        ROOM_TYPE_DLG.setVisible(false);
+        this.setVisible(false);
+        new SystemRoom(num).setVisible(true);
     }//GEN-LAST:event_UPDATE_OKActionPerformed
 
     private void ROOM_TYPE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ROOM_TYPE_FIELDActionPerformed

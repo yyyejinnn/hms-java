@@ -133,7 +133,7 @@ public class Dish extends javax.swing.JFrame {
 //레스토랑 버튼
     private void RT_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RT_BTNActionPerformed
         // TODO add your handling code here:
-        Restaurant rt = new Restaurant();
+        Restaurant rt = new Restaurant(num);
         rt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RT_BTNActionPerformed
@@ -141,7 +141,7 @@ public class Dish extends javax.swing.JFrame {
     //룸서비스 버튼
     private void RS_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RS_BTNActionPerformed
         // TODO add your handling code here:
-        RoomService rs = new RoomService();
+        RoomService rs = new RoomService(num);
         rs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RS_BTNActionPerformed
@@ -171,7 +171,7 @@ public class Dish extends javax.swing.JFrame {
     //서비스 신청내역 조회
     private void SEARCH_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BTNActionPerformed
         // TODO add your handling code here:
-        new DishCustomer().setVisible(true);
+        new DishCustomer(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SEARCH_BTNActionPerformed
 
