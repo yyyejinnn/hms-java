@@ -254,15 +254,18 @@ public class CheckTextFiles extends TextFiles {
 
     //***feedbackList.txt****//
      //피드백 내역 불러옴    
+    
     public static ArrayList getFeedbackListTxt(){
         ArrayList<String> feedbackArrayList = new ArrayList<>();  //피드백 목록 객체
+        String str = null;
         
         try {
-            BufferedReader in = new BufferedReader(new FileReader(FEEDBACK_TXT_NAME));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(FEEDBACK_TXT_NAME),"utf-8"));
             String line = null;
             
             while ((line = in.readLine()) != null) {  //라인 단위로 읽어옴
-              feedbackArrayList.add(line);
+              str = line;
+              feedbackArrayList.add(str);
             }
             in.close();
             
