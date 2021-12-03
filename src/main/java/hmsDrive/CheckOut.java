@@ -276,25 +276,30 @@ public class CheckOut extends javax.swing.JFrame {
         int row = -1;
         
         row = CHECKIN_TABLE.getSelectedRow();
-        String checkInIdx = (String) dTable.getValueAt(row, 0);
         
-       //체크아웃 실행
-        try {
-            checkArrayList = check.check(checkInIdx.trim(),2);  //1: 체크인 2: 체크아웃
-            checkOut.checkOut(checkArrayList);
-            int[] feeArray = checkOut.pay(checkArrayList);
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "체크인할 객실을 선택해주십시오.");
+        }else{
+            String checkInIdx = (String) dTable.getValueAt(row, 0);
+        
+            //체크아웃 실행
+            try {
+                checkArrayList = check.check(checkInIdx.trim(),2);  //1: 체크인 2: 체크아웃
+                checkOut.checkOut(checkArrayList);
+                int[] feeArray = checkOut.pay(checkArrayList);
             
-            new Pay(num, feeArray).setVisible(true);  //결제
-            dispose();
+                new Pay(num, feeArray).setVisible(true);  //결제
+                dispose();
             
-        } catch (IOException ex) {
-            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_CHECKOUT_BTNActionPerformed
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
-        Check pre = new Check();
+        Check pre = new Check(num);
         pre.setVisible(true);
         dispose();
     }//GEN-LAST:event_PRE_BTNActionPerformed
@@ -332,7 +337,7 @@ public class CheckOut extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckOut().setVisible(true);
+                new CheckOut(2).setVisible(true);
             }
         });
     }

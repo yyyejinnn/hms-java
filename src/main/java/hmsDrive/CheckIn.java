@@ -240,20 +240,23 @@ public class CheckIn extends javax.swing.JFrame {
         int row = -1;
         
         row = CHECKIN_TABLE.getSelectedRow();
-        String checkInIdx = (String) dTable.getValueAt(row, 0);
         
-       //체크인 실행
-        try {
-            checkArrayList = check.check(checkInIdx.trim(),1);  //1: 체크인 2: 체크아웃            
-            checkIn.checkIn(checkArrayList);
-            JOptionPane.showMessageDialog(null, "체크인 완료했습니다.");
-            dTable.setNumRows(0);
+        if (row == -1){
+            JOptionPane.showMessageDialog(null, "체크인할 객실을 선택해주십시오.");
+        } else{
+            String checkInIdx = (String) dTable.getValueAt(row, 0);
+        
+            //체크인 실행
+            try {
+                checkArrayList = check.check(checkInIdx.trim(),1);  //1: 체크인 2: 체크아웃            
+                checkIn.checkIn(checkArrayList);
+                JOptionPane.showMessageDialog(null, "체크인 완료했습니다.");
+                dTable.setNumRows(0);
             
-        } catch (IOException ex) {
-            Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-        
     }//GEN-LAST:event_CHECKIN_BTNActionPerformed
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
@@ -278,7 +281,7 @@ public class CheckIn extends javax.swing.JFrame {
             //예약 되지않은 고객일 경우
             if(checkArrayList.isEmpty()){
                 JOptionPane.showMessageDialog(null, "예약되지않은 고객입니다. 예약이 필요합니다.");
-                new Reservation().setVisible(true); //예약화면으로 돌아가기
+                new Reservation(num).setVisible(true); //예약화면으로 돌아가기
                 dispose();
             } else{
                 //테이블에 검색 목록 출력
@@ -332,7 +335,7 @@ public class CheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn().setVisible(true);
+                new CheckIn(2).setVisible(true);
             }
         });
     }
