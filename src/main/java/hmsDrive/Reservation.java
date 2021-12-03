@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package hmsDrive;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +25,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.lang.System;
 
-import hmsDrive.Reser;
+import hms.object.Reserve;
+import hms.textfiles.RoomTextFiles;
 /**
  *
  * @author PCB
@@ -35,7 +35,7 @@ public final class Reservation extends javax.swing.JFrame {
 
     public int num;
 
-    ArrayList<Reser> reserList = new ArrayList<>();  // 어레이 리스트 생성
+    ArrayList<Reserve> reserList = new ArrayList<>();  // 어레이 리스트 생성
 
     public Reservation() {
         initComponents();
@@ -62,7 +62,7 @@ public final class Reservation extends javax.swing.JFrame {
 
             while ((line = br.readLine()) != null) {  // 더 이상 읽을 데이터가 없을 때 까지 
                 str = line.split("/");  // 구분자(/)로 데이터 자르기  
-                reserList.add(new Reser(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8]));  // 어레이리스트에 데이터 넣기 
+                reserList.add(new Reserve(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8]));  // 어레이리스트에 데이터 넣기 
             }
 
             br.close();  // 파일 닫기
@@ -134,6 +134,7 @@ public final class Reservation extends javax.swing.JFrame {
         expCheckinTime = new javax.swing.JTextField();
         expCheckoutDate = new javax.swing.JTextField();
         expCheckoutTime = new javax.swing.JTextField();
+        FEE_BTN = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -191,6 +192,11 @@ public final class Reservation extends javax.swing.JFrame {
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        ROOM_DLG = new javax.swing.JDialog();
+        OK_BTN = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ROOM_TBL = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButt_SEARCH = new javax.swing.JButton();
@@ -236,6 +242,13 @@ public final class Reservation extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
         jLabel15.setText("예약 추가");
 
+        FEE_BTN.setText("객실 요금");
+        FEE_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FEE_BTNActionPerformed(evt);
+            }
+        });
+
         jMenu2.setText("메뉴");
 
         jMenuItem3.setText("창 닫기");
@@ -255,10 +268,10 @@ public final class Reservation extends javax.swing.JFrame {
         jDialog_addLayout.setHorizontalGroup(
             jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog_addLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDialog_addLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
                         .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel8)
@@ -278,7 +291,9 @@ public final class Reservation extends javax.swing.JFrame {
                             .addComponent(expCheckinTime)
                             .addComponent(expCheckoutDate)
                             .addComponent(expCheckoutTime, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FEE_BTN)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_addLayout.createSequentialGroup()
                 .addGap(0, 183, Short.MAX_VALUE)
                 .addComponent(jLabel15)
@@ -289,10 +304,11 @@ public final class Reservation extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_addLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(roomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FEE_BTN))
                 .addGap(18, 18, 18)
                 .addGroup(jDialog_addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -323,7 +339,7 @@ public final class Reservation extends javax.swing.JFrame {
                     .addComponent(expCheckoutTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jDialog_search.setMinimumSize(new java.awt.Dimension(900, 350));
@@ -671,6 +687,72 @@ public final class Reservation extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
+        ROOM_DLG.setMinimumSize(new java.awt.Dimension(490, 300));
+
+        OK_BTN.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        OK_BTN.setText("확인");
+        OK_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OK_BTNActionPerformed(evt);
+            }
+        });
+
+        ROOM_TBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "인덱스", "유형", "인원수", "요금"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(ROOM_TBL);
+
+        jLabel3.setFont(new java.awt.Font("굴림", 0, 10)); // NOI18N
+        jLabel3.setText("※ 인덱스는 객실 번호의 첫번째 숫자를 의미합니다.");
+
+        javax.swing.GroupLayout ROOM_DLGLayout = new javax.swing.GroupLayout(ROOM_DLG.getContentPane());
+        ROOM_DLG.getContentPane().setLayout(ROOM_DLGLayout);
+        ROOM_DLGLayout.setHorizontalGroup(
+            ROOM_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_DLGLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(ROOM_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ROOM_DLGLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_DLGLayout.createSequentialGroup()
+                        .addGroup(ROOM_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OK_BTN, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))))
+        );
+        ROOM_DLGLayout.setVerticalGroup(
+            ROOM_DLGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ROOM_DLGLayout.createSequentialGroup()
+                .addContainerGap(76, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
+                .addComponent(OK_BTN)
+                .addGap(23, 23, 23))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
@@ -856,7 +938,7 @@ public final class Reservation extends javax.swing.JFrame {
         table.setNumRows(0);
         for (int i = 0; i < reserList.size(); i++) {
             if (phoneNum.equals(reserList.get(i).getPhoneNum())) {  // 입력받은 전화번호와 에러이리스트의 전화번호가 같은 인덱스  
-                Object[] list = {reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime()};
+                Object[] list = {reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime()};
                 table.addRow(list);  // 테이블에 리스트 넣기 
             }
         }
@@ -932,7 +1014,7 @@ public final class Reservation extends javax.swing.JFrame {
 
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 텍스트 파일에 넣기
                 }
                 bw.close();
@@ -975,7 +1057,7 @@ public final class Reservation extends javax.swing.JFrame {
                     reservationNum = Integer.toString(a);  // string형으로 변환
 
                     //리스트에 저장
-                    reserList.add(new Reser(reservationNum, roomNum.getText(), name.getText(), phoneNum.getText(), peopleNum.getText(), expCheckinDate.getText(), expCheckinTime.getText(), expCheckoutDate.getText(), expCheckoutTime.getText()));
+                    reserList.add(new Reserve(reservationNum, roomNum.getText(), name.getText(), phoneNum.getText(), peopleNum.getText(), expCheckinDate.getText(), expCheckinTime.getText(), expCheckoutDate.getText(), expCheckoutTime.getText()));
                     BufferedWriter bw;
 
                     bw = new BufferedWriter(new FileWriter("Reser.txt", true)); // 파일 열기
@@ -1059,12 +1141,12 @@ public final class Reservation extends javax.swing.JFrame {
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
                         reserList.get(i).setPeopleNum(peopleNum);
-                        reserList.get(i).setExpCheckinDate(expCheckinDate);
-                        reserList.get(i).setExpCheckinTime(expCheckinTime);
-                        reserList.get(i).setExpCheckoutDate(expCheckoutDate);
-                        reserList.get(i).setExpCheckoutTime(expCheckoutTime);
+                        reserList.get(i).setCheckInDate(expCheckinDate);
+                        reserList.get(i).setCheckInTime(expCheckinTime);
+                        reserList.get(i).setCheckOutDate(expCheckoutDate);
+                        reserList.get(i).setCheckOutTime(expCheckoutTime);
                     }
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);
                 }
                 bw.close();
@@ -1154,7 +1236,7 @@ public final class Reservation extends javax.swing.JFrame {
 
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 파일에 쓰기
                 }
                 bw.close();
@@ -1214,12 +1296,12 @@ public final class Reservation extends javax.swing.JFrame {
                         reserList.get(i).setName(name);
                         reserList.get(i).setPhoneNum(phoneNum);
                         reserList.get(i).setPeopleNum(peopleNum);
-                        reserList.get(i).setExpCheckinDate(expCheckinDate);
-                        reserList.get(i).setExpCheckinTime(expCheckinTime);
-                        reserList.get(i).setExpCheckoutDate(expCheckoutDate);
-                        reserList.get(i).setExpCheckoutTime(expCheckoutTime);
+                        reserList.get(i).setCheckInDate(expCheckinDate);
+                        reserList.get(i).setCheckInTime(expCheckinTime);
+                        reserList.get(i).setCheckOutDate(expCheckoutDate);
+                        reserList.get(i).setCheckOutTime(expCheckoutTime);
                     }
-                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getExpCheckinDate(), reserList.get(i).getExpCheckinTime(), reserList.get(i).getExpCheckoutDate(), reserList.get(i).getExpCheckoutTime());
+                    str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);
                 }
                 bw.close();
@@ -1255,6 +1337,35 @@ public final class Reservation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void FEE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FEE_BTNActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        dTbl = (DefaultTableModel) ROOM_TBL.getModel();
+        
+        ArrayList<String[]> roomArrayList = new ArrayList<>();
+        roomArrayList = RoomTextFiles.getRoomTypeListTxt();
+        
+        //테이블에 출력
+        for (String[] r : roomArrayList){
+            
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r[0],  //방번호
+                r[1],  //유형
+                r[2],  //인원수
+                r[3]   //요금
+            });
+        }
+        
+        jDialog_add.setVisible(false);
+        ROOM_DLG.setVisible(true);
+    }//GEN-LAST:event_FEE_BTNActionPerformed
+
+    private void OK_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OK_BTNActionPerformed
+        // TODO add your handling code here:
+        ROOM_DLG.dispose();
+        jDialog_add.setVisible(true);
+    }//GEN-LAST:event_OK_BTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1272,13 +1383,13 @@ public final class Reservation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reserve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reserve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reserve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reserve.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -1292,6 +1403,10 @@ public final class Reservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton FEE_BTN;
+    private javax.swing.JButton OK_BTN;
+    private javax.swing.JDialog ROOM_DLG;
+    private javax.swing.JTable ROOM_TBL;
     private javax.swing.JButton add;
     private javax.swing.JTextField cExpCheckinDate;
     private javax.swing.JTextField cExpCheckinTime;
@@ -1337,6 +1452,7 @@ public final class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1363,6 +1479,7 @@ public final class Reservation extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField name;
     private javax.swing.JTextField peopleNum;

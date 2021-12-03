@@ -1,5 +1,5 @@
 
-package hms.room;
+package hms.object;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -6,8 +6,8 @@
 package hmsDrive;
 
 import hms.check.CheckOutSrc;
-import hms.room.Reserve;
-import hms.textfiles.RecordTextFiles;
+import hms.object.Reserve;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -34,7 +34,24 @@ public class RecordFeedback extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) FEEDBACK_TBL.getModel();
         
         //피드백 내역 검색
-        feedbackArrayList = RecordTextFiles.getFeedbackListTxt();
+        feedbackArrayList = CheckTextFiles.getFeedbackListTxt();
+        
+        //테이블에 출력
+        for (String str : feedbackArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                str
+            });
+        }
+    }
+    
+    public RecordFeedback(int num) {
+        this.num = num;
+        initComponents();
+        
+        dTbl = (DefaultTableModel) FEEDBACK_TBL.getModel();
+        
+        //피드백 내역 검색
+        feedbackArrayList = CheckTextFiles.getFeedbackListTxt();
         
         //테이블에 출력
         for (String str : feedbackArrayList){
@@ -156,8 +173,8 @@ public class RecordFeedback extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        new Record(num).setVisible(true);
         this.dispose();
-        new Record().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -167,8 +184,8 @@ public class RecordFeedback extends javax.swing.JFrame {
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
+        new Record(num).setVisible(true);
         this.dispose();
-        new Record().setVisible(true);
     }//GEN-LAST:event_PRE_BTNActionPerformed
 
     /**

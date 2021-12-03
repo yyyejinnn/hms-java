@@ -5,10 +5,10 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckOutSrc;
-import hms.textfiles.RecordTextFiles;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,15 +35,37 @@ public class RecordCheckOut extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) CHECKOUT_TBL.getModel();
         
         //체크아웃 목록 검색
-        checkOutArrayList = RecordTextFiles.getCheckOutListTxt();
+        checkOutArrayList = CheckTextFiles.getCheckOutListTxt();
         
         //테이블에 출력
         for (Reserve r : checkOutArrayList){
             dTbl.insertRow(dTbl.getRowCount(), new Object[]{
-                Integer.toString(r.getReserveIdx()),
+                r.getRoomNum(),
                 r.getName(),
                 r.getPhoneNum(),
-                Integer.toString(r.getReservePeopleNum()),
+                r.getPeopleNum(),
+                r.getCheckOutDate(),
+                r.getCheckOutTime()
+            });
+        }
+    }
+    
+    public RecordCheckOut(int num) {
+        this.num = num;
+        initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKOUT_TBL.getModel();
+        
+        //체크아웃 목록 검색
+        checkOutArrayList = CheckTextFiles.getCheckOutListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkOutArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
                 r.getCheckOutDate(),
                 r.getCheckOutTime()
             });
@@ -164,8 +186,8 @@ public class RecordCheckOut extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        new Record(num).setVisible(true);
         this.dispose();
-        new Record().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -175,8 +197,8 @@ public class RecordCheckOut extends javax.swing.JFrame {
 
     private void PRE_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRE_BTNActionPerformed
         // TODO add your handling code here:
+        new Record(num).setVisible(true);
         this.dispose();
-        new Record().setVisible(true);
     }//GEN-LAST:event_PRE_BTNActionPerformed
 
     /**

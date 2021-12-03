@@ -5,9 +5,10 @@
  */
 package hmsDrive;
 
-import hms.room.Reserve;
+import hms.object.Reserve;
 import hms.check.CheckSrc;
 import hms.check.CheckOutSrc;
+import hms.textfiles.CheckTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,16 +27,47 @@ public class CheckOut extends javax.swing.JFrame {
     private ArrayList<Reserve> checkArrayList = new ArrayList<>();
     private CheckSrc check = new CheckSrc();
     private CheckOutSrc checkOut = new CheckOutSrc();
+    private DefaultTableModel dTbl;
     
     public int num;
     
     public CheckOut() {
         initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+        checkArrayList = CheckTextFiles.getCheckListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
+                r.getCheckInDate(),
+                r.getCheckOutDate()
+            });
+        }
     }
     
     public CheckOut(int num) {
         this.num = num;
         initComponents();
+        
+        dTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
+        checkArrayList = CheckTextFiles.getCheckListTxt();
+        
+        //테이블에 출력
+        for (Reserve r : checkArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getRoomNum(),
+                r.getName(),
+                r.getPhoneNum(),
+                r.getPeopleNum(),
+                r.getCheckInDate(),
+                r.getCheckOutDate()
+            });
+        }
     }
 
     /**
@@ -195,7 +227,7 @@ public class CheckOut extends javax.swing.JFrame {
             String search = SEARCH_FIELD.getText();
             DefaultTableModel searchTbl;
             searchTbl = (DefaultTableModel) CHECKIN_TABLE.getModel();
-            searchTbl.setNumRows(0);
+            searchTbl.setRowCount(0);
             
             //체크인 목록 검색
             checkArrayList = check.check(search.trim(), 2);  //1: 체크인 2: 체크아웃
@@ -207,12 +239,12 @@ public class CheckOut extends javax.swing.JFrame {
             //테이블에 검색 목록 출력
                 for (Reserve r : checkArrayList){
                     searchTbl.insertRow(searchTbl.getRowCount(), new Object[]{
-                        Integer.toString(r.getReserveIdx()),
-                        r.getName(),
-                        r.getPhoneNum(),
-                        Integer.toString(r.getReservePeopleNum()),
-                        r.getCheckInDate(),
-                        r.getCheckOutDate()
+                         r.getRoomNum(),
+                         r.getName(),
+                         r.getPhoneNum(),
+                         r.getPeopleNum(),
+                         r.getCheckInDate(),
+                         r.getCheckOutDate()
                         });
                 }
             }
@@ -252,7 +284,7 @@ public class CheckOut extends javax.swing.JFrame {
             checkOut.checkOut(checkArrayList);
             int[] feeArray = checkOut.pay(checkArrayList);
             
-            new Pay(feeArray).setVisible(true);  //결제
+            new Pay(num, feeArray).setVisible(true);  //결제
             dispose();
             
         } catch (IOException ex) {

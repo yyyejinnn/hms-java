@@ -17,11 +17,14 @@ public class Pay extends javax.swing.JFrame {
     /**
      * Creates new form Pay
      */
+    public int num;
+    
     public Pay(){
         initComponents();
     }
     
-    public Pay(int[] feeArray) {
+    public Pay(int num, int[] feeArray) {
+        this.num = num;
         initComponents();
         
         ButtonGroup pay = new ButtonGroup();
@@ -295,7 +298,7 @@ public class Pay extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        CheckOut ckOut = new CheckOut();
+        CheckOut ckOut = new CheckOut(num);
         ckOut.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -327,7 +330,7 @@ public class Pay extends javax.swing.JFrame {
         String feedbackStr = FEEDBACK_FIELD.getText();
         CheckTextFiles.setFeedbackListTxt(feedbackStr);  //피드백 저장
         JOptionPane.showMessageDialog(null, "감사합니다.");
-        new Check().setVisible(true);
+        new Check(num).setVisible(true);
         feedbackDialog.dispose();
     }//GEN-LAST:event_OK_BTNActionPerformed
 

@@ -6,8 +6,8 @@
 package hmsDrive;
 
 import hms.check.CheckInSrc;
-import hms.room.Dishtxt;
-import hms.textfiles.SystemTextFiles;
+import hms.object.Dishtxt;
+import hms.textfiles.DishTextFiles;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -40,7 +40,25 @@ public class SystemRestaurant extends javax.swing.JFrame {
         dTbl = (DefaultTableModel) RT_TBL.getModel();
         
         //레스토랑 목록 검색
-        restaurantArrayList = SystemTextFiles.getRestaurantListTxt();
+        restaurantArrayList = DishTextFiles.getRestaurantListTxt();
+        
+        //테이블에 출력
+        for (Dishtxt r : restaurantArrayList){
+            dTbl.insertRow(dTbl.getRowCount(), new Object[]{
+                r.getMenu(),
+                r.getFee()
+            });
+        }
+    }
+    
+    public SystemRestaurant(int num) {
+        this.num = num;
+        initComponents();
+        
+        dTbl = (DefaultTableModel) RT_TBL.getModel();
+        
+        //레스토랑 목록 검색
+        restaurantArrayList = DishTextFiles.getRestaurantListTxt();
         
         //테이블에 출력
         for (Dishtxt r : restaurantArrayList){
@@ -315,7 +333,7 @@ public class SystemRestaurant extends javax.swing.JFrame {
     //상단 메뉴바 뒤로가기 버튼
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new System().setVisible(true);
+        new System(num).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //상단 메뉴바 종료 버튼
@@ -335,11 +353,11 @@ public class SystemRestaurant extends javax.swing.JFrame {
             menu = (String) dTbl.getValueAt(row, 0);
             fee = (String) dTbl.getValueAt(row, 1);
             
-            SystemTextFiles.deleteRtRsListTxt(menu, fee, 1);
+            DishTextFiles.deleteRtRsListTxt(menu, fee, 1);
             
             JOptionPane.showMessageDialog(null, "삭제 완료되었습니다.");
             this.dispose();
-            new SystemRestaurant().setVisible(true);
+            new SystemRestaurant(num).setVisible(true);
         }
     }//GEN-LAST:event_DELETE_BTNActionPerformed
 
@@ -375,12 +393,12 @@ public class SystemRestaurant extends javax.swing.JFrame {
         updateMenu = UPDATE_MENU_FIELD.getText();
         updateFee = UPDATE_FEE_FIELD.getText();
         
-        SystemTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 1);
+        DishTextFiles.updateRtRsListTxt(menu, fee, updateMenu, updateFee, 1);
         
         JOptionPane.showMessageDialog(null, "수정 완료되었습니다.");
         UPDATE_DLG.dispose();
         this.dispose();
-        new SystemRestaurant().setVisible(true);
+        new SystemRestaurant(num).setVisible(true);
     }//GEN-LAST:event_UPDATE_OKActionPerformed
 
     private void UPDATE_FEE_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPDATE_FEE_FIELDActionPerformed
@@ -400,11 +418,11 @@ public class SystemRestaurant extends javax.swing.JFrame {
         if(menu.equals("") | fee.equals("")){
             JOptionPane.showMessageDialog(null, "빈칸을 채워주십시오.");
         } else {
-            SystemTextFiles.setRtRsListTxt(menu, fee, 1);
+            DishTextFiles.setRtRsListTxt(menu, fee, 1);
             JOptionPane.showMessageDialog(null, "레스토랑 서비스가 추가 되었습니다.");
             INSERT_DLG.dispose();
             this.dispose();
-            new SystemRestaurant().setVisible(true);
+            new SystemRestaurant(num).setVisible(true);
         }
     }//GEN-LAST:event_INSERT_OKActionPerformed
 
