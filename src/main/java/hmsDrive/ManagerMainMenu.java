@@ -166,7 +166,7 @@ public class ManagerMainMenu extends javax.swing.JFrame {
     //상단 메뉴바 종료 버튼
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        java.lang.System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // 로그아웃 버튼

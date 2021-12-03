@@ -1,13 +1,12 @@
 
 package hmsDrive;
 
+import hms.usercontrol.UserControlSrc;
+
 public class Login extends javax.swing.JFrame {
 
     public int num;                             //1이면 직원 2면 매니저
-    public String id;
-    public String password;
-    
-    
+    public UserControlSrc ucs = new UserControlSrc();
     
     
     public Login() {
@@ -17,16 +16,6 @@ public class Login extends javax.swing.JFrame {
     public Login(int num) {
         super("로그인");
         this.num = num;
-        if(num == 1) {              //직원이면
-            id = "user1";
-            password = "1111";
-        }
-        else if(num == 2) {          //매니저이면
-            id = "manager";
-            password = "2222";
-        }
-        else {
-        }
         initComponents();
     }
     public int getnum() {
@@ -162,12 +151,15 @@ public class Login extends javax.swing.JFrame {
     //로그인 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(num==1&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
+        int successNum = 0;
+        
+        successNum = ucs.loginLogic(num, jTextField1.getText(),jPasswordField1.getText());
+        if(successNum == 1) {
             UserMainMenu user = new UserMainMenu();
             user.setVisible(true);
             this.setVisible(false);
         }
-        else if(num==2&&id.equals(jTextField1.getText())&&password.equals(jPasswordField1.getText())) {
+        else if(successNum == 2) {
             ManagerMainMenu manager = new ManagerMainMenu();
             manager.setVisible(true);
             this.setVisible(false);
