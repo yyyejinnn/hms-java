@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class UserControlSrc {
     
-    File UserIDlist = new File("UserIDlist.txt");
+    File UserIDlist = new File("./txtFiles/UserIDlist.txt");
     
     //UserIDlist.txt 파일 읽어오기 
     public ArrayList fileread() throws FileNotFoundException, IOException

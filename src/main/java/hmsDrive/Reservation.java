@@ -57,7 +57,7 @@ public final class Reservation extends javax.swing.JFrame {
 
         try {
             //읽을 파일 열기
-            BufferedReader br = new BufferedReader(new FileReader("Reser.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("./txtFiles/Reser.txt"));
 
             String line = "";
             String[] str = null;
@@ -92,7 +92,7 @@ public final class Reservation extends javax.swing.JFrame {
         try {
             DefaultTableModel table = (DefaultTableModel) reserTable.getModel();
 
-            BufferedReader br = new BufferedReader(new FileReader("Reser.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("./txtFiles/Reser.txt"));
 
             while ((line = br.readLine()) != null) {  // 읽을 데이터가 없을 때 까지
                 key = line.split("/");  // 구분자(/)로 데이터 자르기 
@@ -1014,7 +1014,7 @@ public final class Reservation extends javax.swing.JFrame {
                     }
                 }
 
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("./txtFiles/Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
                     str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 텍스트 파일에 넣기
@@ -1062,7 +1062,7 @@ public final class Reservation extends javax.swing.JFrame {
                     reserList.add(new Reserve(reservationNum, roomNum.getText(), name.getText(), phoneNum.getText(), peopleNum.getText(), expCheckinDate.getText(), expCheckinTime.getText(), expCheckoutDate.getText(), expCheckoutTime.getText()));
                     BufferedWriter bw;
 
-                    bw = new BufferedWriter(new FileWriter("Reser.txt", true)); // 파일 열기
+                    bw = new BufferedWriter(new FileWriter("./txtFiles/Reser.txt", true)); // 파일 열기
 
                     String str = null;
 
@@ -1132,8 +1132,8 @@ public final class Reservation extends javax.swing.JFrame {
 
                 setArr();  // 파일 데이터 어레이 리스트에 넣기
 
-                file = new FileOutputStream("Reser.txt");
-                BufferedWriter bw = new BufferedWriter(new FileWriter("Reser.txt"));
+                file = new FileOutputStream("./txtFiles/Reser.txt");
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./txtFiles/Reser.txt"));
 
                 for (int i = 0; i < reserList.size(); i++) {
 
@@ -1236,7 +1236,7 @@ public final class Reservation extends javax.swing.JFrame {
                     }
                 }
 
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Reser.txt")));
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("./txtFiles/Reser.txt")));
                 for (int i = 0; i < reserList.size(); i++) {
                     str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s%n", reserList.get(i).getReservationNum(), reserList.get(i).getRoomNum(), reserList.get(i).getName(), reserList.get(i).getPhoneNum(), reserList.get(i).getPeopleNum(), reserList.get(i).getCheckInDate(), reserList.get(i).getCheckInTime(), reserList.get(i).getCheckOutDate(), reserList.get(i).getCheckOutTime());
                     bw.write(str);  // 파일에 쓰기
@@ -1287,8 +1287,8 @@ public final class Reservation extends javax.swing.JFrame {
 
                 setArr();  // 파일 데이터 어레이 리스트에 넣기
 
-                file = new FileOutputStream("Reser.txt");
-                BufferedWriter bw = new BufferedWriter(new FileWriter("Reser.txt"));
+                file = new FileOutputStream("./txtFiles/Reser.txt");
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./txtFiles/Reser.txt"));
 
                 for (int i = 0; i < reserList.size(); i++) {
 
@@ -1399,7 +1399,7 @@ public final class Reservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reservation().setVisible(true);
+                new Reservation(2).setVisible(true);
             }
         });
     }

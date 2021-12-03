@@ -11,19 +11,19 @@ package hms.textfiles;
  */
 public class TextFiles {
     //CheckTextFiles
-    protected static final String RESERVE_TXT_NAME = "Reser.txt";
-    protected static final String CHECKIN_TXT_NAME = "checkInList.txt";
-    protected static final String CHECKOUT_TXT_NAME = "checkOutList.txt";
-    protected static final String FEEDBACK_TXT_NAME = "feedback.txt";
+    protected static final String RESERVE_TXT_NAME = "./txtFiles/Reser.txt";
+    protected static final String CHECKIN_TXT_NAME = "./txtFiles/checkInList.txt";
+    protected static final String CHECKOUT_TXT_NAME = "./txtFiles/checkOutList.txt";
+    protected static final String FEEDBACK_TXT_NAME = "./txtFiles/feedback.txt";
     
     //DishTextFiles
-    protected static final String RT_TXT_NAME = "restaurantList.txt";
-    protected static final String RS_TXT_NAME = "roomServiceList.txt";
-    protected static final String DISH_TXT_NAME = "dishCustomerList.txt";
+    protected static final String RT_TXT_NAME = "./txtFiles/restaurantList.txt";
+    protected static final String RS_TXT_NAME = "./txtFiles/roomServiceList.txt";
+    protected static final String DISH_TXT_NAME = "./txtFiles/dishCustomerList.txt";
     
     //RoomTextFiles
-    protected static final String ROOM_TXT_NAME = "roomList.txt";
-    protected static final String ROOM_TYPE_TXT_NAME = "roomTypeList.txt";
+    protected static final String ROOM_TXT_NAME = "./txtFiles/roomList.txt";
+    protected static final String ROOM_TYPE_TXT_NAME = "./txtFiles/roomTypeList.txt";
     
     
     
