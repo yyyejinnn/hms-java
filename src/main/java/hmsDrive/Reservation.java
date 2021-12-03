@@ -38,7 +38,7 @@ public final class Reservation extends javax.swing.JFrame {
     ArrayList<Reserve> reserList = new ArrayList<>();  // 어레이 리스트 생성
 
     public Reservation() {
-        initComponents();
+        initComponents();        
         reserList();  // 테이블에 예약 리스트 넣는 함수
         setArr();  // 텍스트 파일 구분자로 잘라서 어레이리스트에 넣는 함수 
     }
@@ -46,6 +46,8 @@ public final class Reservation extends javax.swing.JFrame {
     public Reservation(int num) {
         this.num = num;
         initComponents();
+        reserList();  // 테이블에 예약 리스트 넣는 함수
+        setArr();  // 텍스트 파일 구분자로 잘라서 어레이리스트에 넣는 함수 
     }
 
     // 텍스트 파일 구분자(/)로 잘라서 어레이리스트에 넣기
