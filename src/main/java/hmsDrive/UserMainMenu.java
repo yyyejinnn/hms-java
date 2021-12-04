@@ -70,6 +70,11 @@ public class UserMainMenu extends javax.swing.JFrame {
         });
 
         jButton4.setText("식품 판매 및 추적");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("고객 기록");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +193,12 @@ public class UserMainMenu extends javax.swing.JFrame {
         new Record(1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new Dish(1).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
